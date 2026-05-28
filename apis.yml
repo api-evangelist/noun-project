@@ -1,0 +1,32 @@
+aid: noun-project
+name: Noun Project
+description: "Icons"
+url: http://api.thenounproject.com/index.html
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Art & Design"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Art And Design
+  - Public APIs
+apis:
+  - name: Noun Project
+    description: "Icons"
+    humanURL: http://api.thenounproject.com/index.html
+    baseURL: http://api.thenounproject.com/index.html
+    tags:
+      - Art And Design
+    properties:
+      - type: Documentation
+        url: http://api.thenounproject.com/index.html
+common:
+  - type: Website
+    url: http://api.thenounproject.com/index.html
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
