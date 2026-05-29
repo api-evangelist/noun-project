@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-icon-structure.json",
+  "name": "Icon",
+  "description": "A single icon in the Noun Project library.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Numeric identifier of the icon.",
+      "example": 1234567
+    },
+    "attribution": {
+      "type": "string",
+      "description": "Required attribution string when the icon is not public domain.",
+      "example": "rocket by Jane Smith from Noun Project"
+    },
+    "attribution_preview_url": {
+      "type": "uri",
+      "description": "URL to a rendered attribution image suitable for design overlays.",
+      "example": "https://static.thenounproject.com/png/1234567-attribution.png"
+    },
+    "creator": {
+      "type": "object",
+      "description": "The creator of an icon.",
+      "properties": {
+        "id": {
+          "type": "int32",
+          "description": "Numeric identifier of the creator.",
+          "example": 4321
+        },
+        "username": {
+          "type": "string",
+          "description": "URL-safe username of the creator.",
+          "example": "jsmith"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the creator.",
+          "example": "Jane Smith"
+        },
+        "permalink": {
+          "type": "uri",
+          "description": "Canonical URL for the creator profile.",
+          "example": "https://thenounproject.com/jsmith/"
+        },
+        "location": {
+          "type": "string",
+          "description": "Free-text location reported by the creator.",
+          "example": "Brooklyn, NY"
+        },
+        "bio": {
+          "type": "string",
+          "description": "Creator's profile bio.",
+          "example": "Designer focused on space exploration icons."
+        },
+        "avatar_url": {
+          "type": "uri",
+          "description": "URL to the creator's avatar image.",
+          "example": "https://static.thenounproject.com/avatars/4321.png"
+        }
+      },
+      "required": [
+        "id",
+        "username"
+      ]
+    },
+    "date_uploaded": {
+      "type": "datetime",
+      "description": "ISO 8601 timestamp when the icon was uploaded.",
+      "example": "2024-08-15T13:45:00Z"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the icon is currently active and available for download.",
+      "example": true
+    },
+    "is_public_domain": {
+      "type": "boolean",
+      "description": "Whether the icon has been released into the public domain.",
+      "example": false
+    },
+    "license_description": {
+      "type": "string",
+      "description": "Human-readable license summary.",
+      "example": "creative-commons-attribution"
+    },
+    "permalink": {
+      "type": "uri",
+      "description": "Canonical URL for the icon on thenounproject.com.",
+      "example": "https://thenounproject.com/icon/1234567/"
+    },
+    "preview_url": {
+      "type": "uri",
+      "description": "URL for the default-size preview image.",
+      "example": "https://static.thenounproject.com/png/1234567-200.png"
+    },
+    "preview_url_42": {
+      "type": "uri",
+      "description": "URL for the 42-pixel thumbnail.",
+      "example": "https://static.thenounproject.com/png/1234567-42.png"
+    },
+    "preview_url_84": {
+      "type": "uri",
+      "description": "URL for the 84-pixel thumbnail.",
+      "example": "https://static.thenounproject.com/png/1234567-84.png"
+    },
+    "preview_url_200": {
+      "type": "uri",
+      "description": "URL for the 200-pixel thumbnail.",
+      "example": "https://static.thenounproject.com/png/1234567-200.png"
+    },
+    "icon_url": {
+      "type": "uri",
+      "description": "Direct URL to the SVG asset (when include_svg is not used).",
+      "example": "https://static.thenounproject.com/svg/1234567.svg"
+    },
+    "svg": {
+      "type": "string",
+      "description": "Inline SVG markup when include_svg=true was requested.",
+      "example": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"...\"/></svg>"
+    },
+    "style": {
+      "type": "string",
+      "description": "Visual style classification of the icon.",
+      "enum": [
+        "solid",
+        "line"
+      ],
+      "example": "solid"
+    },
+    "line_weight": {
+      "type": "int32",
+      "description": "Line weight in pixels at 512px rendering (line-style icons only).",
+      "minimum": 1,
+      "maximum": 60,
+      "example": 4
+    },
+    "tags": {
+      "type": "array",
+      "description": "Search tags applied to the icon.",
+      "items": {
+        "type": "object",
+        "description": "A single search tag applied to an icon or collection.",
+        "properties": {
+          "id": {
+            "type": "int32",
+            "description": "Numeric identifier of the tag.",
+            "example": 999
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-safe slug of the tag.",
+            "example": "spaceship"
+          }
+        },
+        "required": [
+          "id",
+          "slug"
+        ]
+      }
+    },
+    "term": {
+      "type": "string",
+      "description": "Primary search term used to discover the icon.",
+      "example": "rocket"
+    },
+    "term_slug": {
+      "type": "string",
+      "description": "URL-safe version of the term.",
+      "example": "rocket"
+    },
+    "year_published": {
+      "type": "int32",
+      "description": "Year the icon was first published.",
+      "example": 2024
+    },
+    "royalty_free_license": {
+      "type": "boolean",
+      "description": "Whether the icon is included under the royalty-free license.",
+      "example": true
+    },
+    "nsfw": {
+      "type": "boolean",
+      "description": "Whether the icon has been flagged not-safe-for-work.",
+      "example": false
+    },
+    "sponsor_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Identifier of the sponsoring brand if any.",
+      "example": null
+    },
+    "thumbnail_url": {
+      "type": "uri",
+      "description": "Thumbnail URL at the requested thumbnail_size.",
+      "example": "https://static.thenounproject.com/png/1234567-200.png"
+    }
+  },
+  "required": [
+    "id",
+    "permalink"
+  ]
+}

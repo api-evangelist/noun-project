@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-collection-search-response-structure.json",
+  "name": "CollectionSearchResponse",
+  "description": "Paginated collection search results.",
+  "type": "object",
+  "properties": {
+    "collections": {
+      "type": "array",
+      "description": "Collections matching the search criteria.",
+      "items": {
+        "type": "object",
+        "description": "A curated icon collection (icon set).",
+        "properties": {
+          "id": {
+            "type": "int32",
+            "description": "Numeric identifier of the collection.",
+            "example": 98765
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-safe slug of the collection.",
+            "example": "weather-icons"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the collection.",
+            "example": "Weather Icons"
+          },
+          "description": {
+            "type": "string",
+            "description": "Marketing description of the collection.",
+            "example": "A complete weather iconography set covering conditions and forecasts."
+          },
+          "permalink": {
+            "type": "uri",
+            "description": "Canonical URL for the collection on thenounproject.com.",
+            "example": "https://thenounproject.com/collection/98765/"
+          },
+          "preview_url": {
+            "type": "uri",
+            "description": "Cover image URL for the collection.",
+            "example": "https://static.thenounproject.com/collections/98765-cover.png"
+          },
+          "creator": {
+            "$ref": "#/components/schemas/IconCreator"
+          },
+          "date_created": {
+            "type": "datetime",
+            "description": "ISO 8601 timestamp when the collection was created.",
+            "example": "2024-04-12T10:00:00Z"
+          },
+          "date_updated": {
+            "type": "datetime",
+            "description": "ISO 8601 timestamp of the last collection update.",
+            "example": "2024-09-30T18:22:00Z"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Whether the collection is published and discoverable.",
+            "example": true
+          },
+          "icon_count": {
+            "type": "int32",
+            "description": "Number of icons currently in the collection.",
+            "example": 32
+          },
+          "tags": {
+            "type": "array",
+            "description": "Search tags applied to the collection.",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
+          "icons": {
+            "type": "array",
+            "description": "Member icons returned when retrieving a collection by ID.",
+            "items": {
+              "$ref": "#/components/schemas/Icon"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "permalink"
+        ]
+      }
+    },
+    "generated_at": {
+      "type": "datetime",
+      "description": "ISO 8601 timestamp of when the response was generated.",
+      "example": "2026-05-28T14:00:00Z"
+    },
+    "total": {
+      "type": "int32",
+      "description": "Total number of collections matching the search.",
+      "example": 187
+    },
+    "next_page": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Cursor token for the next page of results.",
+      "example": "eyJsYXN0X2lkIjo5ODc2NX0="
+    },
+    "prev_page": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Cursor token for the previous page of results.",
+      "example": null
+    }
+  },
+  "required": [
+    "collections"
+  ]
+}

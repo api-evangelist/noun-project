@@ -1,0 +1,101 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Noun Project
+providerId: noun-project
+created: '2026-05-28'
+modified: '2026-05-28'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Icons
+  - Visual Language
+description: >-
+  FOCUS-aligned FinOps for Noun Project: per-call usage charges for service and
+  icon endpoints, layered with a monthly minimum and (on Enterprise) a
+  negotiated discount block.
+sources:
+  - https://thenounproject.com/api/
+  - https://api.thenounproject.com/getting_started.html
+  - https://focus.finops.org/focus-specification/v1-3/
+  - https://www.finops.org/framework/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: NounProject.com, Inc.
+serviceCategory: Design Assets
+billingModel:
+  pricingCategory: Pay-As-You-Go + Subscription Minimum
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Adjustment
+focusColumns:
+  ServiceName: Noun Project API
+  ServiceCategory: Design Assets
+  ServiceSubcategory: Icons
+  ProviderName: Noun Project
+  PublisherName: NounProject.com, Inc.
+  InvoiceIssuerName: NounProject.com, Inc.
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: service_calls
+    unit: request
+    aggregation: sum
+    dimensions:
+      - plan_tier
+      - endpoint
+    description: Non-icon API requests (search, autocomplete, blocklist, usage).
+  - name: icon_calls
+    unit: request
+    aggregation: sum
+    dimensions:
+      - plan_tier
+      - endpoint
+      - filetype
+    description: Requests that include an icon ID (get, similar, download).
+  - name: monthly_minimum
+    unit: month
+    aggregation: max
+    dimensions:
+      - plan_tier
+    description: Floor charge applied when usage falls below the plan minimum.
+  - name: enterprise_discount
+    unit: adjustment
+    aggregation: sum
+    dimensions:
+      - contract_id
+    description: Negotiated discount block on the Custom Enterprise tier.
+principles:
+  - name: Visibility
+    description: >-
+      Real-time consumption is exposed through GET /v2/client/usage (hourly,
+      daily, monthly windows) and the developer dashboard at
+      thenounproject.com/developers/apps/. Pair both for per-key spend tracking.
+  - name: Allocation
+    description: >-
+      Issue distinct OAuth 1.0a client key/secret pairs per team, product, or
+      customer to attribute spend cleanly. Annotate keys with environment and
+      cost-center metadata in the dashboard.
+  - name: Optimization
+    description: >-
+      Prefer the /v2/icon search endpoint (service call) to fetch lightweight
+      metadata before triggering /v2/icon/{id} or /v2/icon/{id}/download
+      (icon calls) — the latter is roughly 3.8x more expensive per call. Cache
+      icon binaries client-side; the icon catalog rarely changes for a given
+      ID. Negotiate Enterprise discounts once sustained monthly spend exceeds
+      $300.
+  - name: Accountability
+    description: >-
+      Assign each API key to a named owner and a cost center. Set the
+      user-defined monthly maximum on Pay-Per-Use accounts to convert soft
+      budgets into hard 429s. Alert on /v2/client/usage anomalies to detect
+      misuse before invoices arrive.

@@ -1,0 +1,286 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Noun Project"
+  description: >-
+    Unified taxonomy for the Noun Project API V2, mapping operational dimensions
+    (icon search, retrieval, collection browsing, autocomplete, blocklist, usage)
+    to capability dimensions (REST and MCP exposers backed by OAuth 1.0a-signed
+    upstream calls).
+  created: "2026-05-28"
+  modified: "2026-05-28"
+
+operational:
+  apis:
+    - name: "Noun Project API V2"
+      namespace: "noun-project"
+      version: "2.0"
+      baseUrl: "https://api.thenounproject.com"
+      status: active
+
+  resources:
+    - name: icons
+      api: "Noun Project API V2"
+      domain: "Visual Language"
+      actions: [search, retrieve, similar, download]
+    - name: collections
+      api: "Noun Project API V2"
+      domain: "Visual Language"
+      actions: [search, retrieve]
+    - name: autocomplete
+      api: "Noun Project API V2"
+      domain: "Search Discovery"
+      actions: [suggest]
+    - name: blocklist
+      api: "Noun Project API V2"
+      domain: "Content Moderation"
+      actions: [retrieve, add-ids, add-terms]
+    - name: usage
+      api: "Noun Project API V2"
+      domain: "Telemetry"
+      actions: [retrieve]
+
+  actions:
+    - name: search
+      verb: search
+      httpMethods: [GET]
+      pattern: query
+    - name: retrieve
+      verb: get
+      httpMethods: [GET]
+      pattern: read
+    - name: similar
+      verb: get
+      httpMethods: [GET]
+      pattern: query
+    - name: download
+      verb: download
+      httpMethods: [GET]
+      pattern: read
+    - name: suggest
+      verb: autocomplete
+      httpMethods: [GET]
+      pattern: query
+    - name: add-ids
+      verb: add
+      httpMethods: [POST]
+      pattern: write
+    - name: add-terms
+      verb: add
+      httpMethods: [POST]
+      pattern: write
+
+  schemas:
+    core:
+      - Icon
+      - Collection
+      - IconCreator
+      - Tag
+    responses:
+      - IconResponse
+      - IconSearchResponse
+      - CollectionResponse
+      - CollectionSearchResponse
+      - AutocompleteResponse
+      - UsageResponse
+      - BlocklistResponse
+    requests:
+      - BlocklistIdRequest
+      - BlocklistTermRequest
+    telemetry:
+      - Usage
+      - UsageWindow
+    moderation:
+      - Blocklist
+    errors:
+      - ErrorResponse
+
+  parameters:
+    pagination:
+      - prev_page
+      - next_page
+      - limit
+    identifiers:
+      - icon_id
+      - collection_id
+    filters:
+      - query
+      - styles
+      - line_weight
+      - limit_to_public_domain
+      - blacklist
+      - type
+    rendering:
+      - thumbnail_size
+      - include_svg
+      - color
+      - filetype
+      - size
+
+  enums:
+    styles:
+      - solid
+      - line
+    filetypes:
+      - svg
+      - png
+    thumbnail_sizes:
+      - 42
+      - 84
+      - 200
+    blocklist_types:
+      - icon
+      - collection
+
+  authentication:
+    schemes:
+      - name: oauth1
+        type: OAuth 1.0a
+        signature: HMAC-SHA1
+        scope: client-key
+        appliesTo:
+          - "Noun Project API V2"
+
+capability:
+  workflows:
+    - name: "Noun Project — Icon"
+      file: capabilities/noun-project-icon.yaml
+      description: "Search, retrieve, find similar, and download royalty-free icons."
+      apis: ["Noun Project API V2"]
+      toolCount: 4
+      personas: ["Design Tool Developer", "Brand Marketer"]
+      domains: ["Visual Language"]
+    - name: "Noun Project — Collection"
+      file: capabilities/noun-project-collection.yaml
+      description: "Search and retrieve curated icon collections."
+      apis: ["Noun Project API V2"]
+      toolCount: 2
+      personas: ["Design System Curator"]
+      domains: ["Visual Language"]
+    - name: "Noun Project — Autocomplete"
+      file: capabilities/noun-project-autocomplete.yaml
+      description: "Suggest icon search terms based on a query prefix."
+      apis: ["Noun Project API V2"]
+      toolCount: 1
+      personas: ["Design Tool Developer"]
+      domains: ["Search Discovery"]
+    - name: "Noun Project — Blocklist"
+      file: capabilities/noun-project-blocklist.yaml
+      description: "Manage per-client blocklists for icon IDs, collection IDs, and terms."
+      apis: ["Noun Project API V2"]
+      toolCount: 3
+      personas: ["Trust and Safety Engineer", "Brand Marketer"]
+      domains: ["Content Moderation"]
+    - name: "Noun Project — Usage"
+      file: capabilities/noun-project-usage.yaml
+      description: "Inspect current API key usage and quota windows."
+      apis: ["Noun Project API V2"]
+      toolCount: 1
+      personas: ["Platform Operator", "FinOps Practitioner"]
+      domains: ["Telemetry"]
+
+  personas:
+    - id: design-tool-developer
+      name: "Design Tool Developer"
+      description: "Integrates Noun Project into design tools, no-code builders, and content platforms."
+      workflows: ["Noun Project — Icon", "Noun Project — Autocomplete"]
+    - id: design-system-curator
+      name: "Design System Curator"
+      description: "Curates visually consistent icon sets for design systems and templates."
+      workflows: ["Noun Project — Collection"]
+    - id: brand-marketer
+      name: "Brand Marketer"
+      description: "Recolors icons to brand palettes and enforces brand-safe content."
+      workflows: ["Noun Project — Icon", "Noun Project — Blocklist"]
+    - id: trust-and-safety-engineer
+      name: "Trust and Safety Engineer"
+      description: "Maintains blocklists to suppress unwanted icon content."
+      workflows: ["Noun Project — Blocklist"]
+    - id: platform-operator
+      name: "Platform Operator"
+      description: "Monitors API key usage and enforces quotas across teams."
+      workflows: ["Noun Project — Usage"]
+    - id: finops-practitioner
+      name: "FinOps Practitioner"
+      description: "Tracks per-call spend against pay-per-use and enterprise plans."
+      workflows: ["Noun Project — Usage"]
+
+  domains:
+    - name: "Visual Language"
+      description: "Icons, collections, and the visual assets that compose them."
+      resources: [icons, collections]
+      workflows:
+        - "Noun Project — Icon"
+        - "Noun Project — Collection"
+    - name: "Search Discovery"
+      description: "Term suggestions and autocomplete to power icon search UX."
+      resources: [autocomplete]
+      workflows: ["Noun Project — Autocomplete"]
+    - name: "Content Moderation"
+      description: "Per-client blocklists for IDs, collections, and terms."
+      resources: [blocklist]
+      workflows: ["Noun Project — Blocklist"]
+    - name: "Telemetry"
+      description: "Usage and quota visibility for billing and quota planning."
+      resources: [usage]
+      workflows: ["Noun Project — Usage"]
+
+  namespaces:
+    consumed:
+      - noun-project-icon
+      - noun-project-collection
+      - noun-project-autocomplete
+      - noun-project-blocklist
+      - noun-project-usage
+    rest:
+      - noun-project-icon-rest
+      - noun-project-collection-rest
+      - noun-project-autocomplete-rest
+      - noun-project-blocklist-rest
+      - noun-project-usage-rest
+    mcp:
+      - noun-project-icon-mcp
+      - noun-project-collection-mcp
+      - noun-project-autocomplete-mcp
+      - noun-project-blocklist-mcp
+      - noun-project-usage-mcp
+
+  binds:
+    - name: NOUN_PROJECT_OAUTH_KEY
+      description: "Noun Project OAuth 1.0a consumer key."
+      requiredBy:
+        - "Noun Project — Icon"
+        - "Noun Project — Collection"
+        - "Noun Project — Autocomplete"
+        - "Noun Project — Blocklist"
+        - "Noun Project — Usage"
+    - name: NOUN_PROJECT_OAUTH_SECRET
+      description: "Noun Project OAuth 1.0a consumer secret."
+      requiredBy:
+        - "Noun Project — Icon"
+        - "Noun Project — Collection"
+        - "Noun Project — Autocomplete"
+        - "Noun Project — Blocklist"
+        - "Noun Project — Usage"
+
+crossReference:
+  - resource: icons
+    operations: [searchIcons, getIcon, getSimilarIcons, downloadIcon]
+    workflows: ["Noun Project — Icon"]
+    personas: ["Design Tool Developer", "Brand Marketer"]
+  - resource: collections
+    operations: [searchCollections, getCollection]
+    workflows: ["Noun Project — Collection"]
+    personas: ["Design System Curator"]
+  - resource: autocomplete
+    operations: [autocompleteIcons]
+    workflows: ["Noun Project — Autocomplete"]
+    personas: ["Design Tool Developer"]
+  - resource: blocklist
+    operations: [getBlocklist, addBlocklistIds, addBlocklistTerms]
+    workflows: ["Noun Project — Blocklist"]
+    personas: ["Trust and Safety Engineer", "Brand Marketer"]
+  - resource: usage
+    operations: [getUsage]
+    workflows: ["Noun Project — Usage"]
+    personas: ["Platform Operator", "FinOps Practitioner"]

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-usage-structure.json",
+  "name": "Usage",
+  "description": "API key usage and quota information.",
+  "type": "object",
+  "properties": {
+    "hourly": {
+      "type": "object",
+      "description": "Usage statistics for a single time window.",
+      "properties": {
+        "service_calls_used": {
+          "type": "int32",
+          "description": "Non-icon API calls consumed in this window.",
+          "example": 245
+        },
+        "service_calls_limit": {
+          "type": "int32",
+          "description": "Maximum non-icon API calls allowed in this window.",
+          "example": 1000
+        },
+        "icon_calls_used": {
+          "type": "int32",
+          "description": "Icon-specific calls consumed in this window.",
+          "example": 38
+        },
+        "icon_calls_limit": {
+          "type": "int32",
+          "description": "Maximum icon-specific calls allowed in this window.",
+          "example": 150
+        },
+        "period_start": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window started.",
+          "example": "2026-05-28T00:00:00Z"
+        },
+        "period_end": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window ends.",
+          "example": "2026-05-29T00:00:00Z"
+        }
+      }
+    },
+    "daily": {
+      "type": "object",
+      "description": "Usage statistics for a single time window.",
+      "properties": {
+        "service_calls_used": {
+          "type": "int32",
+          "description": "Non-icon API calls consumed in this window.",
+          "example": 245
+        },
+        "service_calls_limit": {
+          "type": "int32",
+          "description": "Maximum non-icon API calls allowed in this window.",
+          "example": 1000
+        },
+        "icon_calls_used": {
+          "type": "int32",
+          "description": "Icon-specific calls consumed in this window.",
+          "example": 38
+        },
+        "icon_calls_limit": {
+          "type": "int32",
+          "description": "Maximum icon-specific calls allowed in this window.",
+          "example": 150
+        },
+        "period_start": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window started.",
+          "example": "2026-05-28T00:00:00Z"
+        },
+        "period_end": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window ends.",
+          "example": "2026-05-29T00:00:00Z"
+        }
+      }
+    },
+    "monthly": {
+      "type": "object",
+      "description": "Usage statistics for a single time window.",
+      "properties": {
+        "service_calls_used": {
+          "type": "int32",
+          "description": "Non-icon API calls consumed in this window.",
+          "example": 245
+        },
+        "service_calls_limit": {
+          "type": "int32",
+          "description": "Maximum non-icon API calls allowed in this window.",
+          "example": 1000
+        },
+        "icon_calls_used": {
+          "type": "int32",
+          "description": "Icon-specific calls consumed in this window.",
+          "example": 38
+        },
+        "icon_calls_limit": {
+          "type": "int32",
+          "description": "Maximum icon-specific calls allowed in this window.",
+          "example": 150
+        },
+        "period_start": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window started.",
+          "example": "2026-05-28T00:00:00Z"
+        },
+        "period_end": {
+          "type": "datetime",
+          "description": "ISO 8601 timestamp of when this window ends.",
+          "example": "2026-05-29T00:00:00Z"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Noun Project
+providerId: noun-project
+created: '2026-05-28'
+modified: '2026-05-28'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Icons
+  - Visual Language
+description: >-
+  Noun Project API rate limits are bound to the calling API key (OAuth 1.0a
+  client) and split across two metric families: service calls (non-icon
+  endpoints such as search, autocomplete, blocklist, usage) and icon calls
+  (requests that include an icon ID such as get-icon, similar, and download).
+  Each metric is enforced across hourly, daily, and monthly windows that vary
+  by plan. Free trial accounts also receive smaller per-request payload caps
+  (5 blocklist entries vs 1,000 on paid plans). Real-time usage is available
+  through the /v2/client/usage endpoint and the developer dashboard.
+sources:
+  - https://thenounproject.com/api/
+  - https://api.thenounproject.com/getting_started.html
+  - https://api.thenounproject.com/documentation.html
+responseCodes:
+  unauthorized: 401
+  notFound: 404
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - name: Service calls (Free Trial, daily)
+    scope: key
+    metric: requests_per_day
+    limit: 1000
+    timeFrame: day
+    notes: Non-icon endpoints (search, autocomplete, blocklist, usage).
+  - name: Service calls (Free Trial, monthly)
+    scope: key
+    metric: requests_per_month
+    limit: 2000
+    timeFrame: month
+    notes: Non-icon endpoints on the 30-day free trial.
+  - name: Icon calls (Free Trial, daily)
+    scope: key
+    metric: requests_per_day
+    limit: 150
+    timeFrame: day
+    notes: Endpoints that include an icon ID (get-icon, similar, download).
+  - name: Icon calls (Free Trial, monthly)
+    scope: key
+    metric: requests_per_month
+    limit: 150
+    timeFrame: month
+    notes: Same icon-call quota for daily and monthly on free trial.
+  - name: Service calls (Pay-Per-Use, daily)
+    scope: key
+    metric: requests_per_day
+    limit: 200000
+    timeFrame: day
+  - name: Service calls (Pay-Per-Use, monthly)
+    scope: key
+    metric: requests_per_month
+    limit: 3000000
+    timeFrame: month
+  - name: Icon calls (Pay-Per-Use, daily)
+    scope: key
+    metric: requests_per_day
+    limit: 10000
+    timeFrame: day
+  - name: Icon calls (Pay-Per-Use, monthly)
+    scope: key
+    metric: requests_per_month
+    limit: 150000
+    timeFrame: month
+  - name: Service and icon calls (Enterprise)
+    scope: key
+    metric: requests_per_month
+    limit: 'unlimited; subject to negotiated $300 monthly minimum'
+    notes: Custom Enterprise tier removes daily and monthly call ceilings.
+  - name: Blocklist payload (per request, Free Trial)
+    scope: request
+    metric: items_per_request
+    limit: 5
+    notes: Maximum identifiers or terms accepted per blocklist POST on free trial.
+  - name: Blocklist payload (per request, paid)
+    scope: request
+    metric: items_per_request
+    limit: 1000
+    notes: Maximum identifiers or terms accepted per blocklist POST on paid plans.
+  - name: Hourly limit
+    scope: key
+    metric: varies
+    limit: 'documented but tier-specific; consult the developer dashboard or /v2/client/usage'
+    notes: All keys are subject to hourly limits in addition to daily and monthly caps.
+policies:
+  - name: Hourly + daily + monthly windows
+    description: >-
+      Every key is constrained by hourly, daily, and monthly windows. Exceeding
+      any window returns HTTP 429.
+  - name: Tier-aware blocklist payload limits
+    description: >-
+      Blocklist POST payloads are capped at 5 items on the free trial and 1,000
+      items on paid plans. Exceeding the limit returns HTTP 400.
+  - name: Blocklist cache
+    description: >-
+      Blocklist reads are cached server-side for up to 10 minutes; expect a
+      propagation delay after add/overwrite operations.
+  - name: Self-service quota visibility
+    description: >-
+      Use GET /v2/client/usage to programmatically inspect current consumption
+      and remaining quota across hourly, daily, and monthly windows.
+  - name: Soft caps via dashboard
+    description: >-
+      The developer dashboard exposes user-defined monthly maximums on the
+      Pay-Per-Use plan; setting one converts the soft cap into a hard 429.
+  - name: Quota raises via support
+    description: >-
+      Enterprise customers and elevated Pay-Per-Use accounts can negotiate
+      raised per-second or per-hour ceilings through Noun Project support
+      (help.thenounproject.com).

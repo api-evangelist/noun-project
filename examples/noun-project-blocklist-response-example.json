@@ -1,0 +1,18 @@
+{
+  "blacklist": {
+    "icon_ids": [
+      8130590,
+      8602434
+    ],
+    "collection_ids": [
+      4972820,
+      1978145
+    ],
+    "terms": [
+      "rocket",
+      "rocket"
+    ],
+    "cached_at": "2026-05-28T13:55:00Z"
+  },
+  "generated_at": "2026-05-28T14:00:00Z"
+}

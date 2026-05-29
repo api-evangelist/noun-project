@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-blocklist-id-request-structure.json",
+  "name": "BlocklistIdRequest",
+  "description": "Request body for adding icon or collection IDs to the blocklist.",
+  "type": "object",
+  "properties": {
+    "blacklist": {
+      "type": "array",
+      "description": "Identifiers to add to the blocklist.",
+      "items": {
+        "type": "int32"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "example": [
+        12345,
+        67890
+      ]
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "When true, replaces the existing blocklist for this type entirely.",
+      "default": false,
+      "example": false
+    }
+  },
+  "required": [
+    "blacklist"
+  ]
+}

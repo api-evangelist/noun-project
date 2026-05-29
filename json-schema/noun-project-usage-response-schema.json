@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-schema/noun-project-usage-response-schema.json",
+  "title": "UsageResponse",
+  "description": "Wrapper for the client usage response.",
+  "type": "object",
+  "properties": {
+    "usage": {
+      "type": "object",
+      "description": "API key usage and quota information.",
+      "properties": {
+        "hourly": {
+          "$ref": "#/components/schemas/UsageWindow"
+        },
+        "daily": {
+          "$ref": "#/components/schemas/UsageWindow"
+        },
+        "monthly": {
+          "$ref": "#/components/schemas/UsageWindow"
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the response was generated.",
+      "example": "2026-05-28T14:00:00Z"
+    }
+  },
+  "required": [
+    "usage"
+  ]
+}

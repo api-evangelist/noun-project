@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-blocklist-structure.json",
+  "name": "Blocklist",
+  "description": "The current blocklist for a client key.",
+  "type": "object",
+  "properties": {
+    "icon_ids": {
+      "type": "array",
+      "description": "Blocked icon identifiers.",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        12345,
+        67890
+      ]
+    },
+    "collection_ids": {
+      "type": "array",
+      "description": "Blocked collection identifiers.",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        98765
+      ]
+    },
+    "terms": {
+      "type": "array",
+      "description": "Blocked terms and phrases.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "violence",
+        "weapon"
+      ]
+    },
+    "cached_at": {
+      "type": "datetime",
+      "description": "ISO 8601 timestamp when the blocklist was last cached.",
+      "example": "2026-05-28T13:55:00Z"
+    }
+  }
+}

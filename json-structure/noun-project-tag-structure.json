@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-structure/noun-project-tag-structure.json",
+  "name": "Tag",
+  "description": "A single search tag applied to an icon or collection.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Numeric identifier of the tag.",
+      "example": 999
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug of the tag.",
+      "example": "spaceship"
+    }
+  },
+  "required": [
+    "id",
+    "slug"
+  ]
+}

@@ -1,0 +1,372 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Noun Project API V2 — Icon"
+  description: >-
+    Icon — Search, retrieve, find similar, and download royalty-free icons from
+    the Noun Project library of nearly 10 million PNG and SVG icons. 4 operations.
+    Lead operation: Search Icons by query term with optional style and line-weight
+    filters. Self-contained Naftiko capability covering one Noun Project business
+    surface.
+  tags:
+    - Noun Project
+    - Icons
+    - Search
+  created: "2026-05-28"
+  modified: "2026-05-28"
+
+binds:
+  - namespace: env
+    keys:
+      NOUN_PROJECT_OAUTH_KEY: NOUN_PROJECT_OAUTH_KEY
+      NOUN_PROJECT_OAUTH_SECRET: NOUN_PROJECT_OAUTH_SECRET
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "noun-project-icon"
+      baseUri: "https://api.thenounproject.com"
+      description: "Noun Project API V2 — Icon business capability. Self-contained, no shared references."
+      authentication:
+        type: oauth1
+        consumerKey: "{{env.NOUN_PROJECT_OAUTH_KEY}}"
+        consumerSecret: "{{env.NOUN_PROJECT_OAUTH_SECRET}}"
+        signatureMethod: HMAC-SHA1
+      resources:
+        - name: "icon-search"
+          path: "/v2/icon"
+          operations:
+            - name: "searchIcons"
+              method: GET
+              description: "Search and filter icons by query, style, and line weight."
+              inputParameters:
+                - name: query
+                  in: query
+                  type: string
+                  required: true
+                  description: "Search term used to match icon titles, tags, and descriptions."
+                - name: styles
+                  in: query
+                  type: string
+                  required: false
+                  description: "Comma-separated icon styles (solid, line)."
+                - name: line_weight
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Line weight in pixels (1-60) at 512px rendering."
+                - name: limit_to_public_domain
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, restricts to public-domain icons."
+                - name: thumbnail_size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pixel dimension for returned thumbnail URLs (42, 84, 200)."
+                - name: blacklist
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, applies the client's configured blocklist."
+                - name: include_svg
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, includes raw SVG markup in each icon result."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of icons returned per page."
+                - name: prev_page
+                  in: query
+                  type: string
+                  required: false
+                  description: "Cursor token returned by a prior response for backward pagination."
+                - name: next_page
+                  in: query
+                  type: string
+                  required: false
+                  description: "Cursor token returned by a prior response for forward pagination."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "icon-detail"
+          path: "/v2/icon/{icon_id}"
+          operations:
+            - name: "getIcon"
+              method: GET
+              description: "Retrieve a single icon by its numeric identifier with full metadata."
+              inputParameters:
+                - name: icon_id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Numeric identifier of the icon."
+                - name: thumbnail_size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pixel dimension for the returned thumbnail URL."
+                - name: blacklist
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, returns 404 if the icon is on the client's blocklist."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "icon-similar"
+          path: "/v2/icon/{icon_id}/more-like-this"
+          operations:
+            - name: "getSimilarIcons"
+              method: GET
+              description: "Find icons stylistically similar to the supplied icon ID."
+              inputParameters:
+                - name: icon_id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Numeric identifier of the seed icon."
+                - name: query
+                  in: query
+                  type: string
+                  required: false
+                  description: "Optional search term to narrow similar-icon candidates."
+                - name: limit_to_public_domain
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, restricts results to public-domain icons."
+                - name: thumbnail_size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pixel dimension for returned thumbnail URLs."
+                - name: blacklist
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, applies the client's configured blocklist."
+                - name: include_svg
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "When true, includes raw SVG markup."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of icons returned per page."
+                - name: prev_page
+                  in: query
+                  type: string
+                  required: false
+                  description: "Cursor token for backward pagination."
+                - name: next_page
+                  in: query
+                  type: string
+                  required: false
+                  description: "Cursor token for forward pagination."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "icon-download"
+          path: "/v2/icon/{icon_id}/download"
+          operations:
+            - name: "downloadIcon"
+              method: GET
+              description: "Download a rendered icon in SVG or PNG format with optional hex-color recoloring."
+              inputParameters:
+                - name: icon_id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Numeric identifier of the icon."
+                - name: color
+                  in: query
+                  type: string
+                  required: false
+                  description: "Hex color value (without leading #) used to recolor the icon."
+                - name: filetype
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output file format (svg or png)."
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "PNG pixel dimension (20-1200). Ignored for SVG."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "noun-project-icon-rest"
+      port: 8080
+      description: "REST adapter for Noun Project API V2 — Icon. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/icons"
+          name: "icons"
+          description: "REST surface for icon search."
+          operations:
+            - method: GET
+              name: "searchIcons"
+              description: "Search and filter icons by query, style, and line weight."
+              call: "noun-project-icon.searchIcons"
+              with:
+                query: "rest.query"
+                styles: "rest.styles"
+                line_weight: "rest.line_weight"
+                limit_to_public_domain: "rest.limit_to_public_domain"
+                thumbnail_size: "rest.thumbnail_size"
+                blacklist: "rest.blacklist"
+                include_svg: "rest.include_svg"
+                limit: "rest.limit"
+                prev_page: "rest.prev_page"
+                next_page: "rest.next_page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/icons/{icon_id}"
+          name: "icon-detail"
+          description: "REST surface for retrieving a single icon."
+          operations:
+            - method: GET
+              name: "getIcon"
+              description: "Retrieve a single icon by its numeric identifier with full metadata."
+              call: "noun-project-icon.getIcon"
+              with:
+                icon_id: "rest.icon_id"
+                thumbnail_size: "rest.thumbnail_size"
+                blacklist: "rest.blacklist"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/icons/{icon_id}/similar"
+          name: "icon-similar"
+          description: "REST surface for finding similar icons."
+          operations:
+            - method: GET
+              name: "getSimilarIcons"
+              description: "Find icons stylistically similar to the supplied icon ID."
+              call: "noun-project-icon.getSimilarIcons"
+              with:
+                icon_id: "rest.icon_id"
+                query: "rest.query"
+                limit_to_public_domain: "rest.limit_to_public_domain"
+                thumbnail_size: "rest.thumbnail_size"
+                blacklist: "rest.blacklist"
+                include_svg: "rest.include_svg"
+                limit: "rest.limit"
+                prev_page: "rest.prev_page"
+                next_page: "rest.next_page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/icons/{icon_id}/download"
+          name: "icon-download"
+          description: "REST surface for downloading rendered icons."
+          operations:
+            - method: GET
+              name: "downloadIcon"
+              description: "Download a rendered icon in SVG or PNG format with optional hex-color recoloring."
+              call: "noun-project-icon.downloadIcon"
+              with:
+                icon_id: "rest.icon_id"
+                color: "rest.color"
+                filetype: "rest.filetype"
+                size: "rest.size"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      namespace: "noun-project-icon-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Noun Project API V2 — Icon. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "search-icons"
+          description: "Search and filter icons by query, style, and line weight."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "noun-project-icon.searchIcons"
+          with:
+            query: "tools.query"
+            styles: "tools.styles"
+            line_weight: "tools.line_weight"
+            limit_to_public_domain: "tools.limit_to_public_domain"
+            thumbnail_size: "tools.thumbnail_size"
+            blacklist: "tools.blacklist"
+            include_svg: "tools.include_svg"
+            limit: "tools.limit"
+            prev_page: "tools.prev_page"
+            next_page: "tools.next_page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-icon"
+          description: "Retrieve a single icon by its numeric identifier with full metadata."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "noun-project-icon.getIcon"
+          with:
+            icon_id: "tools.icon_id"
+            thumbnail_size: "tools.thumbnail_size"
+            blacklist: "tools.blacklist"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-similar-icons"
+          description: "Find icons stylistically similar to the supplied icon ID."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "noun-project-icon.getSimilarIcons"
+          with:
+            icon_id: "tools.icon_id"
+            query: "tools.query"
+            limit_to_public_domain: "tools.limit_to_public_domain"
+            thumbnail_size: "tools.thumbnail_size"
+            blacklist: "tools.blacklist"
+            include_svg: "tools.include_svg"
+            limit: "tools.limit"
+            prev_page: "tools.prev_page"
+            next_page: "tools.next_page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "download-icon"
+          description: "Download a rendered icon in SVG or PNG format with optional hex-color recoloring."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "noun-project-icon.downloadIcon"
+          with:
+            icon_id: "tools.icon_id"
+            color: "tools.color"
+            filetype: "tools.filetype"
+            size: "tools.size"
+          outputParameters:
+            - type: object
+              mapping: "$."

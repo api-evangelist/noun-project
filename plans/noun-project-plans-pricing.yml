@@ -1,0 +1,176 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Noun Project
+providerId: noun-project
+created: '2026-05-28'
+modified: '2026-05-28'
+reconciled: true
+tags:
+  - Icons
+  - Visual Language
+  - Pay Per Use
+  - Enterprise
+description: >-
+  Noun Project prices its API on a hybrid model with three tiers. A 30-day free
+  trial allows up to 1,000 service calls per day and 150 icon calls per day,
+  capped at $5 of equivalent value with no credit card required. The
+  Pay-Per-Use tier bills $0.0025 per service call and $0.0095 per icon call
+  against a $25 monthly minimum with daily caps of 200,000 service calls and
+  10,000 icon calls. A Custom Enterprise plan layers discounted per-call rates
+  on a $300 monthly minimum with unlimited daily and monthly volume, dedicated
+  account management, and consolidated billing. Service calls cover non-icon
+  endpoints; icon calls cover requests that include an icon ID.
+sources:
+  - https://thenounproject.com/api/
+  - https://api.thenounproject.com/getting_started.html
+plans:
+  - id: noun-project-free-trial
+    name: Free Trial
+    type: freemium
+    description: 30-day evaluation tier with daily and monthly caps and a $5 value ceiling.
+    entries:
+      - label: Service calls (daily)
+        name: service_calls_daily
+        type: metered
+        metric: request
+        limit: 1000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0.00'
+      - label: Service calls (monthly)
+        name: service_calls_monthly
+        type: quota
+        metric: request
+        limit: 2000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0.00'
+      - label: Icon calls (daily)
+        name: icon_calls_daily
+        type: metered
+        metric: request
+        limit: 150
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0.00'
+      - label: Icon calls (monthly)
+        name: icon_calls_monthly
+        type: quota
+        metric: request
+        limit: 150
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0.00'
+      - label: Trial value cap
+        name: trial_value_cap
+        type: flat
+        metric: month
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$5.00 cap'
+    elements:
+      - name: 30-day evaluation
+      - name: No credit card required
+      - name: Full API feature access
+      - name: 99.99% uptime SLA
+      - name: Real-time usage dashboard
+  - id: noun-project-pay-per-use
+    name: Pay-Per-Use
+    type: usage-based
+    description: Per-call pricing for service and icon calls with a $25 monthly minimum.
+    entries:
+      - label: Service call
+        name: service_call
+        type: metered
+        metric: request
+        limit: 200000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0.0025'
+      - label: Service calls (monthly cap)
+        name: service_calls_monthly
+        type: quota
+        metric: request
+        limit: 3000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'see service call rate'
+      - label: Icon call
+        name: icon_call
+        type: metered
+        metric: request
+        limit: 10000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0.0095'
+      - label: Icon calls (monthly cap)
+        name: icon_calls_monthly
+        type: quota
+        metric: request
+        limit: 150000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'see icon call rate'
+      - label: Monthly minimum
+        name: monthly_minimum
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$25.00 minimum'
+    elements:
+      - name: All free-trial features
+      - name: User-defined monthly maximum
+      - name: Real-time usage dashboard
+      - name: Hourly, daily, monthly usage insights
+  - id: noun-project-custom-enterprise
+    name: Custom Enterprise
+    type: enterprise
+    description: Negotiated per-call discounts, $300 monthly minimum, unlimited daily and monthly volume.
+    entries:
+      - label: Service call (discounted)
+        name: service_call_discounted
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'contact sales'
+      - label: Icon call (discounted)
+        name: icon_call_discounted
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'contact sales'
+      - label: Monthly minimum
+        name: monthly_minimum
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$300.00 minimum'
+    elements:
+      - name: Discounted per-call rates
+      - name: Unlimited daily and monthly call volume
+      - name: Dedicated account manager
+      - name: Consolidated billing
+      - name: Onboarding support

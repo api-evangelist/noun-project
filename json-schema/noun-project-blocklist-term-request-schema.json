@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-schema/noun-project-blocklist-term-request-schema.json",
+  "title": "BlocklistTermRequest",
+  "description": "Request body for adding terms or phrases to the blocklist.",
+  "type": "object",
+  "properties": {
+    "blacklist": {
+      "type": "array",
+      "description": "Terms and phrases to add to the blocklist.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "example": [
+        "violence",
+        "weapon"
+      ]
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "When true, replaces the existing term blocklist entirely.",
+      "default": false,
+      "example": false
+    }
+  },
+  "required": [
+    "blacklist"
+  ]
+}

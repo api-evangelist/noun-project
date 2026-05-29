@@ -1,0 +1,273 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "np": "https://thenounproject.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Icon": "np:Icon",
+    "IconCreator": "np:IconCreator",
+    "Tag": "np:Tag",
+    "Collection": "np:Collection",
+    "IconSearchResponse": "np:IconSearchResponse",
+    "IconResponse": "np:IconResponse",
+    "CollectionSearchResponse": "np:CollectionSearchResponse",
+    "CollectionResponse": "np:CollectionResponse",
+    "AutocompleteResponse": "np:AutocompleteResponse",
+    "Usage": "np:Usage",
+    "UsageWindow": "np:UsageWindow",
+    "UsageResponse": "np:UsageResponse",
+    "Blocklist": "np:Blocklist",
+    "BlocklistResponse": "np:BlocklistResponse",
+    "BlocklistIdRequest": "np:BlocklistIdRequest",
+    "BlocklistTermRequest": "np:BlocklistTermRequest",
+    "id": {
+      "@id": "np:id",
+      "@type": "xsd:integer"
+    },
+    "attribution": {
+      "@id": "np:attribution",
+      "@type": "xsd:string"
+    },
+    "attributionPreviewUrl": {
+      "@id": "np:attribution_preview_url",
+      "@type": "@id"
+    },
+    "creator": {
+      "@id": "np:creator",
+      "@type": "@id"
+    },
+    "username": {
+      "@id": "np:username",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "permalink": {
+      "@id": "np:permalink",
+      "@type": "@id"
+    },
+    "location": {
+      "@id": "np:location",
+      "@type": "xsd:string"
+    },
+    "bio": {
+      "@id": "np:bio",
+      "@type": "xsd:string"
+    },
+    "avatarUrl": {
+      "@id": "np:avatar_url",
+      "@type": "@id"
+    },
+    "dateUploaded": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "isActive": {
+      "@id": "np:is_active",
+      "@type": "xsd:boolean"
+    },
+    "isPublicDomain": {
+      "@id": "np:is_public_domain",
+      "@type": "xsd:boolean"
+    },
+    "licenseDescription": {
+      "@id": "np:license_description",
+      "@type": "xsd:string"
+    },
+    "previewUrl": {
+      "@id": "np:preview_url",
+      "@type": "@id"
+    },
+    "previewUrl42": {
+      "@id": "np:preview_url_42",
+      "@type": "@id"
+    },
+    "previewUrl84": {
+      "@id": "np:preview_url_84",
+      "@type": "@id"
+    },
+    "previewUrl200": {
+      "@id": "np:preview_url_200",
+      "@type": "@id"
+    },
+    "iconUrl": {
+      "@id": "np:icon_url",
+      "@type": "@id"
+    },
+    "svg": {
+      "@id": "np:svg",
+      "@type": "xsd:string"
+    },
+    "style": {
+      "@id": "np:style",
+      "@type": "xsd:string"
+    },
+    "lineWeight": {
+      "@id": "np:line_weight",
+      "@type": "xsd:integer"
+    },
+    "tags": {
+      "@id": "np:tags",
+      "@container": "@set"
+    },
+    "slug": {
+      "@id": "np:slug",
+      "@type": "xsd:string"
+    },
+    "term": {
+      "@id": "np:term",
+      "@type": "xsd:string"
+    },
+    "termSlug": {
+      "@id": "np:term_slug",
+      "@type": "xsd:string"
+    },
+    "yearPublished": {
+      "@id": "np:year_published",
+      "@type": "xsd:integer"
+    },
+    "royaltyFreeLicense": {
+      "@id": "np:royalty_free_license",
+      "@type": "xsd:boolean"
+    },
+    "nsfw": {
+      "@id": "np:nsfw",
+      "@type": "xsd:boolean"
+    },
+    "sponsorId": {
+      "@id": "np:sponsor_id",
+      "@type": "xsd:integer"
+    },
+    "thumbnailUrl": {
+      "@id": "np:thumbnail_url",
+      "@type": "@id"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "dateCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "dateUpdated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "isPublished": {
+      "@id": "np:is_published",
+      "@type": "xsd:boolean"
+    },
+    "iconCount": {
+      "@id": "np:icon_count",
+      "@type": "xsd:integer"
+    },
+    "icons": {
+      "@id": "np:icons",
+      "@container": "@set"
+    },
+    "generatedAt": {
+      "@id": "np:generated_at",
+      "@type": "xsd:dateTime"
+    },
+    "total": {
+      "@id": "np:total",
+      "@type": "xsd:integer"
+    },
+    "nextPage": {
+      "@id": "np:next_page",
+      "@type": "xsd:string"
+    },
+    "prevPage": {
+      "@id": "np:prev_page",
+      "@type": "xsd:string"
+    },
+    "icon": {
+      "@id": "np:icon",
+      "@type": "@id"
+    },
+    "collections": {
+      "@id": "np:collections",
+      "@container": "@set"
+    },
+    "collection": {
+      "@id": "np:collection",
+      "@type": "@id"
+    },
+    "autocomplete": {
+      "@id": "np:autocomplete",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hourly": {
+      "@id": "np:hourly",
+      "@type": "@id"
+    },
+    "serviceCallsUsed": {
+      "@id": "np:service_calls_used",
+      "@type": "xsd:integer"
+    },
+    "serviceCallsLimit": {
+      "@id": "np:service_calls_limit",
+      "@type": "xsd:integer"
+    },
+    "iconCallsUsed": {
+      "@id": "np:icon_calls_used",
+      "@type": "xsd:integer"
+    },
+    "iconCallsLimit": {
+      "@id": "np:icon_calls_limit",
+      "@type": "xsd:integer"
+    },
+    "periodStart": {
+      "@id": "np:period_start",
+      "@type": "xsd:dateTime"
+    },
+    "periodEnd": {
+      "@id": "np:period_end",
+      "@type": "xsd:dateTime"
+    },
+    "daily": {
+      "@id": "np:daily",
+      "@type": "@id"
+    },
+    "monthly": {
+      "@id": "np:monthly",
+      "@type": "@id"
+    },
+    "usage": {
+      "@id": "np:usage",
+      "@type": "@id"
+    },
+    "iconIds": {
+      "@id": "np:icon_ids",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "collectionIds": {
+      "@id": "np:collection_ids",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "terms": {
+      "@id": "np:terms",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "cachedAt": {
+      "@id": "np:cached_at",
+      "@type": "xsd:dateTime"
+    },
+    "blacklist": {
+      "@id": "np:blacklist",
+      "@type": "@id"
+    },
+    "overwrite": {
+      "@id": "np:overwrite",
+      "@type": "xsd:boolean"
+    }
+  }
+}

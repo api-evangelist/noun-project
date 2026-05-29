@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/noun-project/refs/heads/main/json-schema/noun-project-icon-creator-schema.json",
+  "title": "IconCreator",
+  "description": "The creator of an icon.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Numeric identifier of the creator.",
+      "example": 4321
+    },
+    "username": {
+      "type": "string",
+      "description": "URL-safe username of the creator.",
+      "example": "jsmith"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the creator.",
+      "example": "Jane Smith"
+    },
+    "permalink": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical URL for the creator profile.",
+      "example": "https://thenounproject.com/jsmith/"
+    },
+    "location": {
+      "type": "string",
+      "description": "Free-text location reported by the creator.",
+      "example": "Brooklyn, NY"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Creator's profile bio.",
+      "example": "Designer focused on space exploration icons."
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the creator's avatar image.",
+      "example": "https://static.thenounproject.com/avatars/4321.png"
+    }
+  },
+  "required": [
+    "id",
+    "username"
+  ]
+}

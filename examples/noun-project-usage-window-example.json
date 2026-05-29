@@ -1,0 +1,8 @@
+{
+  "service_calls_used": 245,
+  "service_calls_limit": 1000,
+  "icon_calls_used": 38,
+  "icon_calls_limit": 150,
+  "period_start": "2026-05-28T00:00:00Z",
+  "period_end": "2026-05-29T00:00:00Z"
+}
