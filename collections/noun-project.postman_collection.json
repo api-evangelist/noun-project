@@ -1,0 +1,3489 @@
+{
+  "item": [
+    {
+      "id": "100a4117-5f10-4a68-8e30-f5885ad8af3c",
+      "name": "Icon",
+      "description": {
+        "content": "Search, filter, retrieve, and download icons from the Noun Project library.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ee89741-a200-472d-9bb7-2e1d5a3eaf6d",
+          "name": "Search Icons",
+          "request": {
+            "name": "Search Icons",
+            "description": {
+              "content": "Search the Noun Project icon library by query term with optional filters for style, line weight, public-domain status, and thumbnail size. Returns a paginated list of matching icons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Search term used to match icon titles, tags, and descriptions."
+                },
+                {
+                  "disabled": false,
+                  "key": "styles",
+                  "value": "<string>",
+                  "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`."
+                },
+                {
+                  "disabled": false,
+                  "key": "line_weight",
+                  "value": "<integer>",
+                  "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_to_public_domain",
+                  "value": "false",
+                  "description": "When true, restricts results to icons released to the public domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "thumbnail_size",
+                  "value": "84",
+                  "description": "Pixel dimension for returned thumbnail URLs."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, applies the client's configured blocklist to results."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_svg",
+                  "value": "false",
+                  "description": "When true, includes raw SVG markup in each icon result."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of icons returned per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "prev_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for backward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for forward pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f556d9fe-1f4e-43f6-b983-0f21dc6fa7dd",
+              "name": "Paginated icon search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "rocket"
+                    },
+                    {
+                      "key": "styles",
+                      "value": "solid"
+                    },
+                    {
+                      "key": "line_weight",
+                      "value": "4"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"icons\": [\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    },\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 4321,\n  \"next_page\": \"eyJsYXN0X2lkIjoxMjM0NTY3fQ==\",\n  \"prev_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dda7a57d-a956-4413-9c32-e0e62d54b1f4",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "rocket"
+                    },
+                    {
+                      "key": "styles",
+                      "value": "solid"
+                    },
+                    {
+                      "key": "line_weight",
+                      "value": "4"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d1f0c51-3acc-414f-adb8-a6f3b1e8b3ea",
+              "name": "The requested icon, collection, or resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "rocket"
+                    },
+                    {
+                      "key": "styles",
+                      "value": "solid"
+                    },
+                    {
+                      "key": "line_weight",
+                      "value": "4"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec7a8097-b183-4548-a19f-2a6b59d2ceb8",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "rocket"
+                    },
+                    {
+                      "key": "styles",
+                      "value": "solid"
+                    },
+                    {
+                      "key": "line_weight",
+                      "value": "4"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf80f2f7-63b7-41b9-a01f-e038705aafcc",
+          "name": "Get Icon",
+          "request": {
+            "name": "Get Icon",
+            "description": {
+              "content": "Retrieve a single icon by its numeric identifier with full metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon",
+                ":icon_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "thumbnail_size",
+                  "value": "84",
+                  "description": "Pixel dimension for the returned thumbnail URL."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, returns 404 if the icon is on the client's blocklist."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "icon_id",
+                  "description": "(Required) Numeric identifier of the icon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c847ae2f-05c7-4732-885e-ae786c63564c",
+              "name": "Icon details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"icon\": {\n    \"id\": 1234567,\n    \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n    \"attribution\": \"rocket by Jane Smith from Noun Project\",\n    \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n    \"creator\": {\n      \"id\": 4321,\n      \"username\": \"jsmith\",\n      \"name\": \"Jane Smith\",\n      \"permalink\": \"https://thenounproject.com/jsmith/\",\n      \"location\": \"Brooklyn, NY\",\n      \"bio\": \"Designer focused on space exploration icons.\",\n      \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n    },\n    \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n    \"is_active\": true,\n    \"is_public_domain\": false,\n    \"license_description\": \"creative-commons-attribution\",\n    \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n    \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n    \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n    \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n    \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n    \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n    \"style\": \"solid\",\n    \"line_weight\": 4,\n    \"tags\": [\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      },\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      }\n    ],\n    \"term\": \"rocket\",\n    \"term_slug\": \"rocket\",\n    \"year_published\": 2024,\n    \"royalty_free_license\": true,\n    \"nsfw\": false,\n    \"sponsor_id\": null,\n    \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33c6642b-0c0d-4d30-87db-67a760daa634",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7e83d7f-21d3-4f52-bb0f-4e2f242a56f0",
+              "name": "The requested icon, collection, or resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd4c308f-728c-4973-9538-5b517ff01153",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thumbnail_size",
+                      "value": "200"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d86facd4-1f9f-416b-978e-9f3b519c14ef",
+          "name": "Get Similar Icons",
+          "request": {
+            "name": "Get Similar Icons",
+            "description": {
+              "content": "Find icons stylistically similar to the supplied icon ID, optionally narrowed by a query term. Used to assemble visually consistent icon sets from a single seed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon",
+                ":icon_id",
+                "more-like-this"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Optional search term to narrow similar-icon candidates."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_to_public_domain",
+                  "value": "false",
+                  "description": "When true, restricts results to icons released to the public domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "thumbnail_size",
+                  "value": "84",
+                  "description": "Pixel dimension for returned thumbnail URLs."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, applies the client's configured blocklist to results."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_svg",
+                  "value": "false",
+                  "description": "When true, includes raw SVG markup in each icon result."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of icons returned per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "prev_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for backward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for forward pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "icon_id",
+                  "description": "(Required) Numeric identifier of the icon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d122945-15db-4182-803b-14c41863174b",
+              "name": "Paginated list of similar icons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "more-like-this"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "spaceship"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"icons\": [\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    },\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 4321,\n  \"next_page\": \"eyJsYXN0X2lkIjoxMjM0NTY3fQ==\",\n  \"prev_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b258611c-0dae-44b8-85bd-415f0128d57b",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "more-like-this"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "spaceship"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e471ba66-173f-4ceb-b92c-9d6d5754482b",
+              "name": "The requested icon, collection, or resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "more-like-this"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "spaceship"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04973ce0-8c64-4f2f-a402-81b300aa0e9a",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "more-like-this"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "spaceship"
+                    },
+                    {
+                      "key": "limit_to_public_domain",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3cff922-b17b-4689-b0dc-911daa4380ff",
+          "name": "Download Icon",
+          "request": {
+            "name": "Download Icon",
+            "description": {
+              "content": "Download a rendered icon in SVG or PNG format with optional hex-color recoloring and pixel sizing (PNG only). The response body is the icon binary; the content-type matches the requested filetype.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon",
+                ":icon_id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>",
+                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color."
+                },
+                {
+                  "disabled": false,
+                  "key": "filetype",
+                  "value": "svg",
+                  "description": "Output file format."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "200",
+                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "icon_id",
+                  "description": "(Required) Numeric identifier of the icon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/svg+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd576f51-708d-4801-b43e-5cba7ed1f0d6",
+              "name": "Rendered icon binary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "ff5733"
+                    },
+                    {
+                      "key": "filetype",
+                      "value": "png"
+                    },
+                    {
+                      "key": "size",
+                      "value": "512"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/svg+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/svg+xml"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30481453-2acf-42c6-9247-49d9de239c04",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "ff5733"
+                    },
+                    {
+                      "key": "filetype",
+                      "value": "png"
+                    },
+                    {
+                      "key": "size",
+                      "value": "512"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7165bad5-3b94-431f-b11c-32d165e2ae72",
+              "name": "The requested icon, collection, or resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "ff5733"
+                    },
+                    {
+                      "key": "filetype",
+                      "value": "png"
+                    },
+                    {
+                      "key": "size",
+                      "value": "512"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5cbb0f5-91a7-4758-85f6-c9a498302a01",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    ":icon_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "ff5733"
+                    },
+                    {
+                      "key": "filetype",
+                      "value": "png"
+                    },
+                    {
+                      "key": "size",
+                      "value": "512"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "icon_id",
+                      "description": "(Required) Numeric identifier of the icon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "813cf18d-6c93-4cda-adee-e8992ce59750",
+      "name": "Collection",
+      "description": {
+        "content": "Search and retrieve curated icon collections (icon sets).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83e57d68-645d-4502-b586-4b5829ef8439",
+          "name": "Search Collections",
+          "request": {
+            "name": "Search Collections",
+            "description": {
+              "content": "Search curated icon collections (icon sets) by query term. Returns a paginated list of matching collections with metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Search term used to match collection titles, tags, and descriptions."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, applies the client's configured blocklist to results."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of collections returned per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "prev_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for backward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for forward pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5054e0f-f78c-433d-964e-3d1f3238cbc9",
+              "name": "Paginated collection search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "weather"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": 98765,\n      \"name\": \"Weather Icons\",\n      \"permalink\": \"https://thenounproject.com/collection/98765/\",\n      \"slug\": \"weather-icons\",\n      \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n      \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_created\": \"2024-04-12T10:00:00Z\",\n      \"date_updated\": \"2024-09-30T18:22:00Z\",\n      \"is_published\": true,\n      \"icon_count\": 32,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        },\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        }\n      ]\n    },\n    {\n      \"id\": 98765,\n      \"name\": \"Weather Icons\",\n      \"permalink\": \"https://thenounproject.com/collection/98765/\",\n      \"slug\": \"weather-icons\",\n      \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n      \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_created\": \"2024-04-12T10:00:00Z\",\n      \"date_updated\": \"2024-09-30T18:22:00Z\",\n      \"is_published\": true,\n      \"icon_count\": 32,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        },\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        }\n      ]\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 187,\n  \"next_page\": \"eyJsYXN0X2lkIjo5ODc2NX0=\",\n  \"prev_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0474f0f4-54b5-45c9-8710-00f741f02220",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "weather"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "576e8830-8754-4a7a-ae70-b29be1629ac8",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "weather"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08960423-0413-462c-94e0-0066f3a3b39b",
+          "name": "Get Collection",
+          "request": {
+            "name": "Get Collection",
+            "description": {
+              "content": "Retrieve a single icon collection with full metadata and member icons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "collection",
+                ":collection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, returns 404 if the collection is on the client's blocklist."
+                },
+                {
+                  "disabled": false,
+                  "key": "thumbnail_size",
+                  "value": "84",
+                  "description": "Pixel dimension for returned thumbnail URLs."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_svg",
+                  "value": "false",
+                  "description": "When true, includes raw SVG markup in each member icon."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of member icons returned per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "prev_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for backward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page",
+                  "value": "<string>",
+                  "description": "Cursor token returned by a prior response for forward pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "collection_id",
+                  "description": "(Required) Numeric identifier of the collection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5caa9fd-c160-4f3e-87d4-fab06f5d2190",
+              "name": "Collection details and member icons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collection_id",
+                      "description": "(Required) Numeric identifier of the collection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collection\": {\n    \"id\": 98765,\n    \"name\": \"Weather Icons\",\n    \"permalink\": \"https://thenounproject.com/collection/98765/\",\n    \"slug\": \"weather-icons\",\n    \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n    \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n    \"creator\": {\n      \"id\": 4321,\n      \"username\": \"jsmith\",\n      \"name\": \"Jane Smith\",\n      \"permalink\": \"https://thenounproject.com/jsmith/\",\n      \"location\": \"Brooklyn, NY\",\n      \"bio\": \"Designer focused on space exploration icons.\",\n      \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n    },\n    \"date_created\": \"2024-04-12T10:00:00Z\",\n    \"date_updated\": \"2024-09-30T18:22:00Z\",\n    \"is_published\": true,\n    \"icon_count\": 32,\n    \"tags\": [\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      },\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      }\n    ],\n    \"icons\": [\n      {\n        \"id\": 1234567,\n        \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n        \"attribution\": \"rocket by Jane Smith from Noun Project\",\n        \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n        \"creator\": {\n          \"id\": 4321,\n          \"username\": \"jsmith\",\n          \"name\": \"Jane Smith\",\n          \"permalink\": \"https://thenounproject.com/jsmith/\",\n          \"location\": \"Brooklyn, NY\",\n          \"bio\": \"Designer focused on space exploration icons.\",\n          \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n        },\n        \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n        \"is_active\": true,\n        \"is_public_domain\": false,\n        \"license_description\": \"creative-commons-attribution\",\n        \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n        \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n        \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n        \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n        \"style\": \"solid\",\n        \"line_weight\": 4,\n        \"tags\": [\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          },\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          }\n        ],\n        \"term\": \"rocket\",\n        \"term_slug\": \"rocket\",\n        \"year_published\": 2024,\n        \"royalty_free_license\": true,\n        \"nsfw\": false,\n        \"sponsor_id\": null,\n        \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n      },\n      {\n        \"id\": 1234567,\n        \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n        \"attribution\": \"rocket by Jane Smith from Noun Project\",\n        \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n        \"creator\": {\n          \"id\": 4321,\n          \"username\": \"jsmith\",\n          \"name\": \"Jane Smith\",\n          \"permalink\": \"https://thenounproject.com/jsmith/\",\n          \"location\": \"Brooklyn, NY\",\n          \"bio\": \"Designer focused on space exploration icons.\",\n          \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n        },\n        \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n        \"is_active\": true,\n        \"is_public_domain\": false,\n        \"license_description\": \"creative-commons-attribution\",\n        \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n        \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n        \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n        \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n        \"style\": \"solid\",\n        \"line_weight\": 4,\n        \"tags\": [\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          },\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          }\n        ],\n        \"term\": \"rocket\",\n        \"term_slug\": \"rocket\",\n        \"year_published\": 2024,\n        \"royalty_free_license\": true,\n        \"nsfw\": false,\n        \"sponsor_id\": null,\n        \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n      }\n    ]\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afb60731-a9a3-468d-ae26-5412958cad5b",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collection_id",
+                      "description": "(Required) Numeric identifier of the collection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f12bafa-458d-40c4-9a53-15d6dfcc03db",
+              "name": "The requested icon, collection, or resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collection_id",
+                      "description": "(Required) Numeric identifier of the collection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2179d682-0471-49f5-ab36-34212197e8cb",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collection",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "thumbnail_size",
+                      "value": "84"
+                    },
+                    {
+                      "key": "include_svg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "prev_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collection_id",
+                      "description": "(Required) Numeric identifier of the collection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a6d3c0ae-00ed-46fd-9889-3eb92c894c65",
+      "name": "Autocomplete",
+      "description": {
+        "content": "Suggest search terms based on a query prefix.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e64e6efb-276c-4ecc-8a1d-128fb1b2cf09",
+          "name": "Autocomplete Icon Search",
+          "request": {
+            "name": "Autocomplete Icon Search",
+            "description": {
+              "content": "Suggest icon search terms based on a query prefix. Returns up to 10 suggested terms ranked by relevance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Query prefix used to generate term suggestions."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, applies the client's configured blocklist."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum suggestions returned (hard cap of 10)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc27645e-4859-441a-9e49-08f28d0e1788",
+              "name": "Suggested search terms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autocomplete\": [\n    \"rocket\",\n    \"rocket ship\",\n    \"rocket launch\",\n    \"rocket science\"\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d274f707-eac1-4c8d-86d9-d0b637dfe8b6",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a684a2-4327-4f0a-8d26-8d0d310ccc02",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cdae1a60-8b4f-4d53-a468-b54a14227602",
+      "name": "Blocklist",
+      "description": {
+        "content": "Manage per-client blocklists for icon IDs, collection IDs, and terms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5f1ea8d-3f7c-4a79-a908-f3cfc374d0c2",
+          "name": "Get Client Blocklist",
+          "request": {
+            "name": "Get Client Blocklist",
+            "description": {
+              "content": "Return the current blocklist for the calling client key, including blocked icon IDs, collection IDs, terms, and phrases. Results are cached for 10 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1924669a-5501-4445-bcf1-2537a9a871b0",
+              "name": "Current blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36b56ffe-3640-456d-afe4-18caa2be9fbc",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1635f1b-5b92-4ec3-bae4-da98159b31f4",
+          "name": "Add Blocklist IDs",
+          "request": {
+            "name": "Add Blocklist IDs",
+            "description": {
+              "content": "Add icon IDs or collection IDs to the client blocklist. Maximum 1,000 IDs per request for paid tiers and 5 for free trial accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist",
+                "id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "icon",
+                  "description": "Type of identifier being blocked."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blacklist\": [\n    \"<integer>\"\n  ],\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73a3b353-9bb5-4683-9c07-a4ff06f38b42",
+              "name": "Updated blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e36b2060-1099-4d38-9329-c350adcafff9",
+              "name": "The request was malformed or violated a documented limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afcdfd4-9432-4999-a398-6d469d8b3e22",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "186339d6-72b0-4530-a32f-0bf9f033216b",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d4d840c-ebed-4ef8-b9a4-3b19399dcafa",
+          "name": "Add Blocklist Terms",
+          "request": {
+            "name": "Add Blocklist Terms",
+            "description": {
+              "content": "Add terms and phrases to the client blocklist. Maximum 1,000 terms per request for paid tiers and 5 for free trial accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist",
+                "term"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blacklist\": [\n    \"<string>\"\n  ],\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "317e1456-12cf-4bea-8552-66e24efa1482",
+              "name": "Updated blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23d6ae44-7824-4bc4-a5d9-175cfce51441",
+              "name": "The request was malformed or violated a documented limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cec58225-3794-409e-8936-8381d532ce73",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da712571-9f87-4518-bbe6-e4cfc6575c86",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7df619e4-4330-47e5-a6d3-d3cf64364c3a",
+      "name": "Usage",
+      "description": {
+        "content": "Inspect current API key usage against documented quotas.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "957db976-cf02-411c-889c-b7b5d1c67eb1",
+          "name": "Get Client Usage",
+          "request": {
+            "name": "Get Client Usage",
+            "description": {
+              "content": "Return the calling client key's current usage and limits for the hourly, daily, and monthly windows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ce4c0976-6d20-4366-a02b-c8660001631e",
+              "name": "Current usage and limit snapshot.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"usage\": {\n    \"hourly\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    },\n    \"daily\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    },\n    \"monthly\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    }\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e265457a-2de2-4c67-9c16-598ef04fe99d",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thenounproject.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e4c7509-f62d-4f22-8988-fbd5be3cd581",
+    "name": "Noun Project API V2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
+      "type": "text/plain"
+    }
+  }
+}
