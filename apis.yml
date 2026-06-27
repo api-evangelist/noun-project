@@ -44,7 +44,7 @@ apis:
         url: https://api.thenounproject.com/documentation.html
       - type: GettingStarted
         url: https://api.thenounproject.com/getting_started.html
-      - type: SignUp
+      - type: Signup
         url: https://thenounproject.com/developers/apps/
       - type: APIExplorer
         url: https://api.thenounproject.com/explorer
@@ -58,7 +58,7 @@ common:
     url: https://thenounproject.com/
   - type: Pricing
     url: https://thenounproject.com/api/
-  - type: SignUp
+  - type: Signup
     url: https://thenounproject.com/developers/apps/
   - type: Support
     url: https://thenounproject.zendesk.com/
