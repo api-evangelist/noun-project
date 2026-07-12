@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/noun-project-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: oauth1
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: OAuth 1.0a signed Authorization header constructed with the client key and secret
+    obtained from the Noun Project developer portal. A nonce of at least 8 characters is required.
+    Use any standards-compliant OAuth 1.0a library (requests_oauthlib, Faraday-OAuth, DotNetOpenAuth,
+    etc.).
+  sources:
+  - openapi/noun-project-openapi.yml

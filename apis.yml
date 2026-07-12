@@ -54,6 +54,10 @@ apis:
       - type: OpenAPI
         url: openapi/noun-project-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/noun-project-domain-security.yml
+  - type: Authentication
+    url: authentication/noun-project-authentication.yml
   - type: Website
     url: https://thenounproject.com/
   - type: Pricing
@@ -80,6 +84,8 @@ common:
     url: vocabulary/noun-project-vocabulary.yml
   - type: SpectralRules
     url: rules/noun-project-rules.yml
+  - url: https://blog.thenounproject.com/feed/
+    type: Blog
 features:
   - name: Icon Search
     description: >-
