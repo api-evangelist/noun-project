@@ -54,6 +54,8 @@ apis:
       - type: OpenAPI
         url: openapi/noun-project-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/noun-project-agentic-access.yml
   - type: DomainSecurity
     url: security/noun-project-domain-security.yml
   - type: Authentication
