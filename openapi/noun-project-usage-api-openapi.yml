@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Noun Project API V2 Autocomplete Usage API
+  description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
+
+    access to nearly 10 million royalty-free PNG and SVG icons. The API
+
+    supports icon search with style and line-weight filtering, similar-icon
+
+    lookup, collection browsing, custom hex-color recoloring, multiple
+
+    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
+
+    real-time usage telemetry.
+
+
+    Built on AWS with documented 99.99% uptime, the API serves more than
+
+    300 million requests per month. All requests must be signed with OAuth
+
+    1.0a using the client key and secret obtained from the Noun Project
+
+    developer portal.
+
+    '
+  version: '2.0'
+  termsOfService: https://thenounproject.com/legal/api-terms-of-use/
+  contact:
+    name: Noun Project API Support
+    url: https://thenounproject.zendesk.com/
+  license:
+    name: Royalty-Free Commercial Use
+    url: https://thenounproject.com/legal/api-terms-of-use/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-28'
+servers:
+- url: https://api.thenounproject.com
+  description: Noun Project API production endpoint
+security:
+- oauth1: []
+tags:
+- name: Usage
+  description: Inspect current API key usage against documented quotas.
+paths:
+  /v2/client/usage:
+    get:
+      operationId: getUsage
+      summary: Get Client Usage
+      description: Return the calling client key's current usage and limits for the hourly, daily, and monthly windows.
+      tags:
+      - Usage
+      responses:
+        '200':
+          description: Current usage and limit snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UsageWindow:
+      type: object
+      description: Usage statistics for a single time window.
+      properties:
+        service_calls_used:
+          type: integer
+          description: Non-icon API calls consumed in this window.
+          example: 245
+        service_calls_limit:
+          type: integer
+          description: Maximum non-icon API calls allowed in this window.
+          example: 1000
+        icon_calls_used:
+          type: integer
+          description: Icon-specific calls consumed in this window.
+          example: 38
+        icon_calls_limit:
+          type: integer
+          description: Maximum icon-specific calls allowed in this window.
+          example: 150
+        period_start:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when this window started.
+          example: '2026-05-28T00:00:00Z'
+        period_end:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when this window ends.
+          example: '2026-05-29T00:00:00Z'
+    Usage:
+      type: object
+      description: API key usage and quota information.
+      properties:
+        hourly:
+          $ref: '#/components/schemas/UsageWindow'
+        daily:
+          $ref: '#/components/schemas/UsageWindow'
+        monthly:
+          $ref: '#/components/schemas/UsageWindow'
+    UsageResponse:
+      type: object
+      description: Wrapper for the client usage response.
+      properties:
+        usage:
+          $ref: '#/components/schemas/Usage'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - usage
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0a signed Authorization header constructed with the client key and secret obtained from the Noun Project developer portal. A nonce of at least 8 characters is required. Use any standards-compliant OAuth 1.0a library (requests_oauthlib, Faraday-OAuth, DotNetOpenAuth, etc.).
+      x-auth-type: OAuth 1.0a
+      x-token-url: https://thenounproject.com/developers/apps/
+externalDocs:
+  description: Noun Project API Documentation
+  url: https://api.thenounproject.com/documentation.html

@@ -1,0 +1,279 @@
+openapi: 3.0.3
+info:
+  title: Noun Project API V2 Autocomplete Blocklist API
+  description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
+
+    access to nearly 10 million royalty-free PNG and SVG icons. The API
+
+    supports icon search with style and line-weight filtering, similar-icon
+
+    lookup, collection browsing, custom hex-color recoloring, multiple
+
+    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
+
+    real-time usage telemetry.
+
+
+    Built on AWS with documented 99.99% uptime, the API serves more than
+
+    300 million requests per month. All requests must be signed with OAuth
+
+    1.0a using the client key and secret obtained from the Noun Project
+
+    developer portal.
+
+    '
+  version: '2.0'
+  termsOfService: https://thenounproject.com/legal/api-terms-of-use/
+  contact:
+    name: Noun Project API Support
+    url: https://thenounproject.zendesk.com/
+  license:
+    name: Royalty-Free Commercial Use
+    url: https://thenounproject.com/legal/api-terms-of-use/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-28'
+servers:
+- url: https://api.thenounproject.com
+  description: Noun Project API production endpoint
+security:
+- oauth1: []
+tags:
+- name: Blocklist
+  description: Manage per-client blocklists for icon IDs, collection IDs, and terms.
+paths:
+  /v2/client/blacklist:
+    get:
+      operationId: getBlocklist
+      summary: Get Client Blocklist
+      description: Return the current blocklist for the calling client key, including blocked icon IDs, collection IDs, terms, and phrases. Results are cached for 10 minutes.
+      tags:
+      - Blocklist
+      responses:
+        '200':
+          description: Current blocklist contents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlocklistResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/client/blacklist/id:
+    post:
+      operationId: addBlocklistIds
+      summary: Add Blocklist IDs
+      description: Add icon IDs or collection IDs to the client blocklist. Maximum 1,000 IDs per request for paid tiers and 5 for free trial accounts.
+      tags:
+      - Blocklist
+      parameters:
+      - name: type
+        in: query
+        description: Type of identifier being blocked.
+        required: false
+        schema:
+          type: string
+          enum:
+          - icon
+          - collection
+          default: icon
+      requestBody:
+        description: Blocklist identifiers to add or overwrite.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlocklistIdRequest'
+      responses:
+        '200':
+          description: Updated blocklist contents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlocklistResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/client/blacklist/term:
+    post:
+      operationId: addBlocklistTerms
+      summary: Add Blocklist Terms
+      description: Add terms and phrases to the client blocklist. Maximum 1,000 terms per request for paid tiers and 5 for free trial accounts.
+      tags:
+      - Blocklist
+      requestBody:
+        description: Blocklist terms and phrases to add or overwrite.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlocklistTermRequest'
+      responses:
+        '200':
+          description: Updated blocklist contents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlocklistResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Blocklist:
+      type: object
+      description: The current blocklist for a client key.
+      properties:
+        icon_ids:
+          type: array
+          description: Blocked icon identifiers.
+          items:
+            type: integer
+          example:
+          - 12345
+          - 67890
+        collection_ids:
+          type: array
+          description: Blocked collection identifiers.
+          items:
+            type: integer
+          example:
+          - 98765
+        terms:
+          type: array
+          description: Blocked terms and phrases.
+          items:
+            type: string
+          example:
+          - violence
+          - weapon
+        cached_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the blocklist was last cached.
+          example: '2026-05-28T13:55:00Z'
+    BlocklistTermRequest:
+      type: object
+      description: Request body for adding terms or phrases to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Terms and phrases to add to the blocklist.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 1000
+          example:
+          - violence
+          - weapon
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing term blocklist entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
+    BlocklistResponse:
+      type: object
+      description: Wrapper for the client blocklist response.
+      properties:
+        blacklist:
+          $ref: '#/components/schemas/Blocklist'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - blacklist
+    BlocklistIdRequest:
+      type: object
+      description: Request body for adding icon or collection IDs to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Identifiers to add to the blocklist.
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 1000
+          example:
+          - 12345
+          - 67890
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing blocklist for this type entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or violated a documented limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0a signed Authorization header constructed with the client key and secret obtained from the Noun Project developer portal. A nonce of at least 8 characters is required. Use any standards-compliant OAuth 1.0a library (requests_oauthlib, Faraday-OAuth, DotNetOpenAuth, etc.).
+      x-auth-type: OAuth 1.0a
+      x-token-url: https://thenounproject.com/developers/apps/
+externalDocs:
+  description: Noun Project API Documentation
+  url: https://api.thenounproject.com/documentation.html

@@ -1,0 +1,624 @@
+openapi: 3.0.3
+info:
+  title: Noun Project API V2 Autocomplete Icon API
+  description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
+
+    access to nearly 10 million royalty-free PNG and SVG icons. The API
+
+    supports icon search with style and line-weight filtering, similar-icon
+
+    lookup, collection browsing, custom hex-color recoloring, multiple
+
+    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
+
+    real-time usage telemetry.
+
+
+    Built on AWS with documented 99.99% uptime, the API serves more than
+
+    300 million requests per month. All requests must be signed with OAuth
+
+    1.0a using the client key and secret obtained from the Noun Project
+
+    developer portal.
+
+    '
+  version: '2.0'
+  termsOfService: https://thenounproject.com/legal/api-terms-of-use/
+  contact:
+    name: Noun Project API Support
+    url: https://thenounproject.zendesk.com/
+  license:
+    name: Royalty-Free Commercial Use
+    url: https://thenounproject.com/legal/api-terms-of-use/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-28'
+servers:
+- url: https://api.thenounproject.com
+  description: Noun Project API production endpoint
+security:
+- oauth1: []
+tags:
+- name: Icon
+  description: Search, filter, retrieve, and download icons from the Noun Project library.
+paths:
+  /v2/icon:
+    get:
+      operationId: searchIcons
+      summary: Search Icons
+      description: Search the Noun Project icon library by query term with optional filters for style, line weight, public-domain status, and thumbnail size. Returns a paginated list of matching icons.
+      tags:
+      - Icon
+      parameters:
+      - name: query
+        in: query
+        description: Search term used to match icon titles, tags, and descriptions.
+        required: true
+        schema:
+          type: string
+        example: rocket
+      - name: styles
+        in: query
+        description: Comma-separated icon styles to filter by. Common values include `solid` and `line`.
+        required: false
+        schema:
+          type: string
+        example: solid
+      - name: line_weight
+        in: query
+        description: Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 60
+        example: 4
+      - name: limit_to_public_domain
+        in: query
+        description: When true, restricts results to icons released to the public domain.
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: false
+      - name: thumbnail_size
+        in: query
+        description: Pixel dimension for returned thumbnail URLs.
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 42
+          - 84
+          - 200
+          default: 84
+        example: 200
+      - name: blacklist
+        in: query
+        description: When true, applies the client's configured blocklist to results.
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: true
+      - name: include_svg
+        in: query
+        description: When true, includes raw SVG markup in each icon result.
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: false
+      - name: limit
+        in: query
+        description: Maximum number of icons returned per page.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+        example: 50
+      - name: prev_page
+        in: query
+        description: Cursor token returned by a prior response for backward pagination.
+        required: false
+        schema:
+          type: string
+      - name: next_page
+        in: query
+        description: Cursor token returned by a prior response for forward pagination.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated icon search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IconSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/icon/{icon_id}:
+    get:
+      operationId: getIcon
+      summary: Get Icon
+      description: Retrieve a single icon by its numeric identifier with full metadata.
+      tags:
+      - Icon
+      parameters:
+      - $ref: '#/components/parameters/IconId'
+      - name: thumbnail_size
+        in: query
+        description: Pixel dimension for the returned thumbnail URL.
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 42
+          - 84
+          - 200
+          default: 84
+        example: 200
+      - name: blacklist
+        in: query
+        description: When true, returns 404 if the icon is on the client's blocklist.
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: true
+      responses:
+        '200':
+          description: Icon details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IconResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/icon/{icon_id}/more-like-this:
+    get:
+      operationId: getSimilarIcons
+      summary: Get Similar Icons
+      description: Find icons stylistically similar to the supplied icon ID, optionally narrowed by a query term. Used to assemble visually consistent icon sets from a single seed.
+      tags:
+      - Icon
+      parameters:
+      - $ref: '#/components/parameters/IconId'
+      - name: query
+        in: query
+        description: Optional search term to narrow similar-icon candidates.
+        required: false
+        schema:
+          type: string
+        example: spaceship
+      - name: limit_to_public_domain
+        in: query
+        description: When true, restricts results to icons released to the public domain.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: thumbnail_size
+        in: query
+        description: Pixel dimension for returned thumbnail URLs.
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 42
+          - 84
+          - 200
+          default: 84
+      - name: blacklist
+        in: query
+        description: When true, applies the client's configured blocklist to results.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: include_svg
+        in: query
+        description: When true, includes raw SVG markup in each icon result.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: limit
+        in: query
+        description: Maximum number of icons returned per page.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: prev_page
+        in: query
+        description: Cursor token returned by a prior response for backward pagination.
+        required: false
+        schema:
+          type: string
+      - name: next_page
+        in: query
+        description: Cursor token returned by a prior response for forward pagination.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of similar icons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IconSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/icon/{icon_id}/download:
+    get:
+      operationId: downloadIcon
+      summary: Download Icon
+      description: Download a rendered icon in SVG or PNG format with optional hex-color recoloring and pixel sizing (PNG only). The response body is the icon binary; the content-type matches the requested filetype.
+      tags:
+      - Icon
+      parameters:
+      - $ref: '#/components/parameters/IconId'
+      - name: color
+        in: query
+        description: Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-fA-F]{6}$
+        example: ff5733
+      - name: filetype
+        in: query
+        description: Output file format.
+        required: false
+        schema:
+          type: string
+          enum:
+          - svg
+          - png
+          default: svg
+        example: png
+      - name: size
+        in: query
+        description: PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.
+        required: false
+        schema:
+          type: integer
+          minimum: 20
+          maximum: 1200
+          default: 200
+        example: 512
+      responses:
+        '200':
+          description: Rendered icon binary.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - oauth1: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    IconResponse:
+      type: object
+      description: Single icon response wrapper.
+      properties:
+        icon:
+          $ref: '#/components/schemas/Icon'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - icon
+    Tag:
+      type: object
+      description: A single search tag applied to an icon or collection.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the tag.
+          example: 999
+        slug:
+          type: string
+          description: URL-safe slug of the tag.
+          example: spaceship
+      required:
+      - id
+      - slug
+    IconCreator:
+      type: object
+      description: The creator of an icon.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the creator.
+          example: 4321
+        username:
+          type: string
+          description: URL-safe username of the creator.
+          example: jsmith
+        name:
+          type: string
+          description: Display name of the creator.
+          example: Jane Smith
+        permalink:
+          type: string
+          format: uri
+          description: Canonical URL for the creator profile.
+          example: https://thenounproject.com/jsmith/
+        location:
+          type: string
+          description: Free-text location reported by the creator.
+          example: Brooklyn, NY
+        bio:
+          type: string
+          description: Creator's profile bio.
+          example: Designer focused on space exploration icons.
+        avatar_url:
+          type: string
+          format: uri
+          description: URL to the creator's avatar image.
+          example: https://static.thenounproject.com/avatars/4321.png
+      required:
+      - id
+      - username
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
+    IconSearchResponse:
+      type: object
+      description: Paginated icon search results.
+      properties:
+        icons:
+          type: array
+          description: Icons matching the search criteria.
+          items:
+            $ref: '#/components/schemas/Icon'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+        total:
+          type: integer
+          description: Total number of icons matching the search.
+          example: 4321
+        next_page:
+          type: string
+          nullable: true
+          description: Cursor token for the next page of results.
+          example: eyJsYXN0X2lkIjoxMjM0NTY3fQ==
+        prev_page:
+          type: string
+          nullable: true
+          description: Cursor token for the previous page of results.
+          example: null
+      required:
+      - icons
+    Icon:
+      type: object
+      description: A single icon in the Noun Project library.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the icon.
+          example: 1234567
+        attribution:
+          type: string
+          description: Required attribution string when the icon is not public domain.
+          example: rocket by Jane Smith from Noun Project
+        attribution_preview_url:
+          type: string
+          format: uri
+          description: URL to a rendered attribution image suitable for design overlays.
+          example: https://static.thenounproject.com/png/1234567-attribution.png
+        creator:
+          $ref: '#/components/schemas/IconCreator'
+        date_uploaded:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the icon was uploaded.
+          example: '2024-08-15T13:45:00Z'
+        is_active:
+          type: boolean
+          description: Whether the icon is currently active and available for download.
+          example: true
+        is_public_domain:
+          type: boolean
+          description: Whether the icon has been released into the public domain.
+          example: false
+        license_description:
+          type: string
+          description: Human-readable license summary.
+          example: creative-commons-attribution
+        permalink:
+          type: string
+          format: uri
+          description: Canonical URL for the icon on thenounproject.com.
+          example: https://thenounproject.com/icon/1234567/
+        preview_url:
+          type: string
+          format: uri
+          description: URL for the default-size preview image.
+          example: https://static.thenounproject.com/png/1234567-200.png
+        preview_url_42:
+          type: string
+          format: uri
+          description: URL for the 42-pixel thumbnail.
+          example: https://static.thenounproject.com/png/1234567-42.png
+        preview_url_84:
+          type: string
+          format: uri
+          description: URL for the 84-pixel thumbnail.
+          example: https://static.thenounproject.com/png/1234567-84.png
+        preview_url_200:
+          type: string
+          format: uri
+          description: URL for the 200-pixel thumbnail.
+          example: https://static.thenounproject.com/png/1234567-200.png
+        icon_url:
+          type: string
+          format: uri
+          description: Direct URL to the SVG asset (when include_svg is not used).
+          example: https://static.thenounproject.com/svg/1234567.svg
+        svg:
+          type: string
+          description: Inline SVG markup when include_svg=true was requested.
+          example: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="..."/></svg>
+        style:
+          type: string
+          description: Visual style classification of the icon.
+          enum:
+          - solid
+          - line
+          example: solid
+        line_weight:
+          type: integer
+          description: Line weight in pixels at 512px rendering (line-style icons only).
+          minimum: 1
+          maximum: 60
+          example: 4
+        tags:
+          type: array
+          description: Search tags applied to the icon.
+          items:
+            $ref: '#/components/schemas/Tag'
+        term:
+          type: string
+          description: Primary search term used to discover the icon.
+          example: rocket
+        term_slug:
+          type: string
+          description: URL-safe version of the term.
+          example: rocket
+        year_published:
+          type: integer
+          description: Year the icon was first published.
+          example: 2024
+        royalty_free_license:
+          type: boolean
+          description: Whether the icon is included under the royalty-free license.
+          example: true
+        nsfw:
+          type: boolean
+          description: Whether the icon has been flagged not-safe-for-work.
+          example: false
+        sponsor_id:
+          type: integer
+          nullable: true
+          description: Identifier of the sponsoring brand if any.
+          example: null
+        thumbnail_url:
+          type: string
+          format: uri
+          description: Thumbnail URL at the requested thumbnail_size.
+          example: https://static.thenounproject.com/png/1234567-200.png
+      required:
+      - id
+      - permalink
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested icon, collection, or resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    IconId:
+      name: icon_id
+      in: path
+      description: Numeric identifier of the icon.
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      example: 1234567
+  securitySchemes:
+    oauth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0a signed Authorization header constructed with the client key and secret obtained from the Noun Project developer portal. A nonce of at least 8 characters is required. Use any standards-compliant OAuth 1.0a library (requests_oauthlib, Faraday-OAuth, DotNetOpenAuth, etc.).
+      x-auth-type: OAuth 1.0a
+      x-token-url: https://thenounproject.com/developers/apps/
+externalDocs:
+  description: Noun Project API Documentation
+  url: https://api.thenounproject.com/documentation.html
