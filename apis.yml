@@ -5,6 +5,19 @@ description: >-
   through an OAuth 1.0a-secured REST API. The v2 API supports icon search with style and line-weight filtering,
   similar-icon lookup, collection browsing, custom recoloring, autocomplete, per-client blocklists, and usage telemetry.
   Built on AWS, it serves more than 300 million requests per month at 99.99% uptime.
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: true
+  try_now: true
+  public: true
+  label: Freemium (free trial) · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://thenounproject.com/icon.png
 url: http://api.thenounproject.com/index.html
 humanURL: https://thenounproject.com/api/
@@ -25,34 +38,106 @@ tags:
   - Design Assets
   - Public APIs
 apis:
-  - name: Noun Project API V2
-    description: >-
-      OAuth 1.0a-secured REST API for searching and retrieving icons, collections, autocomplete suggestions, and usage
-      statistics from the Noun Project's library of nearly 10 million royalty-free icons. Supports style filtering,
-      line-weight filtering, hex color recoloring, multiple thumbnail sizes, SVG download, similar-icon discovery, and
-      per-client blocklists.
-    image: https://thenounproject.com/icon.png
-    humanURL: https://api.thenounproject.com/documentation.html
-    baseURL: https://api.thenounproject.com
-    tags:
-      - Icons
-      - Search
-      - Collections
-      - Visual Language
-    properties:
-      - type: Documentation
-        url: https://api.thenounproject.com/documentation.html
-      - type: GettingStarted
-        url: https://api.thenounproject.com/getting_started.html
-      - type: Signup
-        url: https://thenounproject.com/developers/apps/
-      - type: APIExplorer
-        url: https://api.thenounproject.com/explorer
-      - type: Authentication
-        url: https://api.thenounproject.com/getting_started.html
-        x-auth-type: OAuth 1.0a
-      - type: OpenAPI
-        url: openapi/noun-project-openapi.yml
+- aid: noun-project:noun-project-autocomplete-api
+  name: Noun Project Autocomplete API
+  description: Suggest search terms based on a query prefix.
+  humanURL: https://api.thenounproject.com/documentation.html
+  baseURL: https://api.thenounproject.com
+  tags:
+  - Autocomplete
+  properties:
+  - type: OpenAPI
+    url: openapi/noun-project-autocomplete-api-openapi.yml
+  - type: Documentation
+    url: https://api.thenounproject.com/documentation.html
+  - type: GettingStarted
+    url: https://api.thenounproject.com/getting_started.html
+  - type: Signup
+    url: https://thenounproject.com/developers/apps/
+  - type: APIExplorer
+    url: https://api.thenounproject.com/explorer
+  - type: Authentication
+    url: https://api.thenounproject.com/getting_started.html
+- aid: noun-project:noun-project-blocklist-api
+  name: Noun Project Blocklist API
+  description: Manage per-client blocklists for icon IDs, collection IDs, and terms.
+  humanURL: https://api.thenounproject.com/documentation.html
+  baseURL: https://api.thenounproject.com
+  tags:
+  - Blocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/noun-project-blocklist-api-openapi.yml
+  - type: Documentation
+    url: https://api.thenounproject.com/documentation.html
+  - type: GettingStarted
+    url: https://api.thenounproject.com/getting_started.html
+  - type: Signup
+    url: https://thenounproject.com/developers/apps/
+  - type: APIExplorer
+    url: https://api.thenounproject.com/explorer
+  - type: Authentication
+    url: https://api.thenounproject.com/getting_started.html
+- aid: noun-project:noun-project-collection-api
+  name: Noun Project Collection API
+  description: Search and retrieve curated icon collections (icon sets).
+  humanURL: https://api.thenounproject.com/documentation.html
+  baseURL: https://api.thenounproject.com
+  tags:
+  - Collection
+  properties:
+  - type: OpenAPI
+    url: openapi/noun-project-collection-api-openapi.yml
+  - type: Documentation
+    url: https://api.thenounproject.com/documentation.html
+  - type: GettingStarted
+    url: https://api.thenounproject.com/getting_started.html
+  - type: Signup
+    url: https://thenounproject.com/developers/apps/
+  - type: APIExplorer
+    url: https://api.thenounproject.com/explorer
+  - type: Authentication
+    url: https://api.thenounproject.com/getting_started.html
+- aid: noun-project:noun-project-icon-api
+  name: Noun Project Icon API
+  description: Search, filter, retrieve, and download icons from the Noun Project library.
+  humanURL: https://api.thenounproject.com/documentation.html
+  baseURL: https://api.thenounproject.com
+  tags:
+  - Icon
+  properties:
+  - type: OpenAPI
+    url: openapi/noun-project-icon-api-openapi.yml
+  - type: Documentation
+    url: https://api.thenounproject.com/documentation.html
+  - type: GettingStarted
+    url: https://api.thenounproject.com/getting_started.html
+  - type: Signup
+    url: https://thenounproject.com/developers/apps/
+  - type: APIExplorer
+    url: https://api.thenounproject.com/explorer
+  - type: Authentication
+    url: https://api.thenounproject.com/getting_started.html
+- aid: noun-project:noun-project-usage-api
+  name: Noun Project Usage API
+  description: Inspect current API key usage against documented quotas.
+  humanURL: https://api.thenounproject.com/documentation.html
+  baseURL: https://api.thenounproject.com
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/noun-project-usage-api-openapi.yml
+  - type: Documentation
+    url: https://api.thenounproject.com/documentation.html
+  - type: GettingStarted
+    url: https://api.thenounproject.com/getting_started.html
+  - type: Signup
+    url: https://thenounproject.com/developers/apps/
+  - type: APIExplorer
+    url: https://api.thenounproject.com/explorer
+  - type: Authentication
+    url: https://api.thenounproject.com/getting_started.html
 common:
   - type: AgenticAccess
     url: agentic-access/noun-project-agentic-access.yml
