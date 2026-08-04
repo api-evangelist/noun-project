@@ -1,0 +1,22 @@
+{
+  "provider": "noun-project",
+  "sources": [
+    "noun-project-autocomplete-api-openapi.yml",
+    "noun-project-blocklist-api-openapi.yml",
+    "noun-project-collection-api-openapi.yml",
+    "noun-project-icon-api-openapi.yml",
+    "noun-project-usage-api-openapi.yml"
+  ],
+  "outputs": [
+    "noun-project-autocomplete-api-openapi.yml",
+    "noun-project-blocklist-api-openapi.yml",
+    "noun-project-collection-api-openapi.yml",
+    "noun-project-icon-api-openapi.yml",
+    "noun-project-usage-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
