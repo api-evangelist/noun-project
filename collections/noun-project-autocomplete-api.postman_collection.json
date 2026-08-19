@@ -1,0 +1,295 @@
+{
+  "item": [
+    {
+      "id": "19b89e8b-a8a8-4d81-9767-79581a6c5c15",
+      "name": "Autocomplete",
+      "description": {
+        "content": "Suggest search terms based on a query prefix.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83a3ea6e-719b-401c-878a-7739eed01c40",
+          "name": "Autocomplete Icon Search",
+          "request": {
+            "name": "Autocomplete Icon Search",
+            "description": {
+              "content": "Suggest icon search terms based on a query prefix. Returns up to 10 suggested terms ranked by relevance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "icon",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Query prefix used to generate term suggestions."
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "false",
+                  "description": "When true, applies the client's configured blocklist."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum suggestions returned (hard cap of 10)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe4d6c4a-9f7c-4c9c-a9b9-251d08aadebb",
+              "name": "Suggested search terms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autocomplete\": [\n    \"rocket\",\n    \"rocket ship\",\n    \"rocket launch\",\n    \"rocket science\"\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a7c210f-2e07-4c1f-b054-2f8e5b129f50",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b48a3da-65dd-4000-b166-2ccc1f78130c",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "icon",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "ro"
+                    },
+                    {
+                      "key": "blacklist",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thenounproject.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec7a0c3e-07f3-41e6-b028-a641e9a167ed",
+    "name": "Noun Project API V2 Autocomplete API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
+      "type": "text/plain"
+    }
+  }
+}

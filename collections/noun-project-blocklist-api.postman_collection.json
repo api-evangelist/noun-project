@@ -1,0 +1,785 @@
+{
+  "item": [
+    {
+      "id": "e26b9043-416a-46b1-9cd4-c2e4a6a7a467",
+      "name": "Blocklist",
+      "description": {
+        "content": "Manage per-client blocklists for icon IDs, collection IDs, and terms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6bd4ff24-044c-4561-8828-cf5b8a5ddb77",
+          "name": "Get Client Blocklist",
+          "request": {
+            "name": "Get Client Blocklist",
+            "description": {
+              "content": "Return the current blocklist for the calling client key, including blocked icon IDs, collection IDs, terms, and phrases. Results are cached for 10 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d5a8f54-a64c-42e3-93e7-b65085e98edd",
+              "name": "Current blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcbadb23-a8a8-43c1-a50b-0b90976f7678",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0288c217-3841-4b7e-b2b1-22390682a90a",
+          "name": "Add Blocklist IDs",
+          "request": {
+            "name": "Add Blocklist IDs",
+            "description": {
+              "content": "Add icon IDs or collection IDs to the client blocklist. Maximum 1,000 IDs per request for paid tiers and 5 for free trial accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist",
+                "id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "icon",
+                  "description": "Type of identifier being blocked."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blacklist\": [\n    \"<integer>\"\n  ],\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e4a91f0-cc5e-43d2-bf78-41fbb5e7b4d2",
+              "name": "Updated blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc6ab60f-c240-480c-a446-b50911fc819c",
+              "name": "The request was malformed or violated a documented limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a09ae137-3cc9-445f-9a47-e8d677613d1e",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba60af7a-f2af-43a7-a876-36ba6ea89563",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "icon"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    12345,\n    67890\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3e8dee8-32fe-4a09-896a-6bec617d99d0",
+          "name": "Add Blocklist Terms",
+          "request": {
+            "name": "Add Blocklist Terms",
+            "description": {
+              "content": "Add terms and phrases to the client blocklist. Maximum 1,000 terms per request for paid tiers and 5 for free trial accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "blacklist",
+                "term"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blacklist\": [\n    \"<string>\"\n  ],\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "add9fe3a-8ee3-4393-b3ac-b14b1b4f3eb9",
+              "name": "Updated blocklist contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blacklist\": {\n    \"icon_ids\": [\n      12345,\n      67890\n    ],\n    \"collection_ids\": [\n      98765\n    ],\n    \"terms\": [\n      \"violence\",\n      \"weapon\"\n    ],\n    \"cached_at\": \"2026-05-28T13:55:00Z\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4408d3cb-c540-418a-812c-1a6e49c81341",
+              "name": "The request was malformed or violated a documented limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3126366f-4760-4640-8c9d-7c19ad65daf4",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e07ce17-8d5c-4d2c-b2ef-debb46543f2d",
+              "name": "The hourly, daily, or monthly request quota has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "blacklist",
+                    "term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blacklist\": [\n    \"violence\",\n    \"weapon\"\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thenounproject.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3d7a749-b321-4d7a-90bc-a7a15b7e35ef",
+    "name": "Noun Project API V2 Autocomplete Blocklist API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Noun Project API V2 Autocomplete Blocklist API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blocklist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Client Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/client/blacklist",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return the current blocklist for the calling client key, including blocked icon IDs, collection IDs, terms, and phrases. Results are cached for 10 minutes."
+        },
+        {
+          "info": {
+            "name": "Add Blocklist IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thenounproject.com/v2/client/blacklist/id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of identifier being blocked."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add icon IDs or collection IDs to the client blocklist. Maximum 1,000 IDs per request for paid tiers and 5 for free trial accounts."
+        },
+        {
+          "info": {
+            "name": "Add Blocklist Terms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thenounproject.com/v2/client/blacklist/term",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add terms and phrases to the client blocklist. Maximum 1,000 terms per request for paid tiers and 5 for free trial accounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

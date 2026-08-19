@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Noun Project API V2 Autocomplete Collection API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/collection",
+            "params": [
+              {
+                "name": "query",
+                "value": "weather",
+                "type": "query",
+                "description": "Search term used to match collection titles, tags, and descriptions."
+              },
+              {
+                "name": "blacklist",
+                "value": "",
+                "type": "query",
+                "description": "When true, applies the client's configured blocklist to results."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of collections returned per page."
+              },
+              {
+                "name": "prev_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for backward pagination."
+              },
+              {
+                "name": "next_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for forward pagination."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search curated icon collections (icon sets) by query term. Returns a paginated list of matching collections with metadata."
+        },
+        {
+          "info": {
+            "name": "Get Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/collection/:collection_id",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "98765",
+                "type": "path",
+                "description": "Numeric identifier of the collection."
+              },
+              {
+                "name": "blacklist",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns 404 if the collection is on the client's blocklist."
+              },
+              {
+                "name": "thumbnail_size",
+                "value": "",
+                "type": "query",
+                "description": "Pixel dimension for returned thumbnail URLs."
+              },
+              {
+                "name": "include_svg",
+                "value": "",
+                "type": "query",
+                "description": "When true, includes raw SVG markup in each member icon."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of member icons returned per page."
+              },
+              {
+                "name": "prev_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for backward pagination."
+              },
+              {
+                "name": "next_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for forward pagination."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single icon collection with full metadata and member icons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

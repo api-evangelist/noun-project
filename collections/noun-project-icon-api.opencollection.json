@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Noun Project API V2 Autocomplete Icon API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Icon",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Icons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/icon",
+            "params": [
+              {
+                "name": "query",
+                "value": "rocket",
+                "type": "query",
+                "description": "Search term used to match icon titles, tags, and descriptions."
+              },
+              {
+                "name": "styles",
+                "value": "solid",
+                "type": "query",
+                "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`."
+              },
+              {
+                "name": "line_weight",
+                "value": "4",
+                "type": "query",
+                "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons."
+              },
+              {
+                "name": "limit_to_public_domain",
+                "value": "false",
+                "type": "query",
+                "description": "When true, restricts results to icons released to the public domain."
+              },
+              {
+                "name": "thumbnail_size",
+                "value": "200",
+                "type": "query",
+                "description": "Pixel dimension for returned thumbnail URLs."
+              },
+              {
+                "name": "blacklist",
+                "value": "true",
+                "type": "query",
+                "description": "When true, applies the client's configured blocklist to results."
+              },
+              {
+                "name": "include_svg",
+                "value": "false",
+                "type": "query",
+                "description": "When true, includes raw SVG markup in each icon result."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of icons returned per page."
+              },
+              {
+                "name": "prev_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for backward pagination."
+              },
+              {
+                "name": "next_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for forward pagination."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search the Noun Project icon library by query term with optional filters for style, line weight, public-domain status, and thumbnail size. Returns a paginated list of matching icons."
+        },
+        {
+          "info": {
+            "name": "Get Icon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/icon/:icon_id",
+            "params": [
+              {
+                "name": "icon_id",
+                "value": "1234567",
+                "type": "path",
+                "description": "Numeric identifier of the icon."
+              },
+              {
+                "name": "thumbnail_size",
+                "value": "200",
+                "type": "query",
+                "description": "Pixel dimension for the returned thumbnail URL."
+              },
+              {
+                "name": "blacklist",
+                "value": "true",
+                "type": "query",
+                "description": "When true, returns 404 if the icon is on the client's blocklist."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single icon by its numeric identifier with full metadata."
+        },
+        {
+          "info": {
+            "name": "Get Similar Icons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/icon/:icon_id/more-like-this",
+            "params": [
+              {
+                "name": "icon_id",
+                "value": "1234567",
+                "type": "path",
+                "description": "Numeric identifier of the icon."
+              },
+              {
+                "name": "query",
+                "value": "spaceship",
+                "type": "query",
+                "description": "Optional search term to narrow similar-icon candidates."
+              },
+              {
+                "name": "limit_to_public_domain",
+                "value": "",
+                "type": "query",
+                "description": "When true, restricts results to icons released to the public domain."
+              },
+              {
+                "name": "thumbnail_size",
+                "value": "",
+                "type": "query",
+                "description": "Pixel dimension for returned thumbnail URLs."
+              },
+              {
+                "name": "blacklist",
+                "value": "",
+                "type": "query",
+                "description": "When true, applies the client's configured blocklist to results."
+              },
+              {
+                "name": "include_svg",
+                "value": "",
+                "type": "query",
+                "description": "When true, includes raw SVG markup in each icon result."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of icons returned per page."
+              },
+              {
+                "name": "prev_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for backward pagination."
+              },
+              {
+                "name": "next_page",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token returned by a prior response for forward pagination."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Find icons stylistically similar to the supplied icon ID, optionally narrowed by a query term. Used to assemble visually consistent icon sets from a single seed."
+        },
+        {
+          "info": {
+            "name": "Download Icon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/icon/:icon_id/download",
+            "params": [
+              {
+                "name": "icon_id",
+                "value": "1234567",
+                "type": "path",
+                "description": "Numeric identifier of the icon."
+              },
+              {
+                "name": "color",
+                "value": "ff5733",
+                "type": "query",
+                "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color."
+              },
+              {
+                "name": "filetype",
+                "value": "png",
+                "type": "query",
+                "description": "Output file format."
+              },
+              {
+                "name": "size",
+                "value": "512",
+                "type": "query",
+                "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Download a rendered icon in SVG or PNG format with optional hex-color recoloring and pixel sizing (PNG only). The response body is the icon binary; the content-type matches the requested filetype."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

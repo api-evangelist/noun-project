@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Noun Project API V2 Autocomplete API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autocomplete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Autocomplete Icon Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenounproject.com/v2/icon/autocomplete",
+            "params": [
+              {
+                "name": "query",
+                "value": "ro",
+                "type": "query",
+                "description": "Query prefix used to generate term suggestions."
+              },
+              {
+                "name": "blacklist",
+                "value": "",
+                "type": "query",
+                "description": "When true, applies the client's configured blocklist."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum suggestions returned (hard cap of 10)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Suggest icon search terms based on a query prefix. Returns up to 10 suggested terms ranked by relevance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,192 @@
+{
+  "item": [
+    {
+      "id": "b5392f95-e7d5-482e-955d-c2d079f96a18",
+      "name": "Usage",
+      "description": {
+        "content": "Inspect current API key usage against documented quotas.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fac104f-0ac2-41a6-8104-d195cf6a3d78",
+          "name": "Get Client Usage",
+          "request": {
+            "name": "Get Client Usage",
+            "description": {
+              "content": "Return the calling client key's current usage and limits for the hourly, daily, and monthly windows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "client",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d73421f8-f02d-44c1-a700-3be403a077ba",
+              "name": "Current usage and limit snapshot.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"usage\": {\n    \"hourly\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    },\n    \"daily\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    },\n    \"monthly\": {\n      \"service_calls_used\": 245,\n      \"service_calls_limit\": 1000,\n      \"icon_calls_used\": 38,\n      \"icon_calls_limit\": 150,\n      \"period_start\": \"2026-05-28T00:00:00Z\",\n      \"period_end\": \"2026-05-29T00:00:00Z\"\n    }\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "124eb844-6d4a-4dd8-87a0-08384f56b7e9",
+              "name": "Missing or invalid OAuth 1.0a credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "client",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thenounproject.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b48114a6-6ea8-4fa4-b438-bc493ad155a0",
+    "name": "Noun Project API V2 Autocomplete Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
+      "type": "text/plain"
+    }
+  }
+}
