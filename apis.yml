@@ -22,7 +22,7 @@ image: https://thenounproject.com/icon.png
 url: http://api.thenounproject.com/index.html
 humanURL: https://thenounproject.com/api/
 baseURL: https://api.thenounproject.com
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-05-28'
 x-source: public-apis/public-apis
