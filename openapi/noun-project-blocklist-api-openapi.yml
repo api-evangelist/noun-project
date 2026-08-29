@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Noun Project API V2 Autocomplete Blocklist API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
@@ -139,39 +139,46 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or violated a documented limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Blocklist:
+    ErrorResponse:
       type: object
-      description: The current blocklist for a client key.
+      description: Standard error response payload returned for 4xx and 5xx responses.
       properties:
-        icon_ids:
-          type: array
-          description: Blocked icon identifiers.
-          items:
-            type: integer
-          example:
-          - 12345
-          - 67890
-        collection_ids:
-          type: array
-          description: Blocked collection identifiers.
-          items:
-            type: integer
-          example:
-          - 98765
-        terms:
-          type: array
-          description: Blocked terms and phrases.
-          items:
-            type: string
-          example:
-          - violence
-          - weapon
-        cached_at:
+        error:
           type: string
-          format: date-time
-          description: ISO 8601 timestamp when the blocklist was last cached.
-          example: '2026-05-28T13:55:00Z'
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
     BlocklistTermRequest:
       type: object
       description: Request body for adding terms or phrases to the blocklist.
@@ -227,45 +234,38 @@ components:
           example: false
       required:
       - blacklist
-    ErrorResponse:
+    Blocklist:
       type: object
-      description: Standard error response payload returned for 4xx and 5xx responses.
+      description: The current blocklist for a client key.
       properties:
-        error:
+        icon_ids:
+          type: array
+          description: Blocked icon identifiers.
+          items:
+            type: integer
+          example:
+          - 12345
+          - 67890
+        collection_ids:
+          type: array
+          description: Blocked collection identifiers.
+          items:
+            type: integer
+          example:
+          - 98765
+        terms:
+          type: array
+          description: Blocked terms and phrases.
+          items:
+            type: string
+          example:
+          - violence
+          - weapon
+        cached_at:
           type: string
-          description: Machine-readable error code.
-          example: rate_limit_exceeded
-        message:
-          type: string
-          description: Human-readable error message.
-          example: The monthly quota for this client key has been exceeded.
-        status:
-          type: integer
-          description: HTTP status code echo.
-          example: 429
-        request_id:
-          type: string
-          description: Server-generated identifier for the failing request.
-          example: req-abc123def456
-  responses:
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or violated a documented limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+          format: date-time
+          description: ISO 8601 timestamp when the blocklist was last cached.
+          example: '2026-05-28T13:55:00Z'
   securitySchemes:
     oauth1:
       type: apiKey

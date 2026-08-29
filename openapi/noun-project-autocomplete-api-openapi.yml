@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Noun Project API V2 Autocomplete API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
@@ -90,7 +90,40 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
     AutocompleteResponse:
       type: object
       description: Autocomplete suggestions for an icon search query.
@@ -112,39 +145,6 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - autocomplete
-    ErrorResponse:
-      type: object
-      description: Standard error response payload returned for 4xx and 5xx responses.
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code.
-          example: rate_limit_exceeded
-        message:
-          type: string
-          description: Human-readable error message.
-          example: The monthly quota for this client key has been exceeded.
-        status:
-          type: integer
-          description: HTTP status code echo.
-          example: 429
-        request_id:
-          type: string
-          description: Server-generated identifier for the failing request.
-          example: req-abc123def456
-  responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth1:
       type: apiKey

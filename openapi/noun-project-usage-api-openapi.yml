@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Noun Project API V2 Autocomplete Usage API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
@@ -64,7 +64,34 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
     UsageWindow:
       type: object
       description: Usage statistics for a single time window.
@@ -95,16 +122,6 @@ components:
           format: date-time
           description: ISO 8601 timestamp of when this window ends.
           example: '2026-05-29T00:00:00Z'
-    Usage:
-      type: object
-      description: API key usage and quota information.
-      properties:
-        hourly:
-          $ref: '#/components/schemas/UsageWindow'
-        daily:
-          $ref: '#/components/schemas/UsageWindow'
-        monthly:
-          $ref: '#/components/schemas/UsageWindow'
     UsageResponse:
       type: object
       description: Wrapper for the client usage response.
@@ -118,33 +135,16 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - usage
-    ErrorResponse:
+    Usage:
       type: object
-      description: Standard error response payload returned for 4xx and 5xx responses.
+      description: API key usage and quota information.
       properties:
-        error:
-          type: string
-          description: Machine-readable error code.
-          example: rate_limit_exceeded
-        message:
-          type: string
-          description: Human-readable error message.
-          example: The monthly quota for this client key has been exceeded.
-        status:
-          type: integer
-          description: HTTP status code echo.
-          example: 429
-        request_id:
-          type: string
-          description: Server-generated identifier for the failing request.
-          example: req-abc123def456
-  responses:
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+        hourly:
+          $ref: '#/components/schemas/UsageWindow'
+        daily:
+          $ref: '#/components/schemas/UsageWindow'
+        monthly:
+          $ref: '#/components/schemas/UsageWindow'
   securitySchemes:
     oauth1:
       type: apiKey

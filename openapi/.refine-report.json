@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "noun-project-autocomplete-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "noun-project-blocklist-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "noun-project-collection-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "noun-project-icon-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "noun-project-usage-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

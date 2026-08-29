@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Noun Project API V2 Autocomplete Icon API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
@@ -359,58 +359,6 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - icon
-    Tag:
-      type: object
-      description: A single search tag applied to an icon or collection.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the tag.
-          example: 999
-        slug:
-          type: string
-          description: URL-safe slug of the tag.
-          example: spaceship
-      required:
-      - id
-      - slug
-    IconCreator:
-      type: object
-      description: The creator of an icon.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the creator.
-          example: 4321
-        username:
-          type: string
-          description: URL-safe username of the creator.
-          example: jsmith
-        name:
-          type: string
-          description: Display name of the creator.
-          example: Jane Smith
-        permalink:
-          type: string
-          format: uri
-          description: Canonical URL for the creator profile.
-          example: https://thenounproject.com/jsmith/
-        location:
-          type: string
-          description: Free-text location reported by the creator.
-          example: Brooklyn, NY
-        bio:
-          type: string
-          description: Creator's profile bio.
-          example: Designer focused on space exploration icons.
-        avatar_url:
-          type: string
-          format: uri
-          description: URL to the creator's avatar image.
-          example: https://static.thenounproject.com/avatars/4321.png
-      required:
-      - id
-      - username
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.
@@ -450,13 +398,15 @@ components:
           description: Total number of icons matching the search.
           example: 4321
         next_page:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Cursor token for the next page of results.
           example: eyJsYXN0X2lkIjoxMjM0NTY3fQ==
         prev_page:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Cursor token for the previous page of results.
           example: null
       required:
@@ -570,8 +520,9 @@ components:
           description: Whether the icon has been flagged not-safe-for-work.
           example: false
         sponsor_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Identifier of the sponsoring brand if any.
           example: null
         thumbnail_url:
@@ -582,7 +533,65 @@ components:
       required:
       - id
       - permalink
+    IconCreator:
+      type: object
+      description: The creator of an icon.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the creator.
+          example: 4321
+        username:
+          type: string
+          description: URL-safe username of the creator.
+          example: jsmith
+        name:
+          type: string
+          description: Display name of the creator.
+          example: Jane Smith
+        permalink:
+          type: string
+          format: uri
+          description: Canonical URL for the creator profile.
+          example: https://thenounproject.com/jsmith/
+        location:
+          type: string
+          description: Free-text location reported by the creator.
+          example: Brooklyn, NY
+        bio:
+          type: string
+          description: Creator's profile bio.
+          example: Designer focused on space exploration icons.
+        avatar_url:
+          type: string
+          format: uri
+          description: URL to the creator's avatar image.
+          example: https://static.thenounproject.com/avatars/4321.png
+      required:
+      - id
+      - username
+    Tag:
+      type: object
+      description: A single search tag applied to an icon or collection.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the tag.
+          example: 999
+        slug:
+          type: string
+          description: URL-safe slug of the tag.
+          example: spaceship
+      required:
+      - id
+      - slug
   responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Missing or invalid OAuth 1.0a credentials.
       content:
@@ -591,12 +600,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested icon, collection, or resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
       content:
         application/json:
           schema:
