@@ -5,6 +5,18 @@ description: >-
   through an OAuth 1.0a-secured REST API. The v2 API supports icon search with style and line-weight filtering,
   similar-icon lookup, collection browsing, custom recoloring, autocomplete, per-client blocklists, and usage telemetry.
   Built on AWS, it serves more than 300 million requests per month at 99.99% uptime.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
