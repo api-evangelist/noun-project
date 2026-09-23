@@ -1,11 +1,7 @@
 {
   "provider": "noun-project",
   "sources": [
-    "noun-project-autocomplete-api-openapi.yml",
-    "noun-project-blocklist-api-openapi.yml",
-    "noun-project-collection-api-openapi.yml",
-    "noun-project-icon-api-openapi.yml",
-    "noun-project-usage-api-openapi.yml"
+    "_ae-authored/noun-project-openapi.yml"
   ],
   "outputs": [
     "noun-project-autocomplete-api-openapi.yml",
@@ -18,12 +14,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "noun-project-autocomplete-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "noun-project-blocklist-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "noun-project-collection-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "noun-project-icon-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "noun-project-usage-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "noun-project-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "noun-project-autocomplete-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "noun-project-blocklist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "noun-project-collection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "noun-project-icon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "noun-project-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

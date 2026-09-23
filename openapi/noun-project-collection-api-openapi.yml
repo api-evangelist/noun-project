@@ -1,28 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Noun Project API V2 Autocomplete Collection API
+  title: Noun Project API V2 Collection API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
 
-    access to nearly 10 million royalty-free PNG and SVG icons. The API
-
-    supports icon search with style and line-weight filtering, similar-icon
-
-    lookup, collection browsing, custom hex-color recoloring, multiple
-
-    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
-
-    real-time usage telemetry.
-
-
-    Built on AWS with documented 99.99% uptime, the API serves more than
-
-    300 million requests per month. All requests must be signed with OAuth
-
-    1.0a using the client key and secret obtained from the Noun Project
-
-    developer portal.
-
-    '
+    access to nearly 10 million royalty-free PNG and SVG icons.'
   version: '2.0'
   termsOfService: https://thenounproject.com/legal/api-terms-of-use/
   contact:
@@ -175,36 +156,22 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested icon, collection, or resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    CollectionId:
-      name: collection_id
-      in: path
-      description: Numeric identifier of the collection.
-      required: true
-      schema:
-        type: integer
-        minimum: 1
-      example: 98765
   schemas:
+    Tag:
+      type: object
+      description: A single search tag applied to an icon or collection.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the tag.
+          example: 999
+        slug:
+          type: string
+          description: URL-safe slug of the tag.
+          example: spaceship
+      required:
+      - id
+      - slug
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.
@@ -225,6 +192,70 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
+    Collection:
+      type: object
+      description: A curated icon collection (icon set).
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the collection.
+          example: 98765
+        slug:
+          type: string
+          description: URL-safe slug of the collection.
+          example: weather-icons
+        name:
+          type: string
+          description: Display name of the collection.
+          example: Weather Icons
+        description:
+          type: string
+          description: Marketing description of the collection.
+          example: A complete weather iconography set covering conditions and forecasts.
+        permalink:
+          type: string
+          format: uri
+          description: Canonical URL for the collection on thenounproject.com.
+          example: https://thenounproject.com/collection/98765/
+        preview_url:
+          type: string
+          format: uri
+          description: Cover image URL for the collection.
+          example: https://static.thenounproject.com/collections/98765-cover.png
+        creator:
+          $ref: '#/components/schemas/IconCreator'
+        date_created:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the collection was created.
+          example: '2024-04-12T10:00:00Z'
+        date_updated:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last collection update.
+          example: '2024-09-30T18:22:00Z'
+        is_published:
+          type: boolean
+          description: Whether the collection is published and discoverable.
+          example: true
+        icon_count:
+          type: integer
+          description: Number of icons currently in the collection.
+          example: 32
+        tags:
+          type: array
+          description: Search tags applied to the collection.
+          items:
+            $ref: '#/components/schemas/Tag'
+        icons:
+          type: array
+          description: Member icons returned when retrieving a collection by ID.
+          items:
+            $ref: '#/components/schemas/Icon'
+      required:
+      - id
+      - name
+      - permalink
     Icon:
       type: object
       description: A single icon in the Noun Project library.
@@ -347,70 +378,6 @@ components:
       required:
       - id
       - permalink
-    Collection:
-      type: object
-      description: A curated icon collection (icon set).
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the collection.
-          example: 98765
-        slug:
-          type: string
-          description: URL-safe slug of the collection.
-          example: weather-icons
-        name:
-          type: string
-          description: Display name of the collection.
-          example: Weather Icons
-        description:
-          type: string
-          description: Marketing description of the collection.
-          example: A complete weather iconography set covering conditions and forecasts.
-        permalink:
-          type: string
-          format: uri
-          description: Canonical URL for the collection on thenounproject.com.
-          example: https://thenounproject.com/collection/98765/
-        preview_url:
-          type: string
-          format: uri
-          description: Cover image URL for the collection.
-          example: https://static.thenounproject.com/collections/98765-cover.png
-        creator:
-          $ref: '#/components/schemas/IconCreator'
-        date_created:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the collection was created.
-          example: '2024-04-12T10:00:00Z'
-        date_updated:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of the last collection update.
-          example: '2024-09-30T18:22:00Z'
-        is_published:
-          type: boolean
-          description: Whether the collection is published and discoverable.
-          example: true
-        icon_count:
-          type: integer
-          description: Number of icons currently in the collection.
-          example: 32
-        tags:
-          type: array
-          description: Search tags applied to the collection.
-          items:
-            $ref: '#/components/schemas/Tag'
-        icons:
-          type: array
-          description: Member icons returned when retrieving a collection by ID.
-          items:
-            $ref: '#/components/schemas/Icon'
-      required:
-      - id
-      - name
-      - permalink
     CollectionSearchResponse:
       type: object
       description: Paginated collection search results.
@@ -443,34 +410,6 @@ components:
           example: null
       required:
       - collections
-    CollectionResponse:
-      type: object
-      description: Single collection response wrapper.
-      properties:
-        collection:
-          $ref: '#/components/schemas/Collection'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - collection
-    Tag:
-      type: object
-      description: A single search tag applied to an icon or collection.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the tag.
-          example: 999
-        slug:
-          type: string
-          description: URL-safe slug of the tag.
-          example: spaceship
-      required:
-      - id
-      - slug
     IconCreator:
       type: object
       description: The creator of an icon.
@@ -508,6 +447,48 @@ components:
       required:
       - id
       - username
+    CollectionResponse:
+      type: object
+      description: Single collection response wrapper.
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - collection
+  responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested icon, collection, or resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    CollectionId:
+      name: collection_id
+      in: path
+      description: Numeric identifier of the collection.
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      example: 98765
   securitySchemes:
     oauth1:
       type: apiKey

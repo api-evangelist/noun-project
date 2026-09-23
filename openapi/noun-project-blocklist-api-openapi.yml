@@ -1,28 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Noun Project API V2 Autocomplete Blocklist API
+  title: Noun Project API V2 Blocklist API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
 
-    access to nearly 10 million royalty-free PNG and SVG icons. The API
-
-    supports icon search with style and line-weight filtering, similar-icon
-
-    lookup, collection browsing, custom hex-color recoloring, multiple
-
-    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
-
-    real-time usage telemetry.
-
-
-    Built on AWS with documented 99.99% uptime, the API serves more than
-
-    300 million requests per month. All requests must be signed with OAuth
-
-    1.0a using the client key and secret obtained from the Noun Project
-
-    developer portal.
-
-    '
+    access to nearly 10 million royalty-free PNG and SVG icons.'
   version: '2.0'
   termsOfService: https://thenounproject.com/legal/api-terms-of-use/
   contact:
@@ -139,25 +120,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or violated a documented limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -179,40 +141,6 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
-    BlocklistTermRequest:
-      type: object
-      description: Request body for adding terms or phrases to the blocklist.
-      properties:
-        blacklist:
-          type: array
-          description: Terms and phrases to add to the blocklist.
-          items:
-            type: string
-          minItems: 1
-          maxItems: 1000
-          example:
-          - violence
-          - weapon
-        overwrite:
-          type: boolean
-          description: When true, replaces the existing term blocklist entirely.
-          default: false
-          example: false
-      required:
-      - blacklist
-    BlocklistResponse:
-      type: object
-      description: Wrapper for the client blocklist response.
-      properties:
-        blacklist:
-          $ref: '#/components/schemas/Blocklist'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - blacklist
     BlocklistIdRequest:
       type: object
       description: Request body for adding icon or collection IDs to the blocklist.
@@ -266,6 +194,59 @@ components:
           format: date-time
           description: ISO 8601 timestamp when the blocklist was last cached.
           example: '2026-05-28T13:55:00Z'
+    BlocklistTermRequest:
+      type: object
+      description: Request body for adding terms or phrases to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Terms and phrases to add to the blocklist.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 1000
+          example:
+          - violence
+          - weapon
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing term blocklist entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
+    BlocklistResponse:
+      type: object
+      description: Wrapper for the client blocklist response.
+      properties:
+        blacklist:
+          $ref: '#/components/schemas/Blocklist'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - blacklist
+  responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or violated a documented limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth1:
       type: apiKey

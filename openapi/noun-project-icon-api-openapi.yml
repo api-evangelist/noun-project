@@ -1,28 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Noun Project API V2 Autocomplete Icon API
+  title: Noun Project API V2 Icon API
   description: 'The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides
 
-    access to nearly 10 million royalty-free PNG and SVG icons. The API
-
-    supports icon search with style and line-weight filtering, similar-icon
-
-    lookup, collection browsing, custom hex-color recoloring, multiple
-
-    thumbnail sizes, autocomplete suggestions, per-client blocklists, and
-
-    real-time usage telemetry.
-
-
-    Built on AWS with documented 99.99% uptime, the API serves more than
-
-    300 million requests per month. All requests must be signed with OAuth
-
-    1.0a using the client key and secret obtained from the Noun Project
-
-    developer portal.
-
-    '
+    access to nearly 10 million royalty-free PNG and SVG icons.'
   version: '2.0'
   termsOfService: https://thenounproject.com/legal/api-terms-of-use/
   contact:
@@ -346,19 +327,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    IconResponse:
-      type: object
-      description: Single icon response wrapper.
-      properties:
-        icon:
-          $ref: '#/components/schemas/Icon'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - icon
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.
@@ -379,6 +347,21 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
+    Tag:
+      type: object
+      description: A single search tag applied to an icon or collection.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the tag.
+          example: 999
+        slug:
+          type: string
+          description: URL-safe slug of the tag.
+          example: spaceship
+      required:
+      - id
+      - slug
     IconSearchResponse:
       type: object
       description: Paginated icon search results.
@@ -411,6 +394,19 @@ components:
           example: null
       required:
       - icons
+    IconResponse:
+      type: object
+      description: Single icon response wrapper.
+      properties:
+        icon:
+          $ref: '#/components/schemas/Icon'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - icon
     Icon:
       type: object
       description: A single icon in the Noun Project library.
@@ -570,21 +566,6 @@ components:
       required:
       - id
       - username
-    Tag:
-      type: object
-      description: A single search tag applied to an icon or collection.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the tag.
-          example: 999
-        slug:
-          type: string
-          description: URL-safe slug of the tag.
-          example: spaceship
-      required:
-      - id
-      - slug
   responses:
     RateLimited:
       description: The hourly, daily, or monthly request quota has been exceeded.
