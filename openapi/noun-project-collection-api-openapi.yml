@@ -157,21 +157,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Tag:
-      type: object
-      description: A single search tag applied to an icon or collection.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the tag.
-          example: 999
-        slug:
-          type: string
-          description: URL-safe slug of the tag.
-          example: spaceship
-      required:
-      - id
-      - slug
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.
@@ -256,6 +241,103 @@ components:
       - id
       - name
       - permalink
+    IconCreator:
+      type: object
+      description: The creator of an icon.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the creator.
+          example: 4321
+        username:
+          type: string
+          description: URL-safe username of the creator.
+          example: jsmith
+        name:
+          type: string
+          description: Display name of the creator.
+          example: Jane Smith
+        permalink:
+          type: string
+          format: uri
+          description: Canonical URL for the creator profile.
+          example: https://thenounproject.com/jsmith/
+        location:
+          type: string
+          description: Free-text location reported by the creator.
+          example: Brooklyn, NY
+        bio:
+          type: string
+          description: Creator's profile bio.
+          example: Designer focused on space exploration icons.
+        avatar_url:
+          type: string
+          format: uri
+          description: URL to the creator's avatar image.
+          example: https://static.thenounproject.com/avatars/4321.png
+      required:
+      - id
+      - username
+    Tag:
+      type: object
+      description: A single search tag applied to an icon or collection.
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier of the tag.
+          example: 999
+        slug:
+          type: string
+          description: URL-safe slug of the tag.
+          example: spaceship
+      required:
+      - id
+      - slug
+    CollectionResponse:
+      type: object
+      description: Single collection response wrapper.
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - collection
+    CollectionSearchResponse:
+      type: object
+      description: Paginated collection search results.
+      properties:
+        collections:
+          type: array
+          description: Collections matching the search criteria.
+          items:
+            $ref: '#/components/schemas/Collection'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+        total:
+          type: integer
+          description: Total number of collections matching the search.
+          example: 187
+        next_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the next page of results.
+          example: eyJsYXN0X2lkIjo5ODc2NX0=
+        prev_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the previous page of results.
+          example: null
+      required:
+      - collections
     Icon:
       type: object
       description: A single icon in the Noun Project library.
@@ -378,97 +460,15 @@ components:
       required:
       - id
       - permalink
-    CollectionSearchResponse:
-      type: object
-      description: Paginated collection search results.
-      properties:
-        collections:
-          type: array
-          description: Collections matching the search criteria.
-          items:
-            $ref: '#/components/schemas/Collection'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-        total:
-          type: integer
-          description: Total number of collections matching the search.
-          example: 187
-        next_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the next page of results.
-          example: eyJsYXN0X2lkIjo5ODc2NX0=
-        prev_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the previous page of results.
-          example: null
-      required:
-      - collections
-    IconCreator:
-      type: object
-      description: The creator of an icon.
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier of the creator.
-          example: 4321
-        username:
-          type: string
-          description: URL-safe username of the creator.
-          example: jsmith
-        name:
-          type: string
-          description: Display name of the creator.
-          example: Jane Smith
-        permalink:
-          type: string
-          format: uri
-          description: Canonical URL for the creator profile.
-          example: https://thenounproject.com/jsmith/
-        location:
-          type: string
-          description: Free-text location reported by the creator.
-          example: Brooklyn, NY
-        bio:
-          type: string
-          description: Creator's profile bio.
-          example: Designer focused on space exploration icons.
-        avatar_url:
-          type: string
-          format: uri
-          description: URL to the creator's avatar image.
-          example: https://static.thenounproject.com/avatars/4321.png
-      required:
-      - id
-      - username
-    CollectionResponse:
-      type: object
-      description: Single collection response wrapper.
-      properties:
-        collection:
-          $ref: '#/components/schemas/Collection'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - collection
   responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
       content:
         application/json:
           schema:

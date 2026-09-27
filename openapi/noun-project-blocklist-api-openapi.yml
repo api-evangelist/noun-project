@@ -229,8 +229,8 @@ components:
       required:
       - blacklist
   responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
       content:
         application/json:
           schema:
@@ -241,8 +241,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
       content:
         application/json:
           schema:

@@ -46,6 +46,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Usage:
+      type: object
+      description: API key usage and quota information.
+      properties:
+        hourly:
+          $ref: '#/components/schemas/UsageWindow'
+        daily:
+          $ref: '#/components/schemas/UsageWindow'
+        monthly:
+          $ref: '#/components/schemas/UsageWindow'
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.
@@ -66,19 +76,6 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
-    UsageResponse:
-      type: object
-      description: Wrapper for the client usage response.
-      properties:
-        usage:
-          $ref: '#/components/schemas/Usage'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - usage
     UsageWindow:
       type: object
       description: Usage statistics for a single time window.
@@ -109,16 +106,19 @@ components:
           format: date-time
           description: ISO 8601 timestamp of when this window ends.
           example: '2026-05-29T00:00:00Z'
-    Usage:
+    UsageResponse:
       type: object
-      description: API key usage and quota information.
+      description: Wrapper for the client usage response.
       properties:
-        hourly:
-          $ref: '#/components/schemas/UsageWindow'
-        daily:
-          $ref: '#/components/schemas/UsageWindow'
-        monthly:
-          $ref: '#/components/schemas/UsageWindow'
+        usage:
+          $ref: '#/components/schemas/Usage'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - usage
   responses:
     Unauthorized:
       description: Missing or invalid OAuth 1.0a credentials.
