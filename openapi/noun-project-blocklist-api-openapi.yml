@@ -141,23 +141,23 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
-    BlocklistIdRequest:
+    BlocklistTermRequest:
       type: object
-      description: Request body for adding icon or collection IDs to the blocklist.
+      description: Request body for adding terms or phrases to the blocklist.
       properties:
         blacklist:
           type: array
-          description: Identifiers to add to the blocklist.
+          description: Terms and phrases to add to the blocklist.
           items:
-            type: integer
+            type: string
           minItems: 1
           maxItems: 1000
           example:
-          - 12345
-          - 67890
+          - violence
+          - weapon
         overwrite:
           type: boolean
-          description: When true, replaces the existing blocklist for this type entirely.
+          description: When true, replaces the existing term blocklist entirely.
           default: false
           example: false
       required:
@@ -194,27 +194,6 @@ components:
           format: date-time
           description: ISO 8601 timestamp when the blocklist was last cached.
           example: '2026-05-28T13:55:00Z'
-    BlocklistTermRequest:
-      type: object
-      description: Request body for adding terms or phrases to the blocklist.
-      properties:
-        blacklist:
-          type: array
-          description: Terms and phrases to add to the blocklist.
-          items:
-            type: string
-          minItems: 1
-          maxItems: 1000
-          example:
-          - violence
-          - weapon
-        overwrite:
-          type: boolean
-          description: When true, replaces the existing term blocklist entirely.
-          default: false
-          example: false
-      required:
-      - blacklist
     BlocklistResponse:
       type: object
       description: Wrapper for the client blocklist response.
@@ -228,13 +207,28 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - blacklist
+    BlocklistIdRequest:
+      type: object
+      description: Request body for adding icon or collection IDs to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Identifiers to add to the blocklist.
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 1000
+          example:
+          - 12345
+          - 67890
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing blocklist for this type entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
   responses:
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request was malformed or violated a documented limit.
       content:
@@ -243,6 +237,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     RateLimited:
       description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
       content:
         application/json:
           schema:

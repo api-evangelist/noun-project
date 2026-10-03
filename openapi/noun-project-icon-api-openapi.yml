@@ -347,6 +347,19 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
+    IconResponse:
+      type: object
+      description: Single icon response wrapper.
+      properties:
+        icon:
+          $ref: '#/components/schemas/Icon'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - icon
     IconCreator:
       type: object
       description: The creator of an icon.
@@ -384,6 +397,38 @@ components:
       required:
       - id
       - username
+    IconSearchResponse:
+      type: object
+      description: Paginated icon search results.
+      properties:
+        icons:
+          type: array
+          description: Icons matching the search criteria.
+          items:
+            $ref: '#/components/schemas/Icon'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+        total:
+          type: integer
+          description: Total number of icons matching the search.
+          example: 4321
+        next_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the next page of results.
+          example: eyJsYXN0X2lkIjoxMjM0NTY3fQ==
+        prev_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the previous page of results.
+          example: null
+      required:
+      - icons
     Tag:
       type: object
       description: A single search tag applied to an icon or collection.
@@ -521,54 +566,9 @@ components:
       required:
       - id
       - permalink
-    IconResponse:
-      type: object
-      description: Single icon response wrapper.
-      properties:
-        icon:
-          $ref: '#/components/schemas/Icon'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - icon
-    IconSearchResponse:
-      type: object
-      description: Paginated icon search results.
-      properties:
-        icons:
-          type: array
-          description: Icons matching the search criteria.
-          items:
-            $ref: '#/components/schemas/Icon'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-        total:
-          type: integer
-          description: Total number of icons matching the search.
-          example: 4321
-        next_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the next page of results.
-          example: eyJsYXN0X2lkIjoxMjM0NTY3fQ==
-        prev_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the previous page of results.
-          example: null
-      required:
-      - icons
   responses:
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
+    NotFound:
+      description: The requested icon, collection, or resource was not found.
       content:
         application/json:
           schema:
@@ -579,8 +579,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested icon, collection, or resource was not found.
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
       content:
         application/json:
           schema:

@@ -71,19 +71,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -126,6 +113,19 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - autocomplete
+  responses:
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth1:
       type: apiKey

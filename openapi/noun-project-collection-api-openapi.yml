@@ -241,6 +241,51 @@ components:
       - id
       - name
       - permalink
+    CollectionSearchResponse:
+      type: object
+      description: Paginated collection search results.
+      properties:
+        collections:
+          type: array
+          description: Collections matching the search criteria.
+          items:
+            $ref: '#/components/schemas/Collection'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+        total:
+          type: integer
+          description: Total number of collections matching the search.
+          example: 187
+        next_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the next page of results.
+          example: eyJsYXN0X2lkIjo5ODc2NX0=
+        prev_page:
+          type:
+          - string
+          - 'null'
+          description: Cursor token for the previous page of results.
+          example: null
+      required:
+      - collections
+    CollectionResponse:
+      type: object
+      description: Single collection response wrapper.
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the response was generated.
+          example: '2026-05-28T14:00:00Z'
+      required:
+      - collection
     IconCreator:
       type: object
       description: The creator of an icon.
@@ -293,51 +338,6 @@ components:
       required:
       - id
       - slug
-    CollectionResponse:
-      type: object
-      description: Single collection response wrapper.
-      properties:
-        collection:
-          $ref: '#/components/schemas/Collection'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-      required:
-      - collection
-    CollectionSearchResponse:
-      type: object
-      description: Paginated collection search results.
-      properties:
-        collections:
-          type: array
-          description: Collections matching the search criteria.
-          items:
-            $ref: '#/components/schemas/Collection'
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of when the response was generated.
-          example: '2026-05-28T14:00:00Z'
-        total:
-          type: integer
-          description: Total number of collections matching the search.
-          example: 187
-        next_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the next page of results.
-          example: eyJsYXN0X2lkIjo5ODc2NX0=
-        prev_page:
-          type:
-          - string
-          - 'null'
-          description: Cursor token for the previous page of results.
-          example: null
-      required:
-      - collections
     Icon:
       type: object
       description: A single icon in the Noun Project library.
@@ -461,8 +461,8 @@ components:
       - id
       - permalink
   responses:
-    Unauthorized:
-      description: Missing or invalid OAuth 1.0a credentials.
+    NotFound:
+      description: The requested icon, collection, or resource was not found.
       content:
         application/json:
           schema:
@@ -473,8 +473,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested icon, collection, or resource was not found.
+    Unauthorized:
+      description: Missing or invalid OAuth 1.0a credentials.
       content:
         application/json:
           schema:
