@@ -43,12 +43,12 @@ x-category: Art & Design
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
-  - Art And Design
   - Icons
   - SVG
   - Visual Language
   - Design Assets
   - Public APIs
+  - Design
 apis:
 - aid: noun-project:noun-project-autocomplete-api
   name: Noun Project Autocomplete API
@@ -250,3 +250,5 @@ solutions:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-tags-removed:
+- Art And Design
