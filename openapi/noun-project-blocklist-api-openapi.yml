@@ -121,47 +121,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response payload returned for 4xx and 5xx responses.
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code.
-          example: rate_limit_exceeded
-        message:
-          type: string
-          description: Human-readable error message.
-          example: The monthly quota for this client key has been exceeded.
-        status:
-          type: integer
-          description: HTTP status code echo.
-          example: 429
-        request_id:
-          type: string
-          description: Server-generated identifier for the failing request.
-          example: req-abc123def456
-    BlocklistTermRequest:
-      type: object
-      description: Request body for adding terms or phrases to the blocklist.
-      properties:
-        blacklist:
-          type: array
-          description: Terms and phrases to add to the blocklist.
-          items:
-            type: string
-          minItems: 1
-          maxItems: 1000
-          example:
-          - violence
-          - weapon
-        overwrite:
-          type: boolean
-          description: When true, replaces the existing term blocklist entirely.
-          default: false
-          example: false
-      required:
-      - blacklist
     Blocklist:
       type: object
       description: The current blocklist for a client key.
@@ -228,13 +187,48 @@ components:
           example: false
       required:
       - blacklist
+    BlocklistTermRequest:
+      type: object
+      description: Request body for adding terms or phrases to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Terms and phrases to add to the blocklist.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 1000
+          example:
+          - violence
+          - weapon
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing term blocklist entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
+    ErrorResponse:
+      type: object
+      description: Standard error response payload returned for 4xx and 5xx responses.
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+          example: rate_limit_exceeded
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The monthly quota for this client key has been exceeded.
+        status:
+          type: integer
+          description: HTTP status code echo.
+          example: 429
+        request_id:
+          type: string
+          description: Server-generated identifier for the failing request.
+          example: req-abc123def456
   responses:
-    BadRequest:
-      description: The request was malformed or violated a documented limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     RateLimited:
       description: The hourly, daily, or monthly request quota has been exceeded.
       content:
@@ -243,6 +237,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Missing or invalid OAuth 1.0a credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or violated a documented limit.
       content:
         application/json:
           schema:
