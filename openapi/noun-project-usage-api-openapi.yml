@@ -46,6 +46,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Usage:
+      type: object
+      description: API key usage and quota information.
+      properties:
+        hourly:
+          $ref: '#/components/schemas/UsageWindow'
+        daily:
+          $ref: '#/components/schemas/UsageWindow'
+        monthly:
+          $ref: '#/components/schemas/UsageWindow'
     UsageResponse:
       type: object
       description: Wrapper for the client usage response.
@@ -59,16 +69,6 @@ components:
           example: '2026-05-28T14:00:00Z'
       required:
       - usage
-    Usage:
-      type: object
-      description: API key usage and quota information.
-      properties:
-        hourly:
-          $ref: '#/components/schemas/UsageWindow'
-        daily:
-          $ref: '#/components/schemas/UsageWindow'
-        monthly:
-          $ref: '#/components/schemas/UsageWindow'
     ErrorResponse:
       type: object
       description: Standard error response payload returned for 4xx and 5xx responses.

@@ -121,38 +121,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Blocklist:
-      type: object
-      description: The current blocklist for a client key.
-      properties:
-        icon_ids:
-          type: array
-          description: Blocked icon identifiers.
-          items:
-            type: integer
-          example:
-          - 12345
-          - 67890
-        collection_ids:
-          type: array
-          description: Blocked collection identifiers.
-          items:
-            type: integer
-          example:
-          - 98765
-        terms:
-          type: array
-          description: Blocked terms and phrases.
-          items:
-            type: string
-          example:
-          - violence
-          - weapon
-        cached_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the blocklist was last cached.
-          example: '2026-05-28T13:55:00Z'
     BlocklistResponse:
       type: object
       description: Wrapper for the client blocklist response.
@@ -164,27 +132,6 @@ components:
           format: date-time
           description: ISO 8601 timestamp of when the response was generated.
           example: '2026-05-28T14:00:00Z'
-      required:
-      - blacklist
-    BlocklistIdRequest:
-      type: object
-      description: Request body for adding icon or collection IDs to the blocklist.
-      properties:
-        blacklist:
-          type: array
-          description: Identifiers to add to the blocklist.
-          items:
-            type: integer
-          minItems: 1
-          maxItems: 1000
-          example:
-          - 12345
-          - 67890
-        overwrite:
-          type: boolean
-          description: When true, replaces the existing blocklist for this type entirely.
-          default: false
-          example: false
       required:
       - blacklist
     BlocklistTermRequest:
@@ -228,9 +175,62 @@ components:
           type: string
           description: Server-generated identifier for the failing request.
           example: req-abc123def456
+    BlocklistIdRequest:
+      type: object
+      description: Request body for adding icon or collection IDs to the blocklist.
+      properties:
+        blacklist:
+          type: array
+          description: Identifiers to add to the blocklist.
+          items:
+            type: integer
+          minItems: 1
+          maxItems: 1000
+          example:
+          - 12345
+          - 67890
+        overwrite:
+          type: boolean
+          description: When true, replaces the existing blocklist for this type entirely.
+          default: false
+          example: false
+      required:
+      - blacklist
+    Blocklist:
+      type: object
+      description: The current blocklist for a client key.
+      properties:
+        icon_ids:
+          type: array
+          description: Blocked icon identifiers.
+          items:
+            type: integer
+          example:
+          - 12345
+          - 67890
+        collection_ids:
+          type: array
+          description: Blocked collection identifiers.
+          items:
+            type: integer
+          example:
+          - 98765
+        terms:
+          type: array
+          description: Blocked terms and phrases.
+          items:
+            type: string
+          example:
+          - violence
+          - weapon
+        cached_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the blocklist was last cached.
+          example: '2026-05-28T13:55:00Z'
   responses:
-    RateLimited:
-      description: The hourly, daily, or monthly request quota has been exceeded.
+    BadRequest:
+      description: The request was malformed or violated a documented limit.
       content:
         application/json:
           schema:
@@ -241,8 +241,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or violated a documented limit.
+    RateLimited:
+      description: The hourly, daily, or monthly request quota has been exceeded.
       content:
         application/json:
           schema:
