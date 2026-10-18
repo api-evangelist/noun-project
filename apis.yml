@@ -76,6 +76,8 @@ apis:
   humanURL: https://api.thenounproject.com/documentation.html
   baseURL: https://api.thenounproject.com
   tags:
+  - Blacklist
+  tags_raw:
   - Blocklist
   properties:
   - type: OpenAPI
