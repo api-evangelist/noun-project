@@ -153,6 +153,8 @@ apis:
   - type: Authentication
     url: https://api.thenounproject.com/getting_started.html
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/noun-project/overview
   - type: AgenticAccess
     url: agentic-access/noun-project-agentic-access.yml
   - type: DomainSecurity
