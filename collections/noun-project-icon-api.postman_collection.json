@@ -1,1606 +1,1679 @@
 {
+  "info": {
+    "_postman_id": "95ccbe52-c501-4e4a-be2c-af5cdcbc5f1d",
+    "name": "Noun Project API V2 Icon API",
+    "description": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons.\n\nContact Support:\n Name: Noun Project API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:09:16.000Z",
+    "updatedAt": "2026-10-21T21:09:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-95ccbe52-c501-4e4a-be2c-af5cdcbc5f1d"
+  },
   "item": [
     {
-      "id": "a262c7c1-0cd0-42e5-bddc-7f33e3aa577e",
-      "name": "Icon",
-      "description": {
-        "content": "Search, filter, retrieve, and download icons from the Noun Project library.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "d05d0a53-9cdb-41ff-8412-f74653130a58",
-          "name": "Search Icons",
-          "request": {
-            "name": "Search Icons",
-            "description": {
-              "content": "Search the Noun Project icon library by query term with optional filters for style, line weight, public-domain status, and thumbnail size. Returns a paginated list of matching icons.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "icon"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) Search term used to match icon titles, tags, and descriptions."
-                },
-                {
-                  "disabled": false,
-                  "key": "styles",
-                  "value": "<string>",
-                  "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`."
-                },
-                {
-                  "disabled": false,
-                  "key": "line_weight",
-                  "value": "<integer>",
-                  "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit_to_public_domain",
-                  "value": "false",
-                  "description": "When true, restricts results to icons released to the public domain."
-                },
-                {
-                  "disabled": false,
-                  "key": "thumbnail_size",
-                  "value": "84",
-                  "description": "Pixel dimension for returned thumbnail URLs."
-                },
-                {
-                  "disabled": false,
-                  "key": "blacklist",
-                  "value": "false",
-                  "description": "When true, applies the client's configured blocklist to results."
-                },
-                {
-                  "disabled": false,
-                  "key": "include_svg",
-                  "value": "false",
-                  "description": "When true, includes raw SVG markup in each icon result."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50",
-                  "description": "Maximum number of icons returned per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "prev_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for backward pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for forward pagination."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "icon",
+          "item": [
             {
-              "id": "356f4849-d693-4749-9b16-b3e06653e88f",
-              "name": "Paginated icon search results.",
-              "originalRequest": {
+              "name": "{icon_id}",
+              "item": [
+                {
+                  "name": "more-like-this",
+                  "item": [
+                    {
+                      "name": "Get Similar Icons",
+                      "id": "3865273e-341b-40a7-bb14-b5cb63226127",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id/more-like-this?query=<string>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id",
+                            "more-like-this"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional search term to narrow similar-icon candidates.",
+                              "key": "query",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "When true, restricts results to icons released to the public domain.",
+                              "key": "limit_to_public_domain",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Pixel dimension for returned thumbnail URLs.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, applies the client's configured blocklist to results.",
+                              "key": "blacklist",
+                              "value": "false"
+                            },
+                            {
+                              "description": "When true, includes raw SVG markup in each icon result.",
+                              "key": "include_svg",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Maximum number of icons returned per page.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for backward pagination.",
+                              "key": "prev_page",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for forward pagination.",
+                              "key": "next_page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "c92462de-0ba1-4fbb-bd7d-67c5af0626be",
+                              "key": "icon_id",
+                              "value": "<integer>",
+                              "description": "(Required) Numeric identifier of the icon."
+                            }
+                          ]
+                        },
+                        "description": "Find icons stylistically similar to the supplied icon ID, optionally narrowed by a query term. Used to assemble visually consistent icon sets from a single seed."
+                      },
+                      "response": [
+                        {
+                          "id": "b454447b-837d-4619-89b9-63f2a9df521e",
+                          "name": "Paginated list of similar icons.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/more-like-this?query=<string>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "more-like-this"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional search term to narrow similar-icon candidates.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "When true, restricts results to icons released to the public domain.",
+                                  "key": "limit_to_public_domain",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Pixel dimension for returned thumbnail URLs.",
+                                  "key": "thumbnail_size",
+                                  "value": "84"
+                                },
+                                {
+                                  "description": "When true, applies the client's configured blocklist to results.",
+                                  "key": "blacklist",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "When true, includes raw SVG markup in each icon result.",
+                                  "key": "include_svg",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Maximum number of icons returned per page.",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for backward pagination.",
+                                  "key": "prev_page",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for forward pagination.",
+                                  "key": "next_page",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"icons\": [\n    {\n      \"id\": \"<integer>\",\n      \"permalink\": \"<uri>\",\n      \"attribution\": \"<string>\",\n      \"attribution_preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_uploaded\": \"<dateTime>\",\n      \"is_active\": \"<boolean>\",\n      \"is_public_domain\": \"<boolean>\",\n      \"license_description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"preview_url_42\": \"<uri>\",\n      \"preview_url_84\": \"<uri>\",\n      \"preview_url_200\": \"<uri>\",\n      \"icon_url\": \"<uri>\",\n      \"svg\": \"<string>\",\n      \"style\": \"solid\",\n      \"line_weight\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"term\": \"<string>\",\n      \"term_slug\": \"<string>\",\n      \"year_published\": \"<integer>\",\n      \"royalty_free_license\": \"<boolean>\",\n      \"nsfw\": \"<boolean>\",\n      \"sponsor_id\": \"<integer,null>\",\n      \"thumbnail_url\": \"<uri>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"permalink\": \"<uri>\",\n      \"attribution\": \"<string>\",\n      \"attribution_preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_uploaded\": \"<dateTime>\",\n      \"is_active\": \"<boolean>\",\n      \"is_public_domain\": \"<boolean>\",\n      \"license_description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"preview_url_42\": \"<uri>\",\n      \"preview_url_84\": \"<uri>\",\n      \"preview_url_200\": \"<uri>\",\n      \"icon_url\": \"<uri>\",\n      \"svg\": \"<string>\",\n      \"style\": \"line\",\n      \"line_weight\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"term\": \"<string>\",\n      \"term_slug\": \"<string>\",\n      \"year_published\": \"<integer>\",\n      \"royalty_free_license\": \"<boolean>\",\n      \"nsfw\": \"<boolean>\",\n      \"sponsor_id\": \"<integer,null>\",\n      \"thumbnail_url\": \"<uri>\"\n    }\n  ],\n  \"generated_at\": \"<dateTime>\",\n  \"total\": \"<integer>\",\n  \"next_page\": \"<string,null>\",\n  \"prev_page\": \"<string,null>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-b454447b-837d-4619-89b9-63f2a9df521e"
+                        },
+                        {
+                          "id": "2e7815c1-e99a-4513-892d-910d7b499974",
+                          "name": "Missing or invalid OAuth 1.0a credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/more-like-this?query=<string>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "more-like-this"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional search term to narrow similar-icon candidates.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "When true, restricts results to icons released to the public domain.",
+                                  "key": "limit_to_public_domain",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Pixel dimension for returned thumbnail URLs.",
+                                  "key": "thumbnail_size",
+                                  "value": "84"
+                                },
+                                {
+                                  "description": "When true, applies the client's configured blocklist to results.",
+                                  "key": "blacklist",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "When true, includes raw SVG markup in each icon result.",
+                                  "key": "include_svg",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Maximum number of icons returned per page.",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for backward pagination.",
+                                  "key": "prev_page",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for forward pagination.",
+                                  "key": "next_page",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-2e7815c1-e99a-4513-892d-910d7b499974"
+                        },
+                        {
+                          "id": "c1dac95e-5881-41d6-9575-e6551b49e3ca",
+                          "name": "The requested icon, collection, or resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/more-like-this?query=<string>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "more-like-this"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional search term to narrow similar-icon candidates.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "When true, restricts results to icons released to the public domain.",
+                                  "key": "limit_to_public_domain",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Pixel dimension for returned thumbnail URLs.",
+                                  "key": "thumbnail_size",
+                                  "value": "84"
+                                },
+                                {
+                                  "description": "When true, applies the client's configured blocklist to results.",
+                                  "key": "blacklist",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "When true, includes raw SVG markup in each icon result.",
+                                  "key": "include_svg",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Maximum number of icons returned per page.",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for backward pagination.",
+                                  "key": "prev_page",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for forward pagination.",
+                                  "key": "next_page",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-c1dac95e-5881-41d6-9575-e6551b49e3ca"
+                        },
+                        {
+                          "id": "98e3a5a8-5738-448b-95a2-d3fb28b14d04",
+                          "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/more-like-this?query=<string>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "more-like-this"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional search term to narrow similar-icon candidates.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "When true, restricts results to icons released to the public domain.",
+                                  "key": "limit_to_public_domain",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Pixel dimension for returned thumbnail URLs.",
+                                  "key": "thumbnail_size",
+                                  "value": "84"
+                                },
+                                {
+                                  "description": "When true, applies the client's configured blocklist to results.",
+                                  "key": "blacklist",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "When true, includes raw SVG markup in each icon result.",
+                                  "key": "include_svg",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Maximum number of icons returned per page.",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for backward pagination.",
+                                  "key": "prev_page",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor token returned by a prior response for forward pagination.",
+                                  "key": "next_page",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-98e3a5a8-5738-448b-95a2-d3fb28b14d04"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-3865273e-341b-40a7-bb14-b5cb63226127"
+                    }
+                  ],
+                  "id": "da3c7df7-1306-4053-8648-204b046e1589",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-da3c7df7-1306-4053-8648-204b046e1589"
+                },
+                {
+                  "name": "download",
+                  "item": [
+                    {
+                      "name": "Download Icon",
+                      "id": "59a87989-26a2-4ba5-abb6-356a8873c3ff",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "image/svg+xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id/download?color=E77a41&filetype=svg&size=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id",
+                            "download"
+                          ],
+                          "query": [
+                            {
+                              "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.",
+                              "key": "color",
+                              "value": "E77a41"
+                            },
+                            {
+                              "description": "Output file format.",
+                              "key": "filetype",
+                              "value": "svg"
+                            },
+                            {
+                              "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.",
+                              "key": "size",
+                              "value": "200"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "df719d8d-29dc-42dd-bbff-4a9971ae308a",
+                              "key": "icon_id",
+                              "value": "<integer>",
+                              "description": "(Required) Numeric identifier of the icon."
+                            }
+                          ]
+                        },
+                        "description": "Download a rendered icon in SVG or PNG format with optional hex-color recoloring and pixel sizing (PNG only). The response body is the icon binary; the content-type matches the requested filetype."
+                      },
+                      "response": [
+                        {
+                          "id": "71cc0ba5-4783-44c5-8ded-1a6a5e76a9c0",
+                          "name": "Rendered icon binary.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "image/svg+xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/download?color=E77a41&filetype=svg&size=200",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.",
+                                  "key": "color",
+                                  "value": "E77a41"
+                                },
+                                {
+                                  "description": "Output file format.",
+                                  "key": "filetype",
+                                  "value": "svg"
+                                },
+                                {
+                                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.",
+                                  "key": "size",
+                                  "value": "200"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "image/svg+xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-71cc0ba5-4783-44c5-8ded-1a6a5e76a9c0"
+                        },
+                        {
+                          "id": "686925c5-b3cd-46ba-869e-7bcff6cdbc68",
+                          "name": "Missing or invalid OAuth 1.0a credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/download?color=E77a41&filetype=svg&size=200",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.",
+                                  "key": "color",
+                                  "value": "E77a41"
+                                },
+                                {
+                                  "description": "Output file format.",
+                                  "key": "filetype",
+                                  "value": "svg"
+                                },
+                                {
+                                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.",
+                                  "key": "size",
+                                  "value": "200"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-686925c5-b3cd-46ba-869e-7bcff6cdbc68"
+                        },
+                        {
+                          "id": "cdeb344a-01b2-4c4b-8aa1-3a503973db2d",
+                          "name": "The requested icon, collection, or resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/download?color=E77a41&filetype=svg&size=200",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.",
+                                  "key": "color",
+                                  "value": "E77a41"
+                                },
+                                {
+                                  "description": "Output file format.",
+                                  "key": "filetype",
+                                  "value": "svg"
+                                },
+                                {
+                                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.",
+                                  "key": "size",
+                                  "value": "200"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-cdeb344a-01b2-4c4b-8aa1-3a503973db2d"
+                        },
+                        {
+                          "id": "3a8f4ae3-081c-4463-9351-fe4441e3bbae",
+                          "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/icon/:icon_id/download?color=E77a41&filetype=svg&size=200",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "icon",
+                                ":icon_id",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color.",
+                                  "key": "color",
+                                  "value": "E77a41"
+                                },
+                                {
+                                  "description": "Output file format.",
+                                  "key": "filetype",
+                                  "value": "svg"
+                                },
+                                {
+                                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely.",
+                                  "key": "size",
+                                  "value": "200"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "icon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T21:09:16.000Z",
+                          "updatedAt": "2026-10-21T21:09:16.000Z",
+                          "uid": "35240-3a8f4ae3-081c-4463-9351-fe4441e3bbae"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-59a87989-26a2-4ba5-abb6-356a8873c3ff"
+                    }
+                  ],
+                  "id": "eb146c7d-5d08-41f1-82f5-de0b7c21975f",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-eb146c7d-5d08-41f1-82f5-de0b7c21975f"
+                },
+                {
+                  "name": "Get Icon",
+                  "id": "01d12e0d-6a32-4ad7-b0b2-4a4ca9e5fe82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/icon/:icon_id?thumbnail_size=84&blacklist=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "icon",
+                        ":icon_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pixel dimension for the returned thumbnail URL.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, returns 404 if the icon is on the client's blocklist.",
+                          "key": "blacklist",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "83f6b58a-946a-4102-a83b-2b2554029449",
+                          "key": "icon_id",
+                          "value": "<integer>",
+                          "description": "(Required) Numeric identifier of the icon."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single icon by its numeric identifier with full metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "f219ae8a-496a-4825-bfcf-754cf06dc35a",
+                      "name": "Icon details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id?thumbnail_size=84&blacklist=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pixel dimension for the returned thumbnail URL.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, returns 404 if the icon is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "icon_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"icon\": {\n    \"id\": \"<integer>\",\n    \"permalink\": \"<uri>\",\n    \"attribution\": \"<string>\",\n    \"attribution_preview_url\": \"<uri>\",\n    \"creator\": {\n      \"id\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"permalink\": \"<uri>\",\n      \"location\": \"<string>\",\n      \"bio\": \"<string>\",\n      \"avatar_url\": \"<uri>\"\n    },\n    \"date_uploaded\": \"<dateTime>\",\n    \"is_active\": \"<boolean>\",\n    \"is_public_domain\": \"<boolean>\",\n    \"license_description\": \"<string>\",\n    \"preview_url\": \"<uri>\",\n    \"preview_url_42\": \"<uri>\",\n    \"preview_url_84\": \"<uri>\",\n    \"preview_url_200\": \"<uri>\",\n    \"icon_url\": \"<uri>\",\n    \"svg\": \"<string>\",\n    \"style\": \"solid\",\n    \"line_weight\": \"<integer>\",\n    \"tags\": [\n      {\n        \"id\": \"<integer>\",\n        \"slug\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"slug\": \"<string>\"\n      }\n    ],\n    \"term\": \"<string>\",\n    \"term_slug\": \"<string>\",\n    \"year_published\": \"<integer>\",\n    \"royalty_free_license\": \"<boolean>\",\n    \"nsfw\": \"<boolean>\",\n    \"sponsor_id\": \"<integer,null>\",\n    \"thumbnail_url\": \"<uri>\"\n  },\n  \"generated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-f219ae8a-496a-4825-bfcf-754cf06dc35a"
+                    },
+                    {
+                      "id": "073c98d1-03d8-4239-96fc-41f63f9116ea",
+                      "name": "Missing or invalid OAuth 1.0a credentials.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id?thumbnail_size=84&blacklist=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pixel dimension for the returned thumbnail URL.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, returns 404 if the icon is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "icon_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-073c98d1-03d8-4239-96fc-41f63f9116ea"
+                    },
+                    {
+                      "id": "0cf2bdea-0cb1-4d08-80ec-f7b1598a7598",
+                      "name": "The requested icon, collection, or resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id?thumbnail_size=84&blacklist=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pixel dimension for the returned thumbnail URL.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, returns 404 if the icon is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "icon_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-0cf2bdea-0cb1-4d08-80ec-f7b1598a7598"
+                    },
+                    {
+                      "id": "789c98eb-d2f9-4207-b3fc-2e711fbf9aa2",
+                      "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/icon/:icon_id?thumbnail_size=84&blacklist=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "icon",
+                            ":icon_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pixel dimension for the returned thumbnail URL.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, returns 404 if the icon is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "icon_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:16.000Z",
+                      "updatedAt": "2026-10-21T21:09:16.000Z",
+                      "uid": "35240-789c98eb-d2f9-4207-b3fc-2e711fbf9aa2"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-01d12e0d-6a32-4ad7-b0b2-4a4ca9e5fe82"
+                }
+              ],
+              "id": "59ee9724-fea0-4cf7-bb39-81acef88874e",
+              "createdAt": "2026-10-21T21:09:16.000Z",
+              "updatedAt": "2026-10-21T21:09:16.000Z",
+              "uid": "35240-59ee9724-fea0-4cf7-bb39-81acef88874e"
+            },
+            {
+              "name": "Search Icons",
+              "id": "b0848235-e73c-499f-8d8b-612584e922fd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2/icon?query=<string>&styles=<string>&line_weight=<integer>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "icon"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Search term used to match icon titles, tags, and descriptions.",
                       "key": "query",
-                      "value": "rocket"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`.",
                       "key": "styles",
-                      "value": "solid"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.",
                       "key": "line_weight",
-                      "value": "4"
+                      "value": "<integer>"
                     },
                     {
+                      "description": "When true, restricts results to icons released to the public domain.",
                       "key": "limit_to_public_domain",
                       "value": "false"
                     },
                     {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"icons\": [\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    },\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 4321,\n  \"next_page\": \"eyJsYXN0X2lkIjoxMjM0NTY3fQ==\",\n  \"prev_page\": null\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5604d2a0-5053-4cbe-b6fc-fe11ac8a7f89",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "rocket"
-                    },
-                    {
-                      "key": "styles",
-                      "value": "solid"
-                    },
-                    {
-                      "key": "line_weight",
-                      "value": "4"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0dc78fc5-5400-413d-ade4-2ec68829f884",
-              "name": "The requested icon, collection, or resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "rocket"
-                    },
-                    {
-                      "key": "styles",
-                      "value": "solid"
-                    },
-                    {
-                      "key": "line_weight",
-                      "value": "4"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "07f9678d-f740-437b-953a-3e3353fb79f1",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "rocket"
-                    },
-                    {
-                      "key": "styles",
-                      "value": "solid"
-                    },
-                    {
-                      "key": "line_weight",
-                      "value": "4"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5431279d-2c87-4d24-a04e-22427de78294",
-          "name": "Get Icon",
-          "request": {
-            "name": "Get Icon",
-            "description": {
-              "content": "Retrieve a single icon by its numeric identifier with full metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "icon",
-                ":icon_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "thumbnail_size",
-                  "value": "84",
-                  "description": "Pixel dimension for the returned thumbnail URL."
-                },
-                {
-                  "disabled": false,
-                  "key": "blacklist",
-                  "value": "false",
-                  "description": "When true, returns 404 if the icon is on the client's blocklist."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "icon_id",
-                  "description": "(Required) Numeric identifier of the icon."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "cec9d40a-1bbf-4d50-a3f6-3da9078672b5",
-              "name": "Icon details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"icon\": {\n    \"id\": 1234567,\n    \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n    \"attribution\": \"rocket by Jane Smith from Noun Project\",\n    \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n    \"creator\": {\n      \"id\": 4321,\n      \"username\": \"jsmith\",\n      \"name\": \"Jane Smith\",\n      \"permalink\": \"https://thenounproject.com/jsmith/\",\n      \"location\": \"Brooklyn, NY\",\n      \"bio\": \"Designer focused on space exploration icons.\",\n      \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n    },\n    \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n    \"is_active\": true,\n    \"is_public_domain\": false,\n    \"license_description\": \"creative-commons-attribution\",\n    \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n    \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n    \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n    \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n    \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n    \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n    \"style\": \"solid\",\n    \"line_weight\": 4,\n    \"tags\": [\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      },\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      }\n    ],\n    \"term\": \"rocket\",\n    \"term_slug\": \"rocket\",\n    \"year_published\": 2024,\n    \"royalty_free_license\": true,\n    \"nsfw\": false,\n    \"sponsor_id\": null,\n    \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3e1d4c12-4d4d-4c46-9ec0-fdd7bff7b526",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3a904d1b-9971-40b4-8143-dbbec1b7dae0",
-              "name": "The requested icon, collection, or resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5f2c09eb-1015-4193-bb03-87c2baddf8a8",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "thumbnail_size",
-                      "value": "200"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "98e6a1a7-8b80-4f22-afd8-e37d16f90ae3",
-          "name": "Get Similar Icons",
-          "request": {
-            "name": "Get Similar Icons",
-            "description": {
-              "content": "Find icons stylistically similar to the supplied icon ID, optionally narrowed by a query term. Used to assemble visually consistent icon sets from a single seed.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "icon",
-                ":icon_id",
-                "more-like-this"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "Optional search term to narrow similar-icon candidates."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit_to_public_domain",
-                  "value": "false",
-                  "description": "When true, restricts results to icons released to the public domain."
-                },
-                {
-                  "disabled": false,
-                  "key": "thumbnail_size",
-                  "value": "84",
-                  "description": "Pixel dimension for returned thumbnail URLs."
-                },
-                {
-                  "disabled": false,
-                  "key": "blacklist",
-                  "value": "false",
-                  "description": "When true, applies the client's configured blocklist to results."
-                },
-                {
-                  "disabled": false,
-                  "key": "include_svg",
-                  "value": "false",
-                  "description": "When true, includes raw SVG markup in each icon result."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50",
-                  "description": "Maximum number of icons returned per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "prev_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for backward pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for forward pagination."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "icon_id",
-                  "description": "(Required) Numeric identifier of the icon."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "b059427b-1b25-4a7c-b261-5d24542ba759",
-              "name": "Paginated list of similar icons.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "more-like-this"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "spaceship"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
+                      "description": "Pixel dimension for returned thumbnail URLs.",
                       "key": "thumbnail_size",
                       "value": "84"
                     },
                     {
+                      "description": "When true, applies the client's configured blocklist to results.",
                       "key": "blacklist",
                       "value": "false"
                     },
                     {
+                      "description": "When true, includes raw SVG markup in each icon result.",
                       "key": "include_svg",
                       "value": "false"
                     },
                     {
+                      "description": "Maximum number of icons returned per page.",
                       "key": "limit",
                       "value": "50"
                     },
                     {
+                      "description": "Cursor token returned by a prior response for backward pagination.",
                       "key": "prev_page",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor token returned by a prior response for forward pagination.",
                       "key": "next_page",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Search the Noun Project icon library by query term with optional filters for style, line weight, public-domain status, and thumbnail size. Returns a paginated list of matching icons."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"icons\": [\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    },\n    {\n      \"id\": 1234567,\n      \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n      \"attribution\": \"rocket by Jane Smith from Noun Project\",\n      \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n      \"is_active\": true,\n      \"is_public_domain\": false,\n      \"license_description\": \"creative-commons-attribution\",\n      \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n      \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n      \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n      \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n      \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n      \"style\": \"solid\",\n      \"line_weight\": 4,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"term\": \"rocket\",\n      \"term_slug\": \"rocket\",\n      \"year_published\": 2024,\n      \"royalty_free_license\": true,\n      \"nsfw\": false,\n      \"sponsor_id\": null,\n      \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 4321,\n  \"next_page\": \"eyJsYXN0X2lkIjoxMjM0NTY3fQ==\",\n  \"prev_page\": null\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2e30209f-fc9c-496b-88d8-b67e2d48b109",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "more-like-this"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "b32be6bf-958e-410f-945e-8087ad0392ef",
+                  "name": "Paginated icon search results.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/icon?query=<string>&styles=<string>&line_weight=<integer>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "icon"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match icon titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`.",
+                          "key": "styles",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.",
+                          "key": "line_weight",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "When true, restricts results to icons released to the public domain.",
+                          "key": "limit_to_public_domain",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Pixel dimension for returned thumbnail URLs.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "When true, includes raw SVG markup in each icon result.",
+                          "key": "include_svg",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of icons returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "query",
-                      "value": "spaceship"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"icons\": [\n    {\n      \"id\": \"<integer>\",\n      \"permalink\": \"<uri>\",\n      \"attribution\": \"<string>\",\n      \"attribution_preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_uploaded\": \"<dateTime>\",\n      \"is_active\": \"<boolean>\",\n      \"is_public_domain\": \"<boolean>\",\n      \"license_description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"preview_url_42\": \"<uri>\",\n      \"preview_url_84\": \"<uri>\",\n      \"preview_url_200\": \"<uri>\",\n      \"icon_url\": \"<uri>\",\n      \"svg\": \"<string>\",\n      \"style\": \"solid\",\n      \"line_weight\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"term\": \"<string>\",\n      \"term_slug\": \"<string>\",\n      \"year_published\": \"<integer>\",\n      \"royalty_free_license\": \"<boolean>\",\n      \"nsfw\": \"<boolean>\",\n      \"sponsor_id\": \"<integer,null>\",\n      \"thumbnail_url\": \"<uri>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"permalink\": \"<uri>\",\n      \"attribution\": \"<string>\",\n      \"attribution_preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_uploaded\": \"<dateTime>\",\n      \"is_active\": \"<boolean>\",\n      \"is_public_domain\": \"<boolean>\",\n      \"license_description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"preview_url_42\": \"<uri>\",\n      \"preview_url_84\": \"<uri>\",\n      \"preview_url_200\": \"<uri>\",\n      \"icon_url\": \"<uri>\",\n      \"svg\": \"<string>\",\n      \"style\": \"line\",\n      \"line_weight\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"term\": \"<string>\",\n      \"term_slug\": \"<string>\",\n      \"year_published\": \"<integer>\",\n      \"royalty_free_license\": \"<boolean>\",\n      \"nsfw\": \"<boolean>\",\n      \"sponsor_id\": \"<integer,null>\",\n      \"thumbnail_url\": \"<uri>\"\n    }\n  ],\n  \"generated_at\": \"<dateTime>\",\n  \"total\": \"<integer>\",\n  \"next_page\": \"<string,null>\",\n  \"prev_page\": \"<string,null>\"\n}",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-b32be6bf-958e-410f-945e-8087ad0392ef"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a21c2138-f073-4565-abb3-84fa553d9988",
-              "name": "The requested icon, collection, or resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "more-like-this"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "db87a609-bcc1-425d-8454-d42f42c4794b",
+                  "name": "Missing or invalid OAuth 1.0a credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/icon?query=<string>&styles=<string>&line_weight=<integer>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "icon"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match icon titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`.",
+                          "key": "styles",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.",
+                          "key": "line_weight",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "When true, restricts results to icons released to the public domain.",
+                          "key": "limit_to_public_domain",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Pixel dimension for returned thumbnail URLs.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "When true, includes raw SVG markup in each icon result.",
+                          "key": "include_svg",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of icons returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "query",
-                      "value": "spaceship"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-db87a609-bcc1-425d-8454-d42f42c4794b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "446b7d91-1bcf-4e49-8b6a-74d7fcca1fc1",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "more-like-this"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "ef5fad0f-b61a-4216-afa6-25a6f31178ae",
+                  "name": "The requested icon, collection, or resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/icon?query=<string>&styles=<string>&line_weight=<integer>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "icon"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match icon titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`.",
+                          "key": "styles",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.",
+                          "key": "line_weight",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "When true, restricts results to icons released to the public domain.",
+                          "key": "limit_to_public_domain",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Pixel dimension for returned thumbnail URLs.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "When true, includes raw SVG markup in each icon result.",
+                          "key": "include_svg",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of icons returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "query",
-                      "value": "spaceship"
-                    },
-                    {
-                      "key": "limit_to_public_domain",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-ef5fad0f-b61a-4216-afa6-25a6f31178ae"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "d5a213fb-85e5-41d2-8556-e3d86d10502b",
+                  "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/icon?query=<string>&styles=<string>&line_weight=<integer>&limit_to_public_domain=false&thumbnail_size=84&blacklist=false&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "icon"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match icon titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated icon styles to filter by. Common values include `solid` and `line`.",
+                          "key": "styles",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Line weight in pixels (1-60) at 512-pixel rendering. Only meaningful for line-style icons.",
+                          "key": "line_weight",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "When true, restricts results to icons released to the public domain.",
+                          "key": "limit_to_public_domain",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Pixel dimension for returned thumbnail URLs.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "When true, includes raw SVG markup in each icon result.",
+                          "key": "include_svg",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of icons returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:09:16.000Z",
+                  "updatedAt": "2026-10-21T21:09:16.000Z",
+                  "uid": "35240-d5a213fb-85e5-41d2-8556-e3d86d10502b"
                 }
               ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:09:16.000Z",
+              "updatedAt": "2026-10-21T21:09:16.000Z",
+              "uid": "35240-b0848235-e73c-499f-8d8b-612584e922fd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fba81dfa-99a9-4fd3-ab9a-874c545ab553",
-          "name": "Download Icon",
-          "request": {
-            "name": "Download Icon",
-            "description": {
-              "content": "Download a rendered icon in SVG or PNG format with optional hex-color recoloring and pixel sizing (PNG only). The response body is the icon binary; the content-type matches the requested filetype.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "icon",
-                ":icon_id",
-                "download"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "color",
-                  "value": "<string>",
-                  "description": "Hexadecimal color value (without leading `#`) used to recolor the icon. Defaults to the icon's original color."
-                },
-                {
-                  "disabled": false,
-                  "key": "filetype",
-                  "value": "svg",
-                  "description": "Output file format."
-                },
-                {
-                  "disabled": false,
-                  "key": "size",
-                  "value": "200",
-                  "description": "PNG pixel dimension (20-1200). Ignored for SVG downloads which scale infinitely."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "icon_id",
-                  "description": "(Required) Numeric identifier of the icon."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "image/svg+xml"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "81d8175d-64d9-40bb-820e-79fd54989888",
-              "name": "Rendered icon binary.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "download"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "color",
-                      "value": "ff5733"
-                    },
-                    {
-                      "key": "filetype",
-                      "value": "png"
-                    },
-                    {
-                      "key": "size",
-                      "value": "512"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "image/svg+xml"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "image/svg+xml"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "60a005c7-abff-4aab-9ceb-3dd29e3dc3a2",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "download"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "color",
-                      "value": "ff5733"
-                    },
-                    {
-                      "key": "filetype",
-                      "value": "png"
-                    },
-                    {
-                      "key": "size",
-                      "value": "512"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9cac51e3-02b0-47a2-b719-5640025cfccf",
-              "name": "The requested icon, collection, or resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "download"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "color",
-                      "value": "ff5733"
-                    },
-                    {
-                      "key": "filetype",
-                      "value": "png"
-                    },
-                    {
-                      "key": "size",
-                      "value": "512"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bea27a7b-9634-40ad-a191-cb8c093995ac",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "icon",
-                    ":icon_id",
-                    "download"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "color",
-                      "value": "ff5733"
-                    },
-                    {
-                      "key": "filetype",
-                      "value": "png"
-                    },
-                    {
-                      "key": "size",
-                      "value": "512"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "icon_id",
-                      "description": "(Required) Numeric identifier of the icon."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8dbfc330-9dbb-403d-b409-caa187edea17",
+          "createdAt": "2026-10-21T21:09:16.000Z",
+          "updatedAt": "2026-10-21T21:09:16.000Z",
+          "uid": "35240-8dbfc330-9dbb-403d-b409-caa187edea17"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.thenounproject.com",
-      "key": "baseUrl"
+      "id": "7be354d9-cbe6-4b21-832e-39aa9b6b962e",
+      "createdAt": "2026-10-21T21:09:16.000Z",
+      "updatedAt": "2026-10-21T21:09:16.000Z",
+      "uid": "35240-7be354d9-cbe6-4b21-832e-39aa9b6b962e"
     }
   ],
   "auth": {
@@ -1608,25 +1681,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d0fd1d70-8600-4032-87e9-317df8c8345a",
-    "name": "Noun Project API V2 Autocomplete Icon API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thenounproject.com"
     }
-  }
+  ]
 }

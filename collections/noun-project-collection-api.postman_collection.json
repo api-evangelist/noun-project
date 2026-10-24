@@ -1,711 +1,747 @@
 {
+  "info": {
+    "_postman_id": "82995679-a84c-4224-9e28-7bd8ca7a0364",
+    "name": "Noun Project API V2 Collection API",
+    "description": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons.\n\nContact Support:\n Name: Noun Project API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:09:11.000Z",
+    "updatedAt": "2026-10-21T21:09:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-82995679-a84c-4224-9e28-7bd8ca7a0364"
+  },
   "item": [
     {
-      "id": "64632136-444a-4fdd-9fed-53d190c86be5",
-      "name": "Collection",
-      "description": {
-        "content": "Search and retrieve curated icon collections (icon sets).",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "c6236c9e-1b97-4a74-9722-f68ba5cf2aa1",
-          "name": "Search Collections",
-          "request": {
-            "name": "Search Collections",
-            "description": {
-              "content": "Search curated icon collections (icon sets) by query term. Returns a paginated list of matching collections with metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "collection"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) Search term used to match collection titles, tags, and descriptions."
-                },
-                {
-                  "disabled": false,
-                  "key": "blacklist",
-                  "value": "false",
-                  "description": "When true, applies the client's configured blocklist to results."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50",
-                  "description": "Maximum number of collections returned per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "prev_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for backward pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for forward pagination."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "collection",
+          "item": [
             {
-              "id": "ec4d5da7-97e0-4445-9b62-4c3272cb3c59",
-              "name": "Paginated collection search results.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{collection_id}",
+              "item": [
+                {
+                  "name": "Get Collection",
+                  "id": "c86c2047-969d-41a0-b320-9312bf403146",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/collection/:collection_id?blacklist=false&thumbnail_size=84&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "collection",
+                        ":collection_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, returns 404 if the collection is on the client's blocklist.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Pixel dimension for returned thumbnail URLs.",
+                          "key": "thumbnail_size",
+                          "value": "84"
+                        },
+                        {
+                          "description": "When true, includes raw SVG markup in each member icon.",
+                          "key": "include_svg",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of member icons returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "18c5b55c-9634-4eb6-a132-9e7fb97d6263",
+                          "key": "collection_id",
+                          "value": "<integer>",
+                          "description": "(Required) Numeric identifier of the collection."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single icon collection with full metadata and member icons."
+                  },
+                  "response": [
                     {
-                      "key": "query",
-                      "value": "weather"
+                      "id": "39666089-d759-4859-9dea-66c76baa23d4",
+                      "name": "Collection details and member icons.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/collection/:collection_id?blacklist=false&thumbnail_size=84&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "collection",
+                            ":collection_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, returns 404 if the collection is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Pixel dimension for returned thumbnail URLs.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, includes raw SVG markup in each member icon.",
+                              "key": "include_svg",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Maximum number of member icons returned per page.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for backward pagination.",
+                              "key": "prev_page",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for forward pagination.",
+                              "key": "next_page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"collection\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"permalink\": \"<uri>\",\n    \"slug\": \"<string>\",\n    \"description\": \"<string>\",\n    \"preview_url\": \"<uri>\",\n    \"creator\": {\n      \"id\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"permalink\": \"<uri>\",\n      \"location\": \"<string>\",\n      \"bio\": \"<string>\",\n      \"avatar_url\": \"<uri>\"\n    },\n    \"date_created\": \"<dateTime>\",\n    \"date_updated\": \"<dateTime>\",\n    \"is_published\": \"<boolean>\",\n    \"icon_count\": \"<integer>\",\n    \"tags\": [\n      {\n        \"id\": \"<integer>\",\n        \"slug\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"slug\": \"<string>\"\n      }\n    ],\n    \"icons\": [\n      {\n        \"id\": \"<integer>\",\n        \"permalink\": \"<uri>\",\n        \"attribution\": \"<string>\",\n        \"attribution_preview_url\": \"<uri>\",\n        \"creator\": {\n          \"id\": \"<integer>\",\n          \"username\": \"<string>\",\n          \"name\": \"<string>\",\n          \"permalink\": \"<uri>\",\n          \"location\": \"<string>\",\n          \"bio\": \"<string>\",\n          \"avatar_url\": \"<uri>\"\n        },\n        \"date_uploaded\": \"<dateTime>\",\n        \"is_active\": \"<boolean>\",\n        \"is_public_domain\": \"<boolean>\",\n        \"license_description\": \"<string>\",\n        \"preview_url\": \"<uri>\",\n        \"preview_url_42\": \"<uri>\",\n        \"preview_url_84\": \"<uri>\",\n        \"preview_url_200\": \"<uri>\",\n        \"icon_url\": \"<uri>\",\n        \"svg\": \"<string>\",\n        \"style\": \"solid\",\n        \"line_weight\": \"<integer>\",\n        \"tags\": [\n          {\n            \"id\": \"<integer>\",\n            \"slug\": \"<string>\"\n          },\n          {\n            \"id\": \"<integer>\",\n            \"slug\": \"<string>\"\n          }\n        ],\n        \"term\": \"<string>\",\n        \"term_slug\": \"<string>\",\n        \"year_published\": \"<integer>\",\n        \"royalty_free_license\": \"<boolean>\",\n        \"nsfw\": \"<boolean>\",\n        \"sponsor_id\": \"<integer,null>\",\n        \"thumbnail_url\": \"<uri>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"permalink\": \"<uri>\",\n        \"attribution\": \"<string>\",\n        \"attribution_preview_url\": \"<uri>\",\n        \"creator\": {\n          \"id\": \"<integer>\",\n          \"username\": \"<string>\",\n          \"name\": \"<string>\",\n          \"permalink\": \"<uri>\",\n          \"location\": \"<string>\",\n          \"bio\": \"<string>\",\n          \"avatar_url\": \"<uri>\"\n        },\n        \"date_uploaded\": \"<dateTime>\",\n        \"is_active\": \"<boolean>\",\n        \"is_public_domain\": \"<boolean>\",\n        \"license_description\": \"<string>\",\n        \"preview_url\": \"<uri>\",\n        \"preview_url_42\": \"<uri>\",\n        \"preview_url_84\": \"<uri>\",\n        \"preview_url_200\": \"<uri>\",\n        \"icon_url\": \"<uri>\",\n        \"svg\": \"<string>\",\n        \"style\": \"solid\",\n        \"line_weight\": \"<integer>\",\n        \"tags\": [\n          {\n            \"id\": \"<integer>\",\n            \"slug\": \"<string>\"\n          },\n          {\n            \"id\": \"<integer>\",\n            \"slug\": \"<string>\"\n          }\n        ],\n        \"term\": \"<string>\",\n        \"term_slug\": \"<string>\",\n        \"year_published\": \"<integer>\",\n        \"royalty_free_license\": \"<boolean>\",\n        \"nsfw\": \"<boolean>\",\n        \"sponsor_id\": \"<integer,null>\",\n        \"thumbnail_url\": \"<uri>\"\n      }\n    ]\n  },\n  \"generated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T21:09:11.000Z",
+                      "updatedAt": "2026-10-21T21:09:11.000Z",
+                      "uid": "35240-39666089-d759-4859-9dea-66c76baa23d4"
                     },
                     {
-                      "key": "blacklist",
-                      "value": "false"
+                      "id": "ce5a8492-e670-4b16-aee8-75273fc5197f",
+                      "name": "Missing or invalid OAuth 1.0a credentials.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/collection/:collection_id?blacklist=false&thumbnail_size=84&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "collection",
+                            ":collection_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, returns 404 if the collection is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Pixel dimension for returned thumbnail URLs.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, includes raw SVG markup in each member icon.",
+                              "key": "include_svg",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Maximum number of member icons returned per page.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for backward pagination.",
+                              "key": "prev_page",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for forward pagination.",
+                              "key": "next_page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:11.000Z",
+                      "updatedAt": "2026-10-21T21:09:11.000Z",
+                      "uid": "35240-ce5a8492-e670-4b16-aee8-75273fc5197f"
                     },
                     {
-                      "key": "limit",
-                      "value": "50"
+                      "id": "325bdeea-a9e6-46b8-88e8-ed98b282ff16",
+                      "name": "The requested icon, collection, or resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/collection/:collection_id?blacklist=false&thumbnail_size=84&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "collection",
+                            ":collection_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, returns 404 if the collection is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Pixel dimension for returned thumbnail URLs.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, includes raw SVG markup in each member icon.",
+                              "key": "include_svg",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Maximum number of member icons returned per page.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for backward pagination.",
+                              "key": "prev_page",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for forward pagination.",
+                              "key": "next_page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:11.000Z",
+                      "updatedAt": "2026-10-21T21:09:11.000Z",
+                      "uid": "35240-325bdeea-a9e6-46b8-88e8-ed98b282ff16"
                     },
                     {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
+                      "id": "5797ed1f-b2e1-494e-aeca-4b07d88d9170",
+                      "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/collection/:collection_id?blacklist=false&thumbnail_size=84&include_svg=false&limit=50&prev_page=<string>&next_page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "collection",
+                            ":collection_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, returns 404 if the collection is on the client's blocklist.",
+                              "key": "blacklist",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Pixel dimension for returned thumbnail URLs.",
+                              "key": "thumbnail_size",
+                              "value": "84"
+                            },
+                            {
+                              "description": "When true, includes raw SVG markup in each member icon.",
+                              "key": "include_svg",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Maximum number of member icons returned per page.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for backward pagination.",
+                              "key": "prev_page",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor token returned by a prior response for forward pagination.",
+                              "key": "next_page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:09:11.000Z",
+                      "updatedAt": "2026-10-21T21:09:11.000Z",
+                      "uid": "35240-5797ed1f-b2e1-494e-aeca-4b07d88d9170"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "createdAt": "2026-10-21T21:09:11.000Z",
+                  "updatedAt": "2026-10-21T21:09:11.000Z",
+                  "uid": "35240-c86c2047-969d-41a0-b320-9312bf403146"
+                }
+              ],
+              "id": "1706308b-c812-413b-b710-2fc55fb9073d",
+              "createdAt": "2026-10-21T21:09:11.000Z",
+              "updatedAt": "2026-10-21T21:09:11.000Z",
+              "uid": "35240-1706308b-c812-413b-b710-2fc55fb9073d"
+            },
+            {
+              "name": "Search Collections",
+              "id": "8ab1e66e-34c5-465c-905e-3c9955164b8a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
                     },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"collections\": [\n    {\n      \"id\": 98765,\n      \"name\": \"Weather Icons\",\n      \"permalink\": \"https://thenounproject.com/collection/98765/\",\n      \"slug\": \"weather-icons\",\n      \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n      \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_created\": \"2024-04-12T10:00:00Z\",\n      \"date_updated\": \"2024-09-30T18:22:00Z\",\n      \"is_published\": true,\n      \"icon_count\": 32,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        },\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        }\n      ]\n    },\n    {\n      \"id\": 98765,\n      \"name\": \"Weather Icons\",\n      \"permalink\": \"https://thenounproject.com/collection/98765/\",\n      \"slug\": \"weather-icons\",\n      \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n      \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n      \"creator\": {\n        \"id\": 4321,\n        \"username\": \"jsmith\",\n        \"name\": \"Jane Smith\",\n        \"permalink\": \"https://thenounproject.com/jsmith/\",\n        \"location\": \"Brooklyn, NY\",\n        \"bio\": \"Designer focused on space exploration icons.\",\n        \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n      },\n      \"date_created\": \"2024-04-12T10:00:00Z\",\n      \"date_updated\": \"2024-09-30T18:22:00Z\",\n      \"is_published\": true,\n      \"icon_count\": 32,\n      \"tags\": [\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        },\n        {\n          \"id\": 999,\n          \"slug\": \"spaceship\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        },\n        {\n          \"id\": 1234567,\n          \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n          \"attribution\": \"rocket by Jane Smith from Noun Project\",\n          \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n          \"creator\": {\n            \"id\": 4321,\n            \"username\": \"jsmith\",\n            \"name\": \"Jane Smith\",\n            \"permalink\": \"https://thenounproject.com/jsmith/\",\n            \"location\": \"Brooklyn, NY\",\n            \"bio\": \"Designer focused on space exploration icons.\",\n            \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n          },\n          \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n          \"is_active\": true,\n          \"is_public_domain\": false,\n          \"license_description\": \"creative-commons-attribution\",\n          \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n          \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n          \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n          \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n          \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n          \"style\": \"solid\",\n          \"line_weight\": 4,\n          \"tags\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"slug\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"term\": \"rocket\",\n          \"term_slug\": \"rocket\",\n          \"year_published\": 2024,\n          \"royalty_free_license\": true,\n          \"nsfw\": false,\n          \"sponsor_id\": null,\n          \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n        }\n      ]\n    }\n  ],\n  \"generated_at\": \"2026-05-28T14:00:00Z\",\n  \"total\": 187,\n  \"next_page\": \"eyJsYXN0X2lkIjo5ODc2NX0=\",\n  \"prev_page\": null\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b35770b9-d350-4c30-9983-e86e11fcdfd0",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v2/collection?query=<string>&blacklist=false&limit=50&prev_page=<string>&next_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "collection"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Search term used to match collection titles, tags, and descriptions.",
                       "key": "query",
-                      "value": "weather"
+                      "value": "<string>"
                     },
                     {
+                      "description": "When true, applies the client's configured blocklist to results.",
                       "key": "blacklist",
                       "value": "false"
                     },
                     {
+                      "description": "Maximum number of collections returned per page.",
                       "key": "limit",
                       "value": "50"
                     },
                     {
+                      "description": "Cursor token returned by a prior response for backward pagination.",
                       "key": "prev_page",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor token returned by a prior response for forward pagination.",
                       "key": "next_page",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Search curated icon collections (icon sets) by query term. Returns a paginated list of matching collections with metadata."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "df757851-af49-4580-93eb-86c53e3f4a11",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "65063b13-0e4c-4523-a5ae-b211f64cac5b",
+                  "name": "Paginated collection search results.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/collection?query=<string>&blacklist=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match collection titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of collections returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "query",
-                      "value": "weather"
-                    },
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"collections\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"permalink\": \"<uri>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_created\": \"<dateTime>\",\n      \"date_updated\": \"<dateTime>\",\n      \"is_published\": \"<boolean>\",\n      \"icon_count\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": \"<integer>\",\n          \"permalink\": \"<uri>\",\n          \"attribution\": \"<string>\",\n          \"attribution_preview_url\": \"<uri>\",\n          \"creator\": {\n            \"id\": \"<integer>\",\n            \"username\": \"<string>\",\n            \"name\": \"<string>\",\n            \"permalink\": \"<uri>\",\n            \"location\": \"<string>\",\n            \"bio\": \"<string>\",\n            \"avatar_url\": \"<uri>\"\n          },\n          \"date_uploaded\": \"<dateTime>\",\n          \"is_active\": \"<boolean>\",\n          \"is_public_domain\": \"<boolean>\",\n          \"license_description\": \"<string>\",\n          \"preview_url\": \"<uri>\",\n          \"preview_url_42\": \"<uri>\",\n          \"preview_url_84\": \"<uri>\",\n          \"preview_url_200\": \"<uri>\",\n          \"icon_url\": \"<uri>\",\n          \"svg\": \"<string>\",\n          \"style\": \"line\",\n          \"line_weight\": \"<integer>\",\n          \"tags\": [\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            }\n          ],\n          \"term\": \"<string>\",\n          \"term_slug\": \"<string>\",\n          \"year_published\": \"<integer>\",\n          \"royalty_free_license\": \"<boolean>\",\n          \"nsfw\": \"<boolean>\",\n          \"sponsor_id\": \"<integer,null>\",\n          \"thumbnail_url\": \"<uri>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"permalink\": \"<uri>\",\n          \"attribution\": \"<string>\",\n          \"attribution_preview_url\": \"<uri>\",\n          \"creator\": {\n            \"id\": \"<integer>\",\n            \"username\": \"<string>\",\n            \"name\": \"<string>\",\n            \"permalink\": \"<uri>\",\n            \"location\": \"<string>\",\n            \"bio\": \"<string>\",\n            \"avatar_url\": \"<uri>\"\n          },\n          \"date_uploaded\": \"<dateTime>\",\n          \"is_active\": \"<boolean>\",\n          \"is_public_domain\": \"<boolean>\",\n          \"license_description\": \"<string>\",\n          \"preview_url\": \"<uri>\",\n          \"preview_url_42\": \"<uri>\",\n          \"preview_url_84\": \"<uri>\",\n          \"preview_url_200\": \"<uri>\",\n          \"icon_url\": \"<uri>\",\n          \"svg\": \"<string>\",\n          \"style\": \"line\",\n          \"line_weight\": \"<integer>\",\n          \"tags\": [\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            }\n          ],\n          \"term\": \"<string>\",\n          \"term_slug\": \"<string>\",\n          \"year_published\": \"<integer>\",\n          \"royalty_free_license\": \"<boolean>\",\n          \"nsfw\": \"<boolean>\",\n          \"sponsor_id\": \"<integer,null>\",\n          \"thumbnail_url\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"permalink\": \"<uri>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"preview_url\": \"<uri>\",\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"name\": \"<string>\",\n        \"permalink\": \"<uri>\",\n        \"location\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"avatar_url\": \"<uri>\"\n      },\n      \"date_created\": \"<dateTime>\",\n      \"date_updated\": \"<dateTime>\",\n      \"is_published\": \"<boolean>\",\n      \"icon_count\": \"<integer>\",\n      \"tags\": [\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"slug\": \"<string>\"\n        }\n      ],\n      \"icons\": [\n        {\n          \"id\": \"<integer>\",\n          \"permalink\": \"<uri>\",\n          \"attribution\": \"<string>\",\n          \"attribution_preview_url\": \"<uri>\",\n          \"creator\": {\n            \"id\": \"<integer>\",\n            \"username\": \"<string>\",\n            \"name\": \"<string>\",\n            \"permalink\": \"<uri>\",\n            \"location\": \"<string>\",\n            \"bio\": \"<string>\",\n            \"avatar_url\": \"<uri>\"\n          },\n          \"date_uploaded\": \"<dateTime>\",\n          \"is_active\": \"<boolean>\",\n          \"is_public_domain\": \"<boolean>\",\n          \"license_description\": \"<string>\",\n          \"preview_url\": \"<uri>\",\n          \"preview_url_42\": \"<uri>\",\n          \"preview_url_84\": \"<uri>\",\n          \"preview_url_200\": \"<uri>\",\n          \"icon_url\": \"<uri>\",\n          \"svg\": \"<string>\",\n          \"style\": \"solid\",\n          \"line_weight\": \"<integer>\",\n          \"tags\": [\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            }\n          ],\n          \"term\": \"<string>\",\n          \"term_slug\": \"<string>\",\n          \"year_published\": \"<integer>\",\n          \"royalty_free_license\": \"<boolean>\",\n          \"nsfw\": \"<boolean>\",\n          \"sponsor_id\": \"<integer,null>\",\n          \"thumbnail_url\": \"<uri>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"permalink\": \"<uri>\",\n          \"attribution\": \"<string>\",\n          \"attribution_preview_url\": \"<uri>\",\n          \"creator\": {\n            \"id\": \"<integer>\",\n            \"username\": \"<string>\",\n            \"name\": \"<string>\",\n            \"permalink\": \"<uri>\",\n            \"location\": \"<string>\",\n            \"bio\": \"<string>\",\n            \"avatar_url\": \"<uri>\"\n          },\n          \"date_uploaded\": \"<dateTime>\",\n          \"is_active\": \"<boolean>\",\n          \"is_public_domain\": \"<boolean>\",\n          \"license_description\": \"<string>\",\n          \"preview_url\": \"<uri>\",\n          \"preview_url_42\": \"<uri>\",\n          \"preview_url_84\": \"<uri>\",\n          \"preview_url_200\": \"<uri>\",\n          \"icon_url\": \"<uri>\",\n          \"svg\": \"<string>\",\n          \"style\": \"line\",\n          \"line_weight\": \"<integer>\",\n          \"tags\": [\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"slug\": \"<string>\"\n            }\n          ],\n          \"term\": \"<string>\",\n          \"term_slug\": \"<string>\",\n          \"year_published\": \"<integer>\",\n          \"royalty_free_license\": \"<boolean>\",\n          \"nsfw\": \"<boolean>\",\n          \"sponsor_id\": \"<integer,null>\",\n          \"thumbnail_url\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"generated_at\": \"<dateTime>\",\n  \"total\": \"<integer>\",\n  \"next_page\": \"<string,null>\",\n  \"prev_page\": \"<string,null>\"\n}",
+                  "createdAt": "2026-10-21T21:09:11.000Z",
+                  "updatedAt": "2026-10-21T21:09:11.000Z",
+                  "uid": "35240-65063b13-0e4c-4523-a5ae-b211f64cac5b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "94a7bad4-1e4c-4011-8279-1a8d65eae401",
+                  "name": "Missing or invalid OAuth 1.0a credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/collection?query=<string>&blacklist=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match collection titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of collections returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:09:11.000Z",
+                  "updatedAt": "2026-10-21T21:09:11.000Z",
+                  "uid": "35240-94a7bad4-1e4c-4011-8279-1a8d65eae401"
+                },
+                {
+                  "id": "921c905a-da64-4440-ba74-b74cfa59d837",
+                  "name": "The hourly, daily, or monthly request quota has been exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/collection?query=<string>&blacklist=false&limit=50&prev_page=<string>&next_page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search term used to match collection titles, tags, and descriptions.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, applies the client's configured blocklist to results.",
+                          "key": "blacklist",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Maximum number of collections returned per page.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for backward pagination.",
+                          "key": "prev_page",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor token returned by a prior response for forward pagination.",
+                          "key": "next_page",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:09:11.000Z",
+                  "updatedAt": "2026-10-21T21:09:11.000Z",
+                  "uid": "35240-921c905a-da64-4440-ba74-b74cfa59d837"
                 }
               ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:09:11.000Z",
+              "updatedAt": "2026-10-21T21:09:11.000Z",
+              "uid": "35240-8ab1e66e-34c5-465c-905e-3c9955164b8a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "648a2f23-ecff-458e-b38d-e4189e9558b1",
-          "name": "Get Collection",
-          "request": {
-            "name": "Get Collection",
-            "description": {
-              "content": "Retrieve a single icon collection with full metadata and member icons.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "collection",
-                ":collection_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "blacklist",
-                  "value": "false",
-                  "description": "When true, returns 404 if the collection is on the client's blocklist."
-                },
-                {
-                  "disabled": false,
-                  "key": "thumbnail_size",
-                  "value": "84",
-                  "description": "Pixel dimension for returned thumbnail URLs."
-                },
-                {
-                  "disabled": false,
-                  "key": "include_svg",
-                  "value": "false",
-                  "description": "When true, includes raw SVG markup in each member icon."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50",
-                  "description": "Maximum number of member icons returned per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "prev_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for backward pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page",
-                  "value": "<string>",
-                  "description": "Cursor token returned by a prior response for forward pagination."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "collection_id",
-                  "description": "(Required) Numeric identifier of the collection."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ba0f4e73-0ab1-4604-8c05-668dcd4ecac5",
-              "name": "Collection details and member icons.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection",
-                    ":collection_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "collection_id",
-                      "description": "(Required) Numeric identifier of the collection."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"collection\": {\n    \"id\": 98765,\n    \"name\": \"Weather Icons\",\n    \"permalink\": \"https://thenounproject.com/collection/98765/\",\n    \"slug\": \"weather-icons\",\n    \"description\": \"A complete weather iconography set covering conditions and forecasts.\",\n    \"preview_url\": \"https://static.thenounproject.com/collections/98765-cover.png\",\n    \"creator\": {\n      \"id\": 4321,\n      \"username\": \"jsmith\",\n      \"name\": \"Jane Smith\",\n      \"permalink\": \"https://thenounproject.com/jsmith/\",\n      \"location\": \"Brooklyn, NY\",\n      \"bio\": \"Designer focused on space exploration icons.\",\n      \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n    },\n    \"date_created\": \"2024-04-12T10:00:00Z\",\n    \"date_updated\": \"2024-09-30T18:22:00Z\",\n    \"is_published\": true,\n    \"icon_count\": 32,\n    \"tags\": [\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      },\n      {\n        \"id\": 999,\n        \"slug\": \"spaceship\"\n      }\n    ],\n    \"icons\": [\n      {\n        \"id\": 1234567,\n        \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n        \"attribution\": \"rocket by Jane Smith from Noun Project\",\n        \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n        \"creator\": {\n          \"id\": 4321,\n          \"username\": \"jsmith\",\n          \"name\": \"Jane Smith\",\n          \"permalink\": \"https://thenounproject.com/jsmith/\",\n          \"location\": \"Brooklyn, NY\",\n          \"bio\": \"Designer focused on space exploration icons.\",\n          \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n        },\n        \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n        \"is_active\": true,\n        \"is_public_domain\": false,\n        \"license_description\": \"creative-commons-attribution\",\n        \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n        \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n        \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n        \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n        \"style\": \"solid\",\n        \"line_weight\": 4,\n        \"tags\": [\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          },\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          }\n        ],\n        \"term\": \"rocket\",\n        \"term_slug\": \"rocket\",\n        \"year_published\": 2024,\n        \"royalty_free_license\": true,\n        \"nsfw\": false,\n        \"sponsor_id\": null,\n        \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n      },\n      {\n        \"id\": 1234567,\n        \"permalink\": \"https://thenounproject.com/icon/1234567/\",\n        \"attribution\": \"rocket by Jane Smith from Noun Project\",\n        \"attribution_preview_url\": \"https://static.thenounproject.com/png/1234567-attribution.png\",\n        \"creator\": {\n          \"id\": 4321,\n          \"username\": \"jsmith\",\n          \"name\": \"Jane Smith\",\n          \"permalink\": \"https://thenounproject.com/jsmith/\",\n          \"location\": \"Brooklyn, NY\",\n          \"bio\": \"Designer focused on space exploration icons.\",\n          \"avatar_url\": \"https://static.thenounproject.com/avatars/4321.png\"\n        },\n        \"date_uploaded\": \"2024-08-15T13:45:00Z\",\n        \"is_active\": true,\n        \"is_public_domain\": false,\n        \"license_description\": \"creative-commons-attribution\",\n        \"preview_url\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"preview_url_42\": \"https://static.thenounproject.com/png/1234567-42.png\",\n        \"preview_url_84\": \"https://static.thenounproject.com/png/1234567-84.png\",\n        \"preview_url_200\": \"https://static.thenounproject.com/png/1234567-200.png\",\n        \"icon_url\": \"https://static.thenounproject.com/svg/1234567.svg\",\n        \"svg\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><path d=\\\"...\\\"/></svg>\",\n        \"style\": \"solid\",\n        \"line_weight\": 4,\n        \"tags\": [\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          },\n          {\n            \"id\": 999,\n            \"slug\": \"spaceship\"\n          }\n        ],\n        \"term\": \"rocket\",\n        \"term_slug\": \"rocket\",\n        \"year_published\": 2024,\n        \"royalty_free_license\": true,\n        \"nsfw\": false,\n        \"sponsor_id\": null,\n        \"thumbnail_url\": \"https://static.thenounproject.com/png/1234567-200.png\"\n      }\n    ]\n  },\n  \"generated_at\": \"2026-05-28T14:00:00Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9b011142-2a24-4c33-8aaf-3851eb5c1f43",
-              "name": "Missing or invalid OAuth 1.0a credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection",
-                    ":collection_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "collection_id",
-                      "description": "(Required) Numeric identifier of the collection."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2a9f03e5-7831-459f-a2a2-ea889caafd59",
-              "name": "The requested icon, collection, or resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection",
-                    ":collection_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "collection_id",
-                      "description": "(Required) Numeric identifier of the collection."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9f6b57f6-cda1-4484-8975-b8629ee06d43",
-              "name": "The hourly, daily, or monthly request quota has been exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "collection",
-                    ":collection_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "blacklist",
-                      "value": "false"
-                    },
-                    {
-                      "key": "thumbnail_size",
-                      "value": "84"
-                    },
-                    {
-                      "key": "include_svg",
-                      "value": "false"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "prev_page",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "collection_id",
-                      "description": "(Required) Numeric identifier of the collection."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"rate_limit_exceeded\",\n  \"message\": \"The monthly quota for this client key has been exceeded.\",\n  \"status\": 429,\n  \"request_id\": \"req-abc123def456\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "cb3578fb-7cfa-42e3-bb64-c94238d86531",
+          "createdAt": "2026-10-21T21:09:11.000Z",
+          "updatedAt": "2026-10-21T21:09:11.000Z",
+          "uid": "35240-cb3578fb-7cfa-42e3-bb64-c94238d86531"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.thenounproject.com",
-      "key": "baseUrl"
+      "id": "26ca8d43-4694-48f2-8225-692c7ec076aa",
+      "createdAt": "2026-10-21T21:09:11.000Z",
+      "updatedAt": "2026-10-21T21:09:11.000Z",
+      "uid": "35240-26ca8d43-4694-48f2-8225-692c7ec076aa"
     }
   ],
   "auth": {
@@ -713,25 +749,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "9e4e2b37-7199-4874-ba45-41f311a2be8b",
-    "name": "Noun Project API V2 Autocomplete Collection API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Noun Project API V2 is an OAuth 1.0a-secured REST API that provides\naccess to nearly 10 million royalty-free PNG and SVG icons. The API\nsupports icon search with style and line-weight filtering, similar-icon\nlookup, collection browsing, custom hex-color recoloring, multiple\nthumbnail sizes, autocomplete suggestions, per-client blocklists, and\nreal-time usage telemetry.\n\nBuilt on AWS with documented 99.99% uptime, the API serves more than\n300 million requests per month. All requests must be signed with OAuth\n1.0a using the client key and secret obtained from the Noun Project\ndeveloper portal.\n\n\nContact Support:\n Name: Noun Project API Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thenounproject.com"
     }
-  }
+  ]
 }
