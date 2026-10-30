@@ -1,4 +1,4 @@
-# Noun Project (noun-project)
+# Noun Project
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,66 +66,208 @@
 
 The Noun Project is a visual language platform providing access to nearly 10 million royalty-free PNG and SVG icons through an OAuth 1.0a-secured REST API. The v2 API supports icon search with style and line-weight filtering, similar-icon lookup, collection browsing, custom recoloring, autocomplete, per-client blocklists, and usage telemetry. Built on AWS, it serves more than 300 million requests per month at 99.99% uptime.
 
-**APIs.json:** [http://api.thenounproject.com/index.html](http://api.thenounproject.com/index.html)
+**Areas:** Icons · SVG · Visual Language · Design Assets · Public APIs · Design
 
-## Tags
+## Noun Project on APIs.io
 
-- Art And Design
-- Icons
-- SVG
-- Visual Language
-- Design Assets
-- Public APIs
+Everything profiled for Noun Project is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/noun-project/](https://apis.io/providers/noun-project/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-28
+- [Noun Project Autocomplete API](https://apis.io/apis/noun-project/noun-project-autocomplete-api/) — Suggest search terms based on a query prefix.
+- [Noun Project Blocklist API](https://apis.io/apis/noun-project/noun-project-blocklist-api/) — Manage per-client blocklists for icon IDs, collection IDs, and terms.
+- [Noun Project Collection API](https://apis.io/apis/noun-project/noun-project-collection-api/) — Search and retrieve curated icon collections (icon sets).
+- [Noun Project Icon API](https://apis.io/apis/noun-project/noun-project-icon-api/) — Search, filter, retrieve, and download icons from the Noun Project library.
+- [Noun Project Usage API](https://apis.io/apis/noun-project/noun-project-usage-api/) — Inspect current API key usage against documented quotas.
 
-## APIs
+### Published properties
 
-### Noun Project API V2
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-OAuth 1.0a-secured REST API for searching and retrieving icons, collections, autocomplete suggestions, and usage statistics from the Noun Project's library of nearly 10 million royalty-free icons. Supports style filtering, line-weight filtering, hex color recoloring, multiple thumbnail sizes, SVG download, similar-icon discovery, and per-client blocklists.
+#### Agentic access (1)
 
-- **Human URL:** [https://api.thenounproject.com/documentation.html](https://api.thenounproject.com/documentation.html)
-- **Base URL:** `https://api.thenounproject.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Noun Project Agentic Access](https://apis.io/agentic-access/noun-project/noun-project-agentic-access/)
 
-- Icons
-- Search
-- Collections
-- Visual Language
+#### JSON Schema (16)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://api.thenounproject.com/documentation.html)
-- [Getting Started](https://api.thenounproject.com/getting_started.html)
-- [Sign Up](https://thenounproject.com/developers/apps/)
-- [A P I Explorer](https://api.thenounproject.com/explorer)
-- [Authentication](https://api.thenounproject.com/getting_started.html)
-- [OpenAPI](openapi/noun-project-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/noun-project.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/noun-project.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [AutocompleteResponse](https://apis.io/schemas/noun-project/noun-project-autocomplete-response/)
+- [Blocklist](https://apis.io/schemas/noun-project/noun-project-blocklist/)
+- [BlocklistIdRequest](https://apis.io/schemas/noun-project/noun-project-blocklist-id-request/)
+- [BlocklistResponse](https://apis.io/schemas/noun-project/noun-project-blocklist-response/)
+- [BlocklistTermRequest](https://apis.io/schemas/noun-project/noun-project-blocklist-term-request/)
+- [Collection](https://apis.io/schemas/noun-project/noun-project-collection/)
+- [CollectionResponse](https://apis.io/schemas/noun-project/noun-project-collection-response/)
+- [CollectionSearchResponse](https://apis.io/schemas/noun-project/noun-project-collection-search-response/)
+- [Icon](https://apis.io/schemas/noun-project/noun-project-icon/)
+- [IconCreator](https://apis.io/schemas/noun-project/noun-project-icon-creator/)
+- [IconResponse](https://apis.io/schemas/noun-project/noun-project-icon-response/)
+- [IconSearchResponse](https://apis.io/schemas/noun-project/noun-project-icon-search-response/)
+- [Tag](https://apis.io/schemas/noun-project/noun-project-tag/)
+- [Usage](https://apis.io/schemas/noun-project/noun-project-usage/)
+- [UsageResponse](https://apis.io/schemas/noun-project/noun-project-usage-response/)
+- [UsageWindow](https://apis.io/schemas/noun-project/noun-project-usage-window/)
 
-## Common Properties
+#### JSON Structure (16)
+
+Data models expressed in JSON Structure.
+
+- [Noun Project Autocomplete Response Structure](https://apis.io/json-structure/noun-project/noun-project-autocomplete-response-structure/)
+- [Noun Project Blocklist Id Request Structure](https://apis.io/json-structure/noun-project/noun-project-blocklist-id-request-structure/)
+- [Noun Project Blocklist Response Structure](https://apis.io/json-structure/noun-project/noun-project-blocklist-response-structure/)
+- [Noun Project Blocklist Structure](https://apis.io/json-structure/noun-project/noun-project-blocklist-structure/)
+- [Noun Project Blocklist Term Request Structure](https://apis.io/json-structure/noun-project/noun-project-blocklist-term-request-structure/)
+- [Noun Project Collection Response Structure](https://apis.io/json-structure/noun-project/noun-project-collection-response-structure/)
+- [Noun Project Collection Search Response Structure](https://apis.io/json-structure/noun-project/noun-project-collection-search-response-structure/)
+- [Noun Project Collection Structure](https://apis.io/json-structure/noun-project/noun-project-collection-structure/)
+- [Noun Project Icon Creator Structure](https://apis.io/json-structure/noun-project/noun-project-icon-creator-structure/)
+- [Noun Project Icon Response Structure](https://apis.io/json-structure/noun-project/noun-project-icon-response-structure/)
+- [Noun Project Icon Search Response Structure](https://apis.io/json-structure/noun-project/noun-project-icon-search-response-structure/)
+- [Noun Project Icon Structure](https://apis.io/json-structure/noun-project/noun-project-icon-structure/)
+- [Noun Project Tag Structure](https://apis.io/json-structure/noun-project/noun-project-tag-structure/)
+- [Noun Project Usage Response Structure](https://apis.io/json-structure/noun-project/noun-project-usage-response-structure/)
+- [Noun Project Usage Structure](https://apis.io/json-structure/noun-project/noun-project-usage-structure/)
+- [Noun Project Usage Window Structure](https://apis.io/json-structure/noun-project/noun-project-usage-window-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Noun Project Context](https://apis.io/jsonld/noun-project/noun-project-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Noun Project Vocabulary](https://apis.io/vocabularies/noun-project/noun-project-vocabulary/)
+
+#### Examples (16)
+
+Example requests and responses.
+
+- [Noun Project Autocomplete Response Example](https://apis.io/examples/noun-project/noun-project-autocomplete-response-example/)
+- [Noun Project Blocklist Example](https://apis.io/examples/noun-project/noun-project-blocklist-example/)
+- [Noun Project Blocklist Id Request Example](https://apis.io/examples/noun-project/noun-project-blocklist-id-request-example/)
+- [Noun Project Blocklist Response Example](https://apis.io/examples/noun-project/noun-project-blocklist-response-example/)
+- [Noun Project Blocklist Term Request Example](https://apis.io/examples/noun-project/noun-project-blocklist-term-request-example/)
+- [Noun Project Collection Example](https://apis.io/examples/noun-project/noun-project-collection-example/)
+- [Noun Project Collection Response Example](https://apis.io/examples/noun-project/noun-project-collection-response-example/)
+- [Noun Project Collection Search Response Example](https://apis.io/examples/noun-project/noun-project-collection-search-response-example/)
+- [Noun Project Icon Creator Example](https://apis.io/examples/noun-project/noun-project-icon-creator-example/)
+- [Noun Project Icon Example](https://apis.io/examples/noun-project/noun-project-icon-example/)
+- [Noun Project Icon Response Example](https://apis.io/examples/noun-project/noun-project-icon-response-example/)
+- [Noun Project Icon Search Response Example](https://apis.io/examples/noun-project/noun-project-icon-search-response-example/)
+- [Noun Project Tag Example](https://apis.io/examples/noun-project/noun-project-tag-example/)
+- [Noun Project Usage Example](https://apis.io/examples/noun-project/noun-project-usage-example/)
+- [Noun Project Usage Response Example](https://apis.io/examples/noun-project/noun-project-usage-response-example/)
+- [Noun Project Usage Window Example](https://apis.io/examples/noun-project/noun-project-usage-window-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Noun Project API V2](https://apis.io/collections/noun-project/open-noun-project/)
+- [Noun Project API V2 Autocomplete API](https://apis.io/collections/noun-project/open-noun-project-autocomplete-api/)
+- [Noun Project API V2 Autocomplete Blocklist API](https://apis.io/collections/noun-project/open-noun-project-blocklist-api/)
+- [Noun Project API V2 Autocomplete Collection API](https://apis.io/collections/noun-project/open-noun-project-collection-api/)
+- [Noun Project API V2 Autocomplete Icon API](https://apis.io/collections/noun-project/open-noun-project-icon-api/)
+- [Noun Project API V2 Autocomplete Usage API](https://apis.io/collections/noun-project/open-noun-project-usage-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Noun Project — jsonschema rules](https://apis.io/rules/noun-project/noun-project-jsonschema-spectral-rules/)
+- [Noun Project API Rules](https://apis.io/rules/noun-project/noun-project-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Noun Project Authentication](https://apis.io/security/noun-project/noun-project-authentication/)
+- [Noun Project Domain Security](https://apis.io/security/noun-project/noun-project-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Noun Project Plans Pricing](https://apis.io/plans/noun-project/noun-project-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Noun Project Rate Limits](https://apis.io/rate-limits/noun-project/noun-project-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Noun Project Finops](https://apis.io/finops/noun-project/noun-project-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://thenounproject.com/)
 - [Pricing](https://thenounproject.com/api/)
-- [Sign Up](https://thenounproject.com/developers/apps/)
 - [Support](https://thenounproject.zendesk.com/)
-- [Help Center](https://help.thenounproject.com/)
-- [GitHub Organization](https://github.com/TheNounProject)
-- [Terms of Service](https://thenounproject.com/legal/api-terms-of-use/)
-- [Public APIs Listing](https://github.com/public-apis/public-apis)
-- [Plans](plans/noun-project-plans-pricing.yml)
-- [Rate Limits](rate-limits/noun-project-rate-limits.yml)
-- [Fin Ops](finops/noun-project-finops.yml)
-- [Vocabulary](vocabulary/noun-project-vocabulary.yml)
-- [Spectral Rules](rules/noun-project-rules.yml)
+- [Blog](https://blog.thenounproject.com/feed/)
+- [Terms of service](https://thenounproject.com/legal/api-terms-of-use/)
+- [GitHub](https://github.com/TheNounProject)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 22.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/noun-project/](https://apis.io/providers/noun-project/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Noun Project: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/noun-project/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
